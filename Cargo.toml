@@ -1,0 +1,50 @@
+[package]
+name = "abgen"
+version = "0.1.0"
+edition = "2021"
+description = "Build Decentraland asset bundles — a reimplementation of Decentraland's asset-bundle-converter"
+license = "AGPL-3.0-or-later"
+
+[lib]
+name = "abgen"
+path = "src/lib.rs"
+
+[[bin]]
+name = "abgen"
+path = "src/bin/abgen.rs"
+
+[[bin]]
+name = "abgen-corpus"
+path = "src/bin/abgen-corpus.rs"
+
+[[bin]]
+name = "abgen-verify"
+path = "src/bin/abgen-verify.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order", "float_roundtrip", "raw_value"] }
+ureq = "2"
+image = "0.25"
+psd = "0.3"
+libc = "0.2"
+rayon = "1"
+num_cpus = "1"
+anyhow = "1"
+brotli = "7"
+postgres = "0.19"
+sha1 = "0.10"
+memmap2 = "0.9"
+draco_decoder = { path = "third_party/draco_decoder" }
+texpresso = "2"
+crunch_ffi = { path = "third_party/crunch" }
+# Vendored IJG libjpeg 9c — FreeImage 3.18.0's bundled JPEG codec, the one
+# Unity's editor AssetImporter uses to decode standalone-texture JPEGs.
+libjpeg9c = { path = "third_party/libjpeg9c" }
+# MIT block-texture decoder (BC1-7) — used by inspection tooling
+# (examples/dump_tex_png) to decode bundle textures for image comparison.
+texture2ddecoder = "0.1"
+mimalloc = { version = "0.1.52", default-features = false }
+
+[profile.release]
+opt-level = 3

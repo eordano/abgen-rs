@@ -1,0 +1,14 @@
+256583241	Base Layer.sequence_Pose
+2105523844	GravityWeight
+20084747	Base Layer.sequence_Pose 0
+1190493974	sequence_Pose 0
+3387352158	sequence_Pose -> sequence_Pose 0
+2352398875	Base Layer.sequence_Pose 0 -> Base Layer.sequence_Pose
+375257444	AnyState -> sequence_Pose
+756556552	Base Layer
+0	
+2495216539	sequence_Pose 0 -> sequence_Pose
+23966416	Loop
+1892190631	Entry -> Base Layer.sequence_Pose
+3007504377	Base Layer.sequence_Pose -> Base Layer.sequence_Pose 0
+2911523979	sequence_Pose

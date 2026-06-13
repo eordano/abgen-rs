@@ -1,0 +1,9 @@
+# TextAsset metadata: the `dependencies` array uses natural (digit-run numeric) order
+
+**Why it matters:** A class of metadata-TextAsset bundles diverged from the reference even though they listed exactly the right set of sibling-bundle dependencies — only the order was wrong. Because the array is serialized as text, any ordering difference makes the whole TextAsset object mismatch and blocks byte-identical output.
+
+**How it works:** The converter serializes `AssetBundleManifest.GetAllDependencies` verbatim (`AssetBundleMetadataBuilder.Generate`), and Unity returns those names in sorted order — but the comparison is *natural*, not byte-lexicographic: runs of ASCII digits compare by numeric value, everything else byte-wise. So a name containing `...g7pqew...` sorts before `...g42hknvr...` (7 < 42), where plain byte order would put the `4` first.
+
+abgen-rs originally preserved discovery order, which masked the bug on the early corpus; a first fix sorted byte-lexicographically, which coincides with natural order for almost every CID pair (base32/base58 names rarely place digit runs of different lengths at the first differing position) and so masked the remaining gap. The distinction only surfaces when two dependency names share a prefix up to digit runs of different lengths.
+
+The derivation was corpus-exhaustive: every multi-entry `dependencies` array in the reference corpus was extracted and tested against both orders. Every array is consistent with natural order; the only arrays that distinguish the two orders are natural-sorted, and there are zero counterexamples. The comparator (`natural_bundle_cmp` in `src/builder.rs`) breaks the never-observed leading-zero tie deterministically (shorter run first) — bundle names are lowercase base32/base58 CIDs plus `dcl/scene_ignore_*`, so leading zeros cannot occur in practice.

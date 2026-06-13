@@ -1,0 +1,7 @@
+# Plain `.glb` scenes must enable the source-file resolvers
+
+**Why it matters:** A large group of glb-scene bundles emitted a null `(0,0)` PPtr for their Material base-map slot and omitted the sibling texture bundle from the SerializedFile externals, where the texture resolves to a sibling-bundle hash. The Material slot and the SF externals both diverged from the reference, blocking byte-identical output on every affected scene.
+
+**How it works:** The texture resolvers (the in-entity hash resolver and the glTF bytes resolver) are only activated when a bundle has a `source_file` set. The corpus builder gated `source_file` on file extension and excluded plain `.glb`, treating only `.gltf` and emote `.glb` as model sources. With `source_file` unset for a plain `.glb`, both resolvers were blind: the relative image URI in the glTF never joined to its real in-entity key, the content lookup missed, and the texture slot collapsed to null while its bundle dropped out of the externals set (which is what feeds SF externals).
+
+The fix is to allow plain `.glb` in the `source_file` gate alongside `.gltf` and emote `.glb`. The in-entity layout is identical for all three — URIs are relative to the source file's directory — so once `source_file` is set the resolvers map the image URI to the correct sibling hash, the Material PPtr points at the right `(FileID, PathID)`, and the sibling bundle appears in the SF externals. The exclusion of plain `.glb` was an inherited mistake, not a real distinction.

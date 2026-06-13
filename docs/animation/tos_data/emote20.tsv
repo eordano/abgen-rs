@@ -1,0 +1,11 @@
+4148269010	Base Layer.ArmatureAction_002
+2852028002	ArmatureAction_002
+2105523844	GravityWeight
+1553109697	ArmatureAction_002 -> ArmatureAction_002
+2055059867	ArmatureAction.002
+756556552	Base Layer
+0	
+1322323701	Base Layer.ArmatureAction_002 -> Base Layer.ArmatureAction_002
+1048133599	Entry -> Base Layer.ArmatureAction_002
+23966416	Loop
+864861042	AnyState -> ArmatureAction_002

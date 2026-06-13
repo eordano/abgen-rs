@@ -1,0 +1,2568 @@
+{
+  "_purpose": "abgen-rs 300 validation corpus v3 \u2014 coverage (body slots + sizes + features)",
+  "_seed": "val300c",
+  "_count": 301,
+  "_by_type": {
+    "wearable": 180,
+    "scene": 100,
+    "emote": 20,
+    "profile": 1
+  },
+  "_wearable_by_category": {
+    "mouth": 4,
+    "eyes": 5,
+    "eyebrows": 4,
+    "upper_body": 18,
+    "feet": 16,
+    "eyewear": 8,
+    "earring": 8,
+    "top_head": 8,
+    "mask": 7,
+    "hat": 10,
+    "lower_body": 10,
+    "simple": 3,
+    "hair": 6,
+    "tiara": 6,
+    "helmet": 18,
+    "skin": 23,
+    "hands_wear": 20,
+    "facial_hair": 4,
+    "morph": 1,
+    "body_shape": 1
+  },
+  "_coverage": {
+    "draco": 7,
+    "morph": 1,
+    "normalmap": 29,
+    "multi_material": 187
+  },
+  "_file_count_buckets": {
+    "1-3": 25,
+    "4-10": 196,
+    "11-50": 25,
+    "51-200": 30,
+    "200+": 25
+  },
+  "_note": "outfits skipped (not on local content store); 1 profile for texture-format coverage.",
+  "entities": [
+    {
+      "entity_id": "bafkreic2qq5d2v5tbqj4246m52sxoiyjp3iiaktd5thsaylrpt7qe5i62m",
+      "entity_type": "wearable",
+      "file_count": 2,
+      "category": "mouth",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreic462qeoaf3ihiew4ezkx245imxiyop4k7pmoqdlw5pql6be5teku",
+      "entity_type": "wearable",
+      "file_count": 2,
+      "category": "eyes",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidihevg4murnbg3mjjtn5zpf75jyuxx5fklbxbsfhb5b3p3v3ttxy",
+      "entity_type": "wearable",
+      "file_count": 2,
+      "category": "mouth",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreielcmey52quye6vgql7xouksylgaumnzm7bzjl3ull44ob3vwwo7m",
+      "entity_type": "wearable",
+      "file_count": 2,
+      "category": "eyes",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreif7drrnw2pcqwbeprnu6vdjbniiqmnsut555vnfrhgceoubc7hcce",
+      "entity_type": "wearable",
+      "file_count": 2,
+      "category": "mouth",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreifssvsbneeo5f53f3z76sxikgzkymgo5giehygwrsiwvziwlszlse",
+      "entity_type": "wearable",
+      "file_count": 2,
+      "category": "eyebrows",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigsizskvfj64mbgndmtwzzduvlckzgfptbvubhtfo2a55a4cd7rz4",
+      "entity_type": "wearable",
+      "file_count": 2,
+      "category": "eyebrows",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreih52u4rvr5ygkp3fk25ftaesq7onhf2txafrkogxodd5svw6kp3lq",
+      "entity_type": "wearable",
+      "file_count": 2,
+      "category": "eyebrows",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreihpfg5fte6u2r3urnpd4xukujzegqga2ztemp3eruooq5qad5bzem",
+      "entity_type": "wearable",
+      "file_count": 2,
+      "category": "mouth",
+      "flags": []
+    },
+    {
+      "entity_id": "QmNY2Kq5n8koD5bfiSJeKSo4tRTWSAoaXD1SBYLVFSfPNp",
+      "entity_type": "scene",
+      "file_count": 3,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmQdDwzL4huMC9ZXKMgQXKbv5UP3MTCwHBDgNaethXV939",
+      "entity_type": "scene",
+      "file_count": 3,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmTDCnBonVW7VCgdMomTAU5HbzJpHDkSWCJtsmPuZWQsks",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmTQJ5FFbQCJ9sSfbBxYQHRXGyrWRtPzpiJsN8X5CE5ZJG",
+      "entity_type": "scene",
+      "file_count": 3,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmUjGnthWf4dS11tjxfnYbXvqscjRF2BJe3PMPtZScNtDA",
+      "entity_type": "scene",
+      "file_count": 3,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmWuEcs48seFMoCDXsbLeQbQkruk2u5XKtS1PaUzjrPR8k",
+      "entity_type": "scene",
+      "file_count": 3,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmYK6cMjuuPGM8w4rKpfpWDQ74dfeaMvnixzyiAS1rWufr",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "category": "feet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmaXYCUtF2Uxwk7bBFWGfcQRwNiBLRn8kAga7EusL2d3xU",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "category": "eyewear",
+      "flags": []
+    },
+    {
+      "entity_id": "QmapsGDsPy7HA2JTUL5bbze92SxV9bdrEifJsEr11EKziF",
+      "entity_type": "scene",
+      "file_count": 3,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmcD5Dd4XpgmNCgqErVfrWDK42XUVyiMP1U56dTLQLcPe9",
+      "entity_type": "scene",
+      "file_count": 3,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmdWea2h6mzHwmmXD81wxb3FHFuT46AvVxK58mEZofVu9i",
+      "entity_type": "scene",
+      "file_count": 3,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "Qmerge89Nn2GwiKq8rcQ6QnLMX2S3onZggjfduzFCCqZSy",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "category": "earring",
+      "flags": []
+    },
+    {
+      "entity_id": "QmfH89Ae9AJqPSJeKwms3Vk5BnZiwQKPxxZREB3Et9ctrR",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "category": "top_head",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicpvantteju6363cx4ldsr44mqh23g4ayr6kdbanv2h4tcnwmku3i",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidahcyqyjf2kneuthn4e457u6hurfiadd42ylggqp5vnrxdalmi2e",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifdoggfc3jjke5b7ir2sxhtiaksubqrreoxrfbchy47hpxmqxmt3q",
+      "entity_type": "emote",
+      "file_count": 3,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmPLoBAAUwyFL5w9iqNBdexaphAypUuz9sVuubbcgQjg5w",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyes",
+      "flags": []
+    },
+    {
+      "entity_id": "QmPbhJEGcSRbgSc191qhrjQJ59fZqXxdsiQx6TpMSambPS",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "mask",
+      "flags": []
+    },
+    {
+      "entity_id": "QmPxErZMiQWJ55sjf4ubkfZZXdpQADG9izNp2NbMyUUuU8",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmQD5MJmmfQimbaUH1bNa16vUE4ijCP7dT2CaGTgqZ6zFB",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "earring",
+      "flags": []
+    },
+    {
+      "entity_id": "QmQeqdkbLd1E3RZMR56AA4jF76KGsThnMrhLHxYyCkagaB",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "lower_body",
+      "flags": []
+    },
+    {
+      "entity_id": "QmQfQJQomTAo4LHk2nmhXzi1VKq8Dy59jnRopr7uMHfuP1",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "simple",
+      "flags": []
+    },
+    {
+      "entity_id": "QmQjyqTPQsakb7779KX1xJBh4udXq6eZHZ9hyh9TwnH9Gi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmRZiuUYBEWaox6pZSmfrgRxxREVy74gNFuzhMv9epXUiH",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "earring",
+      "flags": []
+    },
+    {
+      "entity_id": "QmRgBic6Tpx8433sHntMpVhirHPcwd2i2eMqUr6nyK8DPX",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "simple",
+      "flags": []
+    },
+    {
+      "entity_id": "QmRiuiXJDzGtxhGJdQmoux2cAEDEMbmgCgs8jcSy9gVoCk",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyewear",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmRuoeNHAAn1V2Ej2GJB8gDcx37ZVLA4ruzo7z66uDHAvP",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "top_head",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmSXovnfVCP2PoDdmLWiQZHr6VFVFWoWKVw4UGLj9Rbybk",
+      "entity_type": "scene",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmSYPTQivLT5S8tR5R4anSdMiJpV136ZdsEGCA4udAQFFV",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "lower_body",
+      "flags": []
+    },
+    {
+      "entity_id": "QmSbyTqjVVxj9t3G5D2tZMJV7c26NN4YXX1JNtwXh29xUR",
+      "entity_type": "profile",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmSwjctKtvgU7y3WaeAYe5xV6FJczfYmc4qqpwQdCmemUC",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "top_head",
+      "flags": []
+    },
+    {
+      "entity_id": "QmTAgwLaQPBrU2TCy9GHsmNhoZbeLJkrFRUf1MerCyM3PS",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "top_head",
+      "flags": []
+    },
+    {
+      "entity_id": "QmTpkqhVBdsUcsQKe2QfPhzAL1Ksr6QMCN4UQvv4WianP3",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hair",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmU2KidcE2KZfmdP2kMN8espcG3goM9RdhLUZpK8bABpxG",
+      "entity_type": "scene",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmUX9YQudiKoEqfDeuvyScV3Z8eh3bDFh2Bg1E4PNq7b7n",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyewear",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmUbVQv6DdYLaD3KYd2r9HZfqAGqrE64AFBtfPmUxJK2Ce",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "mask",
+      "flags": []
+    },
+    {
+      "entity_id": "QmVTqF2hdaBQh4EXVass4jtrnwp6xUfa21J1iMKaFyYwTz",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hair",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmVaXGRHo81NkWNBCtMZKnj8sexijbJpnWnXARcj4fa3Th",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "earring",
+      "flags": []
+    },
+    {
+      "entity_id": "QmVeihtqAMzAvRwxfeLxtJh5n2R19GB5TDG96G74JGG2C1",
+      "entity_type": "scene",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmWDB7zBET827mHk5gVCai1dk5m9ZLt12KGTY7Y1EUB6rW",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmYdAWFcsN8XUSu7zQJFeCeErabERTw76Cyg9e5Wo8RJs1",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "top_head",
+      "flags": []
+    },
+    {
+      "entity_id": "QmZXtvUyLCQG9ekPrmdnNnJzuMjLLKoMnn5bsq98t8QxQi",
+      "entity_type": "scene",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmZeaKv235kQYxJYTLG4E9nRxRj4wyYnBK1kw3zxFiBPvh",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "simple",
+      "flags": []
+    },
+    {
+      "entity_id": "QmZerEHEUfDcpBKTZwnsKWLC2zytNCgDDPuzVjTdjxM7vB",
+      "entity_type": "scene",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmZtL2hJS8fVZxG1NTucU1NP4JWXeMvLVEfZxgwPAM7qoU",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "earring",
+      "flags": []
+    },
+    {
+      "entity_id": "QmZyocduNs9DnivDj7cZ8gSZVuRR6thacWAAdWLedKQiBo",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "mask",
+      "flags": []
+    },
+    {
+      "entity_id": "QmaP9xsZaeDQT92T3N2Jjvp75qznhZcskTykUqnuJGdQjF",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "lower_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmbQNJYZEHTySQPvJJR3SPpyAqnfpxMGoLUQaVeMANezx6",
+      "entity_type": "scene",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmbuS3bgycTvcJQqudAureRQhPeYs2R4jJKE1Mx9BcmDg5",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hair",
+      "flags": []
+    },
+    {
+      "entity_id": "QmcMNh3uWNCMHJ5P3pZLQvmHpvYKYqmYNKRQAgc5CCgq1N",
+      "entity_type": "scene",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmcTZKAttHEzc4JZ4ED1nCxEYcCggEEKYB3zx2qaebrT9U",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "Qmchw453mRDE4pEAR3sq5R1CQhvzbYGDo1HqfKgxtvV7Q5",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "mask",
+      "flags": []
+    },
+    {
+      "entity_id": "QmdMuxaEGSG9oQLwZYnNxwX4qKGbqY1Pw4fawYSRz3whHi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmdevJ3miSGD6tHMgvrYXsiuA1HBeoXuCGWaebUdx8uj1N",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyes",
+      "flags": []
+    },
+    {
+      "entity_id": "Qmdg2KwTJ93jtxjtRMPPjJwUvmW8BHR18dRuoVFyXMjxQj",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "tiara",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmeP9VDBJmZYMdczuGsqfsqRyDnSxtMMEWv3ALqUY7A48e",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmeYZVPdgV1KHeNkyufiYtxh5ER7Wyb2TWfnaAZt12zRg4",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "tiara",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "Qmf9WAYAiWWzroCNNgzLjJhb8WWFQ5ENRVAbxVd7aNFSaY",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreia25oumh7a7b32qz2ni653z4anwyrz4bnnc6lbko52gregnngoj3y",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreia2sds5vrdlnab6vrdpqqq2ua5hrl62zh7quwih6orq3vnk5j55w4",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreia44servarwqevuzt62d56myf5aj5d3fs3qj2eey7eozbphvcdw7q",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiabt3slu7yjy2fft3sy2df6lszyda5eesu76jcn5kexyqqws5vhby",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiacz3m6pqvm6vfxmy25dek3m3jxpeuoi4p3xmcwowrrmole5ldk7a",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiad2xjyd63uwpslqconuie3eijvzljp6u7o2wnihnxv7jzl33thpe",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hair",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiaf3a4t5juld7mgio7ffugebsuydluptkvou5l6zmkjsjxuxerx44",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiaft2sigy2hcoiwgsqy276mrsj4p7mfquzhmzwpzdvbcukgwhrgsq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiagfer7wn6nplmlasv2pr2dtfukhg3r53oww5qzvmgr5godpvsg2i",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "mask",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiaiyehwxj3oox6ouzyo44ihfclesjbm6x4u77irq3mjagarvovcw4",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiakbscr2burr7nexsowsm7vteaaiuo5mnr6fpagwnbqhymuzeg3vu",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiakxbnxxcsmqo7dddfrk2kl4syqajtxlo45ls2fa5wbqb74cjgvem",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreianj2y3lwnifx4wvcajtfxf5gxh3qatwfxknti2s6kofclwempe2y",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiaoiht77m4uhl2neanysb7xfub7o2sw2zbwjohzoo4nc42d4fq4fi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "lower_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiappofwcc6yt5lx5avfgeivwsnqvtfap5vgx5bqhmyo2ve45axwgq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreias4japwrfurgnruwh54j5za7phdmkvcjkescj24ktukwya72opum",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiatfd6bw3ulblfqt3su2zwmjif34mrbgo75vnqxzpegqgg4qibooq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiawekrd55bxnsnwarkbsy5k2fs2w5nutuxauihrz2tnawtmph4z7a",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiawwh5pwoeu5uq3ptewn2cn3kbzwv2bqsfs5bmcnoepiypihnbtoy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "tiara",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiaxyhoelzkwpqqpsupbzvqrhwhgzhhy7p3dioowxkm23ge55s2nzu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "mask",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiaycpjmmdkhiduwwxkdom5hhpptjo6rvyypvycnpzjxxffkf56pyq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiazajk7bwltkzo7kfu2niu3eue7upchrb4bzccay324pzfiaqao2i",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreib2tzkcucc2y5g7nvent5u3ui6tk7fqojk4n6z7jftvty5xmvupeu",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreib37uj65dgdb4epvtjjwl3o7gov5oxkm3xaqcgm6jgorpmlftyyai",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreib6oucbups4w4mjadquwqkn7ab67qtmayfez7m5kewdkdjvc4lozq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibabcewowqlkz2rk7voa6muic2vzmb7wum4lcsijzj5kb6eecuwnu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyewear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreibfh36sre4warserbin6mgp6ut6qwy74b4hx57hsgdbqeleqgzhvy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibghtile6lz6anlxxuojpg3b5df5cu76ekkq2tflbta52rvrueyky",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibjfxt74qlpe5g566mne5mbnf6nqny3el3mqpfkyo7ic4onvismfa",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibkc66t7igtbykj7sd7ku33uibnp36txhhpaamrhhsi7hno3x7xo4",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreibl4gfrjrwtlxaxsayfvswtyhhlu4yfnok7fo2q7nxs5hhehd5l5m",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibnt4huajabjprs2bvjpi6ciklqobam72bocatfw7r34vdfrnyzpa",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibodjsj6emmcwv5p6hzaxuwbvd67fnjejbgaygils2m6xiqdypcay",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreibr6zt3flpnkf6oxhfumy6i2waymnk3gpfzztlhkogewdo2rlhp24",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "facial_hair",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreibrb4faieou5eb5sq3zqjzzffn6wi3hm6jdc7y6xfihdnkng7hqwi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreibtg2fhpwksruya4brh6cbegeegpzdolge7sworczcb6zge7ag3ya",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibva6dw4q5h6xjcf3e3uk4yidngz6etzxw3vn23mtenf7hlz7ukiu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibznx3r6d2bqugujkzrmuet7afkrh6kfdxrlvmf63j56bwfhpijia",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "top_head",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreic2wmfky4v6r6wtyqxhe2533qdovcrarxb5oajuln6jao3ji6hgya",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreic3ae2dunmvjyfhe5rpns7kmt4wcjbehp2ostzhblrounocjkxvxi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreice2wt6mr377hdgu7fazdnwqtswyievmam7hnw6aqp43kxj5e4u7m",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiceuxyfgbyye4wz5u76yfcantv7idgpxofjr2cweejiehfpgcotjy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreicfklbrjxbepgzau5v2ippzjdl2hr7shqch42q44jqwccpsy36hda",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicgsmidekxk27uzebwknw6zqnajr5pxgwzamzac276ytj5ynm2msq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicjgwqpordkrevkqqqiay64cfqjdeir32xf2m6zp3lddcikxsi2tm",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicl6n44eh4cqwckkgwziwuxromb47w3ie6k6mtzr3rqtoacpo7uzy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicljv44ytydp7gdeiej2eqw7mjahcbqwlryuuykukdr4qkrdajw4i",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreicnqyi6ynluuds6ip54ydlbfcew6ypxbo3opqi47jlaw5dpxvxdzi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicnr2rvru2gwlvmyow2oecbikhphj5amgot4ve7nositvz5duaaai",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicnuddzyqvrndq7yahi4szzo6gmhm3qcab64rygl6koxqw6zclbai",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "mask",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreicqbf5grfa75kwovxdwyhiyu2npxwur5aksgrjfjyhbtanlyvzqfy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicqbuhcv62o5eadelfhlzrleoyyurw6g6p3pegsscjjfv7pjnboty",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreicrijtqb72erfmqqj6eqq6tx6s6bjo7e4bch7yvkjyld5mzh6ok5m",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicruyj5ufo4tuik5zgtycz3fynp2nmwleuvokwr3l7tof7xggfbju",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreicuudzq4nar7ooumjf7mopimk6ie2k6mo6bwgnrctgu7u5mwwtg4y",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreicw22mr5gkxo5xkskuabqsytoueq34b3n6jqrft3qvs2j6rt5ok3a",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "lower_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicwdabmxtafhspelvqrwpof3owxk7wddz2h5qezkvwwmwmekfgfmy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hair",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicwyhefegaxykkospl2xdqf7w3d766rb6f4znpcxz4hpqkxtwweey",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "earring",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiczwg6ghwvksvge7ptbfpmo5yijzgqdugbslhltffv3vbyeexdzya",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreid2bjihycmuctsk46w2jalxpxlccktorw5mfkiynkxf7nzncahspi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreid2j2hyfgviqobexwb3b2624krop6n5nsjzyzsqz23paw5ihag2re",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreid2qsokrjv4ppbtm7gtiil5mhp4bjyokpil4b66xc7aoiw3iuqspa",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyewear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreid2vc5ubqfexd35ejfonkgbmlmzmbbjizyq67j55noisespeythdi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hair",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreid3g2klrcqnpqvvyi2amawwwm7ofynbvn2pcduboy3mcrr6llxmtm",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreid4nqeg2ebhczbmewvru6jep2qqe2u6znzddrarbuvycrbgbllmv4",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreid5pwsgywuypwuuanndu3u2aekm3d2usptyxlm354en7pk2yah5pm",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidacslrjcn6pa7mnpabsbl3w3ds5fhjcsub2pqsnda535pshg4pvq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "lower_body",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidclevonxttxprickcoakkkd3quqxg5vttyy6lgl65j3zrgu6dj3y",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidd6umkpv7no4hvd4cjunmy2pmptk53rw7rygfmbxarwsgm4yn5xy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "tiara",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidf3n3a5ajzmadxdgypiwyzid4ieo6t5bag4wzw4eohn6dwa3tbde",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidfom36kevcuagrcbhbzxclgzbi762yvsuf54zdhg6dcc5q27735q",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidgf2nw34xueshaiarsbrdr5sgma2dk3qnogjxrfo5myw7rjncpd4",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "tiara",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidi64netvhkxghfjdrq7vv7kueseyhtf5bycrv63z4tkmr7dkphbq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidijmh4hgrmpqqqnlgzewjzlbizczhnef5kxr3jcnm3hdn4nif24m",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidqaysdtibvgsq5atx2jws7oku2w4uqqvlzz7lud7fjye7hjlppie",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidtcxneq3cdqf4xvywx2bucwm3dgqdrrcl2xv3lvy7rllofmnlkm4",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "facial_hair",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidvcrmtfvqee5x3brkiuolrmlizytai22snllinqfnjvungzsrqpy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "earring",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidvdl5tc5qaltwyu6ksikn7oojk2l5makolltakndqjqjylarmh2y",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "facial_hair",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidyrw3rxlgmgga5d57uobdyiz2plcu4oprm4mjafo3np5qlsh4upa",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidyxnh3hase6l4rrfd3bwhugs6q44x5pwoec44omk4n2cddc4frwa",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidzcn4b2nd4wolzfc57fiqcmrw2vp5caatc2hfknaiv4tfvvgk4zm",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyebrows",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreie2sfizxcuymy6mcmq7su6t46thwf2d4hyoxbhnivbcciikvc54ti",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiec2uoslrlfvq47bzfd5w43w7elt35fke4wswzov5c5p2q5qk6frm",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "lower_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreieh7zszpiutr4dfiekyswmlwhfl7tu5qpeumakpmf3drf6b2lepqa",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiekfzf76v4caaavdsb72i3se7lpgomjgx73nn3wgcboftzk4u2kfe",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreienu23ngixjxisg4ak4xpikvrha6oi3i57zxjtbxf5wblpmrcp3dq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiesf45gc53epow5p6evqjrnocmue3ajvmsoqekn3igij5bt45o5xy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiesqim6nf4uawvc3jwa6pbkvxixsnxco77uz6ydgtc2zyhwq2rwou",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiew6s62plmnea6kje55shtjt3vlunijoloi4tcpupgtmhexufa23e",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyewear",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreieyffw7kv4mjj2l3vzqzvcrkbgssk27h655cshrs3davupt6764g4",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreif2lbgowhxk6g4cczsl7ang66pqtzb4hcyb3azwm3fhji2yf5yolq",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreif35kvvxzyf5bc5gkozymjafeblp5dmxewiz44ksdf7qpj3lzjupy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreif3x5vskzkj4yf52sfbie6gw72apyckaqlnuupcl6ceqfq27lz53i",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "tiara",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreif4cesn4bihqotup5dxaq77cwgryitpyvtkh2a64perihevcbno6u",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreif5a532xysacqzgr7zcl7u73ky4qhulilkvkxyst3mtujfwut7qsi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifgh4nbffb7hskwjonk3e3tqwdfgzbc5ki5mudv7eyud3ecafxxyy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifjeoybkpjeisbhzwle6kclmvn7gj4znxyvvynirgt7htietq26wu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifk5a5dhxbhyb4zqjjze3ibas3qcfmkjpswswzm4sqabd2weuauam",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifkrerzhd2a4qxzwwk5hsnkrhlcphyfmizga65fkteeeynmrmhwti",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifkw3gbu5wyfosv4daqa2adet725mb6p2y5ikhy7li47jbpyhqtpq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifmpg2zl5v7puh5ywb2c4qn2k5p44kdyl3bzdx6h7ipawy4bcw6ei",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreifmtpt4bgnopvsrcecc4szglzc4sxsdeulpbhkzam4lz5hlddoi7i",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifnxanuvpcpcwzcpfc27wzn2jsgvkr6wlgne4bfkzqx6s4noqyxta",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifq3ravsgsd6okk4beehs2qjl4wbtzybaaimamqynavtbo6e2c7eu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifrq3aiodu2djqbrn76qiiiqz7sgdl7paglnwxc4cmlx7bdzu2nne",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreifsbmlyeiji3jysum3bc42eii3daf3sgtzk3qh6itdzccd6casuaq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyewear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreifsm7g57w4txrsekfitduagcpqyt3i3afputb3a5v44atspsvj2eu",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreifsni5sbmivk2tryz3mipwejbdpxst76f7yvgrbs6p4pbs3a4g4na",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifumfvtrzn2drt3y6fu6qbqnsfys24g4eejyyjaxn2fgevpsvys6i",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifuvmuhwozvlttpevsjtpwzdufcgduih273kfzsv3nfcwmovrmw7a",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreifvn5trqeo6mepad5g6v5dld564zagezdkkvq6aniya5qv4kpegey",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreig2267so6p7h7jryzlrb4tx5rbaecb7rzhx5copsr6bnpvuhnyneq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "facial_hair",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreig32xx32iwavjnkhnwgenvvpuyjmpm4zjllstgag3twc53mwpqz3e",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreig5lpaq7ngkfljye5wsksv2owsf4dljagqvvdtrp2vicw3j5xa27m",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreig5w6ujastqd7dhnmyumkrgi2il72nunkxxpvcqbh3rm23d7y62cm",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": [
+        "normalmap"
+      ]
+    },
+    {
+      "entity_id": "bafkreig6mtgliozjilsylbwf5ivwav2qak4bgyp77vnbm4ukv6fxzt3fpe",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigaf7urci2aahwrh6egghlb3fpnvgnpvxtp54rnb4ymm3h3o6zhma",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "lower_body",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigcreq7rv6b2wf4zc4fsnif43ziwb4q46v4qhsewpf7gbsyxew3om",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigd3v4736ewpk4fhyzu2mcoaxaqahfcnmwbsppx63vzudhiy3kwni",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreige6gg4hcyibgl74gd66mxmsuk7zz5ymbtd5zoimzj557kfknveuq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "eyewear",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiggsrqnilsfdxl7gfrayd6nimch62jl2baz6up55pbw3ilm7onkgu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreigi7e67gjrum5dfxjgcryabm4pkn5tdonyspkbyw3mdla7ijn6phu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigl6bv54bncvtxrlbv7byf46ovm53boant4jrj24u3f7co4htas7u",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreigp36chbgityf6oywxvdtamr6syy2m4ydvc7emezh6mwxbgwt7wty",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "top_head",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigqyqfdfytw5qy4b3zgahl32uqlft3bx52f2f57oyzljgtscrxs2m",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigscbwqmo7d6ncshdgr3pvtk7wi7w3wnii46e2rfj6b6ek7p4fcfu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigy4zsfn3wjxbhnt4uiqphqbpr4w4zqb3zcmt6ry7jgx4ql2hevwe",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreigzgil4qqpd2v5ck2xjyrgtjfbgddvmw6q52jbbykk2vwx6gp2eue",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "top_head",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreih32pvqbgudtija7oens75tpjlbluakj5b7xgx33ozxiampmijmpa",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreih3bx2b53xmfa7julwgzevtzsb6xutwcwpgedrsuai533xqnjvria",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreih5wgsd4nyqe5t3l23xgrsdabl76wyndzw7ygfffqbbi6rtkcjrxi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "earring",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiha2iwdatxw76ok6o3jkbnvtatddbtzsxqzsag673z6stzxmykb6u",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreihes4hskdvwvx4ooldbctv2ah6477v7xpv74vyv5ugoox6gscnueu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hat",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreihfvzz4zp6vk7exge6c3uxuygsgvxatj4rick43zmsg7p2bsc4x7m",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreihnjqy2qfrvm5gqeaxqals2fyni4mhy7ose3t4bashz6vu62745ey",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "hands_wear",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreihnwuo54jkwkanpbguchr3t4ld4q3ljvqsigblhlerpwiodathhta",
+      "entity_type": "emote",
+      "file_count": 4,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiho2vw7gt4z43slsshkn7tfdhyc7odidvymzelxqc6tz6gkqptqyy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "upper_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreihp3ctictsdnmbizxq522how4mpkk5ymev232iaxplraa5qtjk7ea",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreihrdvybzbdsqfm43qo4lhoccazb43cuf7x3s5gg72gugeed3tstze",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "helmet",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreihreydvdvqfsmqv7ae4gzpl2zvyariq65wdtcw56fiu7ztcrpieam",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreihuihfp4cg5s42uwcojtjqsqaa6q26bvzv7e5ua7a2jtygrb6ol5a",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "feet",
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreihzxeomp7pj3ozi5p3cyy7glebnhzmus3w2cdqxtlgum735wqsqdq",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "category": "skin",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmXACXGMzueJgHDiB6u35T7LvwmKe8n6qFo2m4mzLtH8SU",
+      "entity_type": "scene",
+      "file_count": 5,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "QmXwhawHoBPBuyFU8kf7oFSJSAW8BHuvowZUdqGFDFXTFe",
+      "entity_type": "scene",
+      "file_count": 5,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiby5jtqyd7odza2iz2cjtmunbukpp3ysutyezrrsbaddy3t7vakv4",
+      "entity_type": "wearable",
+      "file_count": 5,
+      "category": "lower_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreihzlljyu7kfl4nzmg7kzpuags6kjxp2qwjixebjtvjyy67bdiuiiq",
+      "entity_type": "wearable",
+      "file_count": 5,
+      "category": "upper_body",
+      "flags": []
+    },
+    {
+      "entity_id": "QmUniv9pXs55urV1onGsPBPwsizJuPfqeGYhfSdQDzKUi5",
+      "entity_type": "wearable",
+      "file_count": 6,
+      "category": "morph",
+      "flags": [
+        "morph",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiahardnb34o4wsxivi4l3tei2xf6tuhesd3mst2uebudzcggwlcey",
+      "entity_type": "wearable",
+      "file_count": 6,
+      "category": "lower_body",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidnnbbo4tiycichwbpkksepk2hzr4aihf5dfud64sb54wufxbhtda",
+      "entity_type": "wearable",
+      "file_count": 6,
+      "category": "body_shape",
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreieopkplhcre77sgt7qtfv3vvyi2e53skmxo6u56f5u4rmfabgetay",
+      "entity_type": "emote",
+      "file_count": 6,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicz3gnraocnggmpmszk7iqr7evpg5wfcu6eagce7wghfirowsvzr4",
+      "entity_type": "scene",
+      "file_count": 8,
+      "category": null,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreieumn5ft5pzoyjlh6qhej5a6l6mh7aprylfc7ezfsojbj7j3q6tva",
+      "entity_type": "scene",
+      "file_count": 8,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiau6twvfjxi5snopswiyde5bhozj33veioqxqyzi55tkgtsvcrjzu",
+      "entity_type": "scene",
+      "file_count": 9,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmXy85ZjB5qVFzzrEpkvdj9XwcNyPumfeLARbcc7KXDC5H",
+      "entity_type": "wearable",
+      "file_count": 10,
+      "category": "eyes",
+      "flags": []
+    },
+    {
+      "entity_id": "QmaSgaYfT35JUbFzcN2q64PJdewuBQsouJtUMUYn5kjwWg",
+      "entity_type": "scene",
+      "file_count": 12,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidmnnyfnpqao47nxykioxzhs7wjgobllatmhh6lisf6dorewo75g4",
+      "entity_type": "scene",
+      "file_count": 12,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiajanwknjxdr2i3a6d7oqhqoi35ric2z6xuyxoy5s6sqhr5jsjisa",
+      "entity_type": "scene",
+      "file_count": 17,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "Qmabj6Piq6LfDYHo7d7sjNvaxYXoZANt89ZAm19LXGdtaU",
+      "entity_type": "scene",
+      "file_count": 18,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmcEEyKdmmEUpCNBqpNULwK74xnJfyYzc6A85Ct7pwVPE7",
+      "entity_type": "scene",
+      "file_count": 19,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiahpn7cp53wrwefyy7maacyten2hbx7tpipxu2njhguswc44gjbce",
+      "entity_type": "scene",
+      "file_count": 19,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmQXC88JQEQ34Gceh1RPNWmKPpiuLcH2N631RS7M113wgC",
+      "entity_type": "scene",
+      "file_count": 21,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmYweQCXoSaB2c9hSr3GXSDoTohDNdwSZTu2KXNEpqwrTj",
+      "entity_type": "scene",
+      "file_count": 21,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmWKkSac4E8L5R1qvRUVFbjAQLYdzcdsLzbGvx32CWAfKh",
+      "entity_type": "scene",
+      "file_count": 23,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreigyhle5jomwsvvuesfegdi23lezlfwdoxcvbi7h34g2hseruhjnva",
+      "entity_type": "scene",
+      "file_count": 23,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmRFzTqPYQCK9kBMhk9eKGrMgJg6fokEq1QCDNXao4Bap5",
+      "entity_type": "scene",
+      "file_count": 24,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmV8bkDMk3oxugtcZ3wDCbq4kVZrNXY5jr3x5jVv8PYvVv",
+      "entity_type": "scene",
+      "file_count": 24,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmYrJpHVwnQAqpBbKuGX9xgtaK2a9yaSHxY4sgyC8BxZMj",
+      "entity_type": "scene",
+      "file_count": 25,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreic345jveambk2idxj3czm2h62xh6hxt2nwvwalhkpodxdrrnplqwy",
+      "entity_type": "scene",
+      "file_count": 25,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidmv6imqjijatqawywcerlv5eygp4mgq42hctbpzgxxf2dsk3la54",
+      "entity_type": "scene",
+      "file_count": 26,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmZ4uunkA9mmH72pADiC94H5uPTGxaQDtGcn3sMuXtngiq",
+      "entity_type": "scene",
+      "file_count": 29,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmefCKr9bjaEntwY9z8ctdwy8XvhEUuUernHb9L1HLTLa6",
+      "entity_type": "scene",
+      "file_count": 29,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreig7c7bhqw4lsumhm3fikkzx2jorizavgp3zxajr3uwvxro2gafrqq",
+      "entity_type": "scene",
+      "file_count": 33,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "Qmd1Jb1CpTLRT23qnN7L1hzR3oZueXVdGUsckvG9ttBy2q",
+      "entity_type": "scene",
+      "file_count": 34,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreihp4g3b2x3tymgbpmv5tg7hjet2szlungbx7sf7xmahrvxpuxuvuq",
+      "entity_type": "scene",
+      "file_count": 34,
+      "category": null,
+      "flags": [
+        "draco",
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmegkZDWZG4FyFE9ESRp7Vyoy9gwthNKjC6nq6fytNTz8X",
+      "entity_type": "scene",
+      "file_count": 35,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiefqw2dp6tdhhyfaj7ishooji5cs7vnvcbo7pzld5tzuexlbenevm",
+      "entity_type": "scene",
+      "file_count": 41,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreif5cisl43picaetyb6gkcximq6pxurghqv6uyuwezugkg4djdlvpy",
+      "entity_type": "scene",
+      "file_count": 42,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreieh2rht3iyw74sik67dsvnslbnybytg46cipiriov77jpxyxd7txq",
+      "entity_type": "scene",
+      "file_count": 48,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidmsyfqf6zap3wckkvalmuchwox6ce36zz7tcikcetkdm52bd5ubi",
+      "entity_type": "scene",
+      "file_count": 50,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmbrqTTbf6cyGsgUhmbzCzie7qgkq8B5PLNy5AJqE6xqci",
+      "entity_type": "scene",
+      "file_count": 51,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreigkfykviaoezafzqq7liivbkuvilmwfr62psrb7sdittvwdkjuuy4",
+      "entity_type": "scene",
+      "file_count": 51,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmPJJ3H5Qnva8vZFEFPgykTWmWHGD2pyJdWsEzUhho4ZWY",
+      "entity_type": "scene",
+      "file_count": 53,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmYsBeNjhWz1qZneFi6XydKrqSYHwxNs2x9N6Rjfi9vJVm",
+      "entity_type": "scene",
+      "file_count": 55,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmZZv3KKuYbV7EZK8RfffkPcfPiJ6KSPXPrwN8BNPzjyzo",
+      "entity_type": "scene",
+      "file_count": 58,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifchnmxsxxr4pehbabvv52oaksbnz4o5ih477tu57mudr3oujgr2u",
+      "entity_type": "scene",
+      "file_count": 59,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmQxCxJABwZDCf4JjT2BL2sbAHraXAy93zrrg693JTq3kc",
+      "entity_type": "scene",
+      "file_count": 62,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmZTiaujk4psLvFN4Tozp88HsHcgnHw7r3D2ew71DCZri3",
+      "entity_type": "scene",
+      "file_count": 65,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicecqnrws3bqgvlikiyxf6nwvtafqtmvrilsfvk4g54hgtebqfuey",
+      "entity_type": "scene",
+      "file_count": 66,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreigzwo56i5nazzzh574xx2z7sb27bmzqaw3ynmefbi2e62eeeflm2q",
+      "entity_type": "scene",
+      "file_count": 69,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiebcumbvc7f45vx5b5mpgpbth65zyblk5kcwuyu2prty5veh6xk3u",
+      "entity_type": "scene",
+      "file_count": 73,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiax2gns42qeaeltzpt45fuihtrqwzlxylk53o4dwbwwpjojkxp3qy",
+      "entity_type": "scene",
+      "file_count": 81,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreidtxkycnkkdioxxb3yzrtxohqjtrtmsnkrzo3wvkwetats4wrlk4y",
+      "entity_type": "scene",
+      "file_count": 82,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmcS7wEcmA2nv3kh7xDaP6ncdp1yWVB2exPm9j4intPL7h",
+      "entity_type": "scene",
+      "file_count": 83,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiathqagvccfr7ozxqvgp5fby5scoah6jevq5athdp5zq52xrzokq4",
+      "entity_type": "scene",
+      "file_count": 85,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmNqMsGF9JP8cxbSAKEURPBndVyUvtJvTn3Tt5AUBy9DzC",
+      "entity_type": "scene",
+      "file_count": 86,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreib36pk6vloh6ktjhnafzdzlk4uyuvhswssczsnmctudl6fge7n7sy",
+      "entity_type": "scene",
+      "file_count": 87,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmW2TCFL8pkwR2Wr3AxdJy5hsH4y4ptg69q3kStct1LCka",
+      "entity_type": "scene",
+      "file_count": 89,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmV8E9WSD511Ro2whipSfF3VsCgaouXyVU2KAiQGousttT",
+      "entity_type": "scene",
+      "file_count": 91,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreie276zysczxryyfpodeshgmr2xmxu36t7tq5rlgnfs5mxjs2lnenu",
+      "entity_type": "scene",
+      "file_count": 96,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreif3oremuf5iuebqi6bpjzwv3fwc3huysk236gdzadp5f2e73vsfeu",
+      "entity_type": "scene",
+      "file_count": 97,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmNmCrpCFKyJz2hCmgnRtVqvYmbB4FXbCJztcjPwgKkDdw",
+      "entity_type": "scene",
+      "file_count": 100,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmPS41rzS9ETT6hT1LemgTjPyviV8jLPivVZSWM4s5wHpZ",
+      "entity_type": "scene",
+      "file_count": 103,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreif2nz5jorcru5ch35bdycwlfrrrnaj5dywtp6xxfnd45fkascznam",
+      "entity_type": "scene",
+      "file_count": 104,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreigcqscrgfs26mp2lsp7to64f3xy7zlsdn25mwxdze2yeswmnb253m",
+      "entity_type": "scene",
+      "file_count": 108,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibjkjlcqvde6csd24zlf7l3u5c2ffxh3dog4vg4zo2jdb4wbhuaxe",
+      "entity_type": "scene",
+      "file_count": 110,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmZdh4kfFmj5SLzkxgMZFyhGGJDYzaAWBBgngE3aaW5nfX",
+      "entity_type": "scene",
+      "file_count": 116,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmanBm39yAj16Gb7Wa6qUPLJx5LS23sw59PxSG1hKPH7GG",
+      "entity_type": "scene",
+      "file_count": 122,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiejroisacrwsmr62dwgbodxsg2alj5gekrs3u6ofutj7myyhbyj3a",
+      "entity_type": "scene",
+      "file_count": 126,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicl2czs6t2gz63z3qegl2kzcaovgca6ehfoi3746ii4vkszvfvqka",
+      "entity_type": "scene",
+      "file_count": 169,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifmj4jhcbb26gnq44gfxjx3wdortkbm65y2mx5hu2m3grgztjydna",
+      "entity_type": "scene",
+      "file_count": 202,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreig2eg27l5pxl3nylm5xws7rdgw3yhjd2wjizyp6ezwb7pzs5vmh4q",
+      "entity_type": "scene",
+      "file_count": 203,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmVdaTvQ5Bi7VcLWvAdxHJHi567MMSXXuazKxbnipCyzHw",
+      "entity_type": "scene",
+      "file_count": 204,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmVGwzvkSqvCaw38xdb49EXmsTGEbSB2JxV7Ln6LneZRoN",
+      "entity_type": "scene",
+      "file_count": 248,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmRHyMyjF83HzeagrLWb3fiRQaJK7vx5r4gyqPbtEboKMx",
+      "entity_type": "scene",
+      "file_count": 259,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreif2oil3bqfxgkxxquyn77lwkofyzymdclywrtvt77cxjbxk2uat6e",
+      "entity_type": "scene",
+      "file_count": 261,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiawt62rolw6vrs7qhadan67h5moljdbigoniizkr7imnzxcrrbtlu",
+      "entity_type": "scene",
+      "file_count": 262,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreiel25kobqehrdbryw67kr3jqmylvu5hrbsunftord7iunjn7lqjq4",
+      "entity_type": "scene",
+      "file_count": 300,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreigyggvsm3frqax6oungy32y4rogq4yqexrqkatoh3j3wbosjuipcu",
+      "entity_type": "scene",
+      "file_count": 309,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreigaaaqeoupgcqa33q7ylgslvisasw2kc6k4yihgbz7zi5e7x5tvrq",
+      "entity_type": "scene",
+      "file_count": 328,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifhoa3zffqnszplclrmczzpns3es527dmnywlt4e2c2fp6ao3gaiy",
+      "entity_type": "scene",
+      "file_count": 345,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreib65ugzxzgmf4ed67nnmafef6owchhxdbmftmcsm72yssyjrwqsp4",
+      "entity_type": "scene",
+      "file_count": 352,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmRH9CiDMNn8d4wA3FKWbk7E4mqWzTZeWJdGCoTCEpyytf",
+      "entity_type": "scene",
+      "file_count": 372,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreia2cd5vjzv2ahz5lzmbav6rh6s3ru2r6ib6n7wnov65grntj72m7u",
+      "entity_type": "scene",
+      "file_count": 449,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicrwkncmparig2hax7koso6etzovwnjiv6evpl67xiibfsp3otihe",
+      "entity_type": "scene",
+      "file_count": 465,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreibf7ogmlw7nxxdkrdgtpfy7uu7mhixm2tog2fqkzi3i75zraasqyi",
+      "entity_type": "scene",
+      "file_count": 469,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmTVaReJESifeKYoWrNMHFcCyGDuCBgN3J3CbCdu1LyQLK",
+      "entity_type": "scene",
+      "file_count": 471,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "Qma4eV56kdrdW1CZyYWHr2vYuqV4wjYSbz2BugnRP4q9Fh",
+      "entity_type": "scene",
+      "file_count": 500,
+      "category": null,
+      "flags": [
+        "draco",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmUwmgapjirBnBxdKeeyDvubTFucf95NHzmhdkpMMb4Zve",
+      "entity_type": "scene",
+      "file_count": 516,
+      "category": null,
+      "flags": [
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreieisulkhjpcixi4yxshar3szdvii3roedgwemfetcwzn6v2mxpq3m",
+      "entity_type": "scene",
+      "file_count": 656,
+      "category": null,
+      "flags": [
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmNsCYT8beabWkf4bPFpXj1J9fUxhzeCDwaeJz5HpXyocA",
+      "entity_type": "scene",
+      "file_count": 803,
+      "category": null,
+      "flags": [
+        "draco",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmbPQuMUgZfxpdStRttFv67tACnFcAKMG8RQxYuvRjYAQc",
+      "entity_type": "scene",
+      "file_count": 815,
+      "category": null,
+      "flags": [
+        "draco",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "QmUeHwBsssjUr3TzVeRjKCVQAxE4yfkpKif6f4egfddSpR",
+      "entity_type": "scene",
+      "file_count": 816,
+      "category": null,
+      "flags": [
+        "draco",
+        "normalmap",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreicvhumklrl74xtew7shqi6fwluywko67oyprky352v4kruagnoghy",
+      "entity_type": "scene",
+      "file_count": 820,
+      "category": null,
+      "flags": [
+        "draco",
+        "multi_material"
+      ]
+    },
+    {
+      "entity_id": "bafkreifpfepilfr32zawze5j5kq4bf5xmcywyelgq726jn2dmcudhz6d44",
+      "entity_type": "scene",
+      "file_count": 859,
+      "category": null,
+      "flags": [
+        "draco",
+        "multi_material"
+      ]
+    }
+  ]
+}

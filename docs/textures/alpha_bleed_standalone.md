@@ -1,0 +1,7 @@
+# Texture2D alpha-bleed (RGB dilation) on the standalone-texture path
+
+**Why it matters:** Standalone Texture2D assets with real alpha were diverging from Unity at the source-pixel level, not in the BC7 encoder. Unity's `TextureImporter` runs an `alphaIsTransparency` RGB-dilation pass before encoding: transparent (alpha=0) pixels have their RGB rewritten from nearby opaque pixels so that bilinear filtering does not bleed background color into edges. abgen-rs was feeding raw RGBA into BC7, so the transparent-pixel RGB differed and the encoded bytes diverged.
+
+**How it works:** `src/alpha_bleed.rs` implements an iterative dilation that mirrors Unity's pass. It uses 4-connectivity (N/E/S/W only — diagonals propagate distance asymmetrically and regress parity), a Jacobi update (each pass reads a snapshot of the previous state, so an alpha=0 pixel that gained any filled neighbor takes the mean of those neighbors' RGB), a fixed pass count tuned to match Unity's stop point (fewer passes under-extend the bleed, more over-extend it), and never touches the alpha channel. It early-outs when the image is fully opaque or fully transparent.
+
+The bleed is wired into the standalone texture builder after resize and before BC7 encode, gated on real alpha plus a compressed profile. The in-glb texture path is deliberately left unbled: Unity routes glb-embedded textures through `CustomGltfImporter`, which does not enable `alphaIsTransparency`, so applying the bleed there regresses parity.

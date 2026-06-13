@@ -1,0 +1,7 @@
+# Transform translation signed-zero in glb-scene bundles
+
+**Why it matters:** A large tail of glb-scene bundles matched Unity on size and structure but were not byte-identical because of a single-bit difference inside a `Transform`. The dominant cause is the IEEE-754 sign bit of `Transform.m_LocalPosition.x`: abgen-rs emitted `-0.0` where Unity emits `+0.0`. A one-bit miss is enough to fail the byte-identical gate, so this blocked many otherwise-perfect bundles.
+
+**How it works:** The glTF-to-Unity basis flip negates the x component of a node's translation. When a node has no explicit translation, its implicit zero becomes a negative zero after that negation. Unity collapses the result back to `+0.0`; abgen-rs must do the same. The fix canonicalizes negative zero to positive zero immediately after the basis-flip negation on x only — the y, z, rotation, and scale paths have no mechanical source of negative zero and must not be touched. (An earlier change had removed this canonicalization based on a measurement against a different corpus; the upstream `localIdentifierInFile` patch inverted that assumption, so the canonicalization is the correct behavior.)
+
+A smaller, separate residual in this same bundle population comes from the `AssetBundle` preload table and material FileID slots being permuted when the externals list order differs from Unity's. That is a known, distinct problem handled by the shader-slot rule and the expect-hash retry path, not by this fix.

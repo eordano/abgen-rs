@@ -1,0 +1,507 @@
+{
+  "_purpose": "test corpus \u2014 entities + collection URNs for asset-bundle parity",
+  "_seed": "test2",
+  "_count": 50,
+  "_by_type": {
+    "scene": 50
+  },
+  "_draco_entities": 1,
+  "_large_scenes": 3,
+  "_collection_urns": 1,
+  "_note": "Two input shapes: `entities` (per-CID via ConvertEntityById; scenes + wearables + emotes + profiles) and `collection_urns` (per-URN via ConvertWearablesCollection; expands to all wearables in collection). Local lamb2 only indexes off-chain:base-avatars; use peer.decentraland.org for chain-based collections.",
+  "_file_count_buckets": {
+    "1-3": 21,
+    "4-10": 11,
+    "11-50": 9,
+    "51-200": 5,
+    "200+": 4
+  },
+  "entities": [
+    {
+      "entity_id": "QmXDwLSwgsFRAQean8H8hCpwLsmq8MSogMUuC695M3j9EJ",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmcZQqW961F4jzdumjcRGDSy3xZsB2f7Ur6MYXFyDTXgYZ",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmRPMxVVtRPPJefdxJ8E1pjzauDWqSo4PQgaainALtaniD",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmNtN1nJjw4uCs5XXG1WwtKmx4scfRZefexnYq2g3vXxe5",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmdiYzaePCbfLeeDyVyqpj9oyuRuQUGpN7E9BdUYUkujTW",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmUVxPrcjNZfXAWyzjCxbj1aC3HVtiF81Zzk7ZvGa3mib6",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmcMi4ndt6jhgaySDNgY9zKCjF5SuPGD8vJTmw1TA3XHKK",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmWB2fnP1ojqMV8YK2bkgnR4Bto47Jpr7abVtY8UsXgrmD",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmRVqwBAbK9N5gcWPSFUCMdQF8bFciJ8X1qYY1xEFVzxQ6",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmYWwgM7RiNetHnjQ58bBVVeHXhaZsY2w1Q3rgLjYwXCLx",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmRRmYUgMmbYYt38zVdryjeS1pXyXnmQdJYaJiPebn4pLH",
+      "entity_type": "scene",
+      "file_count": 4,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigbxcafbf26ambf4lic5p5ccwnhid5pnljnsdajtq3kifgvfr2fpa",
+      "entity_type": "scene",
+      "file_count": 6,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "Qmd7NczaLEmDMsrQPEVztP4wpQwpZDwwpsDJFy8JZr8qRc",
+      "entity_type": "scene",
+      "file_count": 7,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmZvRtGtfAh4soDWEcTu71GbDQSTycX1GxButZEbAZwkzM",
+      "entity_type": "scene",
+      "file_count": 4,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmXC1yffFmx1BCviYh78Jss4Ws7xgNbkiEY3e8qvk6bomV",
+      "entity_type": "scene",
+      "file_count": 5,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmeVJ1azP19SSVyYtuTRnNFcjvpovvN3tGSw1szs7i5RK9",
+      "entity_type": "scene",
+      "file_count": 11,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiedbt3wrlaac4qshg6bu62i4ydqtlo7rmvqxygqactrvmcytt4u5e",
+      "entity_type": "scene",
+      "file_count": 23,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmYvhG41H4PvQRvvGw3mg5ygw9PzRGQCjfyxp8gu4jWXvy",
+      "entity_type": "scene",
+      "file_count": 8,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmWXMMa1mksoXdPxQiqGhqGCwo3K2y86DuYdZPutoxSRo3",
+      "entity_type": "scene",
+      "file_count": 19,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreihgvchg2nbse3hd7qzzykgxytpxadl3gffg7pc5jtxxmjw3m7umne",
+      "entity_type": "scene",
+      "file_count": 7,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmSgsh158NWWoLdThHhKBP72zHLrmdAN5BC49B6FgbcTMk",
+      "entity_type": "scene",
+      "file_count": 25,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreia7esvspkar4vvvendoqp5h572j5pc3h6ps3otbpbbejpffus3wgy",
+      "entity_type": "scene",
+      "file_count": 81,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmUb6NzPDgK9EfhZuTDuCGuocqA7Fj4heoeWZFkgJhr7Vo",
+      "entity_type": "scene",
+      "file_count": 36,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmSY11LMScNu5BxxKYg4VGGV5eyKbZMmZVciq79G9fQUtN",
+      "entity_type": "scene",
+      "file_count": 75,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigm2yqgw2zkmeejasfmzwu5e472gf2hbtitero7kmnrkq5yeoxzvi",
+      "entity_type": "scene",
+      "file_count": 820,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": [
+        "draco"
+      ]
+    },
+    {
+      "entity_id": "bafkreiafco674su6hsfxzptgjflvyxuswgopxhknb4rdngmwksyj53nrnu",
+      "entity_type": "scene",
+      "file_count": 1854,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": [
+        "large"
+      ]
+    },
+    {
+      "entity_id": "bafkreiexf46ljdvtedcywd6eltkleqxsj5axggrjdn47cbqnykhh56qsnq",
+      "entity_type": "scene",
+      "file_count": 1006,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": [
+        "large"
+      ]
+    },
+    {
+      "entity_id": "bafkreicnk3pqtilowftlbnparxl7b72gremhmpnxrebax2avccgxticaya",
+      "entity_type": "scene",
+      "file_count": 1144,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": [
+        "large"
+      ]
+    },
+    {
+      "entity_id": "bafkreid4nyoyrfbgq43xmhe3ywvaecmdjgbt5bejonzbbi5hacj6folyim",
+      "entity_type": "scene",
+      "file_count": 77,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmYXw9ztPbEjRdS7n8zrWfmgXshiyzuWqpEo9Jy5ZwJmCT",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmZR2NzwNGkSDFGVDwuTMvHwqCtwV77WodUQ76HDm46xEv",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmYt5UAQXhiDkEbbhLkVsv1z4u588HvXPwQwZDMNWsqxZ2",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreid4lraobfqwsw2ryxwlvuv54uii772gubtf7ywrsqfw5ei3lbvkfu",
+      "entity_type": "scene",
+      "file_count": 17,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmbT9sPRgGusE6S2LkAhAwMZGu3V189C3X8pkeQCAXS7eR",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreigj6enc6maoevdz2tzoohzqlz5itnqcaknzrrggojkhg2btlq7p2e",
+      "entity_type": "scene",
+      "file_count": 31,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreibe45chpkigsiegswnk3gmtdes4pa73vnl2xfwl76hvzqd64kkbri",
+      "entity_type": "scene",
+      "file_count": 93,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmXajoFVuzBEzkpj9Woe76uGVu9odcJKesRtm89N2xtW4d",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmdxK6DhLk5FxXeohcE4xprCj91LRvASUqNyP6AKZaf5pV",
+      "entity_type": "scene",
+      "file_count": 2,
+      "hints": [],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreienihczgwfw2yj52dilqiidwxxlk4p52txqsuqyvxck72sppne5c4",
+      "entity_type": "scene",
+      "file_count": 6,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmdxYBDf6GUk4vZMWknV1DYEzQRKjjN7zytGB1iaTL2cT5",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmT7hxEAFs2XEjv6rQixV41aKFnCLu4MPDfSajkFwzPh8U",
+      "entity_type": "scene",
+      "file_count": 9,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmQq2uKVtxsphwPioPfTTJKDrRuLutYBYqidEgKLBQGmw3",
+      "entity_type": "scene",
+      "file_count": 59,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmU4JX85AyvnJYTuzHJa1TaNpGcVQ4mEbbfJbFUuB5Mppr",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiasfuvafoghjwcookys7wdggp4cnnc2gu7iiy5thixuix2muuwf3q",
+      "entity_type": "scene",
+      "file_count": 31,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmS7MqEVDFpASit7hTazHaV1WXRFj5remcBRY5B8ds3xRQ",
+      "entity_type": "scene",
+      "file_count": 8,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmVeXhhVfjKG6dXDXPqgEf4bEAvHPe1NhivnH4RNjo6mvc",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmfACWYsetmWjg7YCkSv66XTfa8XE56PvAmoiyCDigxuo2",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmagnPfZojc8yKQuZaN9xY9CVqqmPd5uNJt86aX4cSsgWB",
+      "entity_type": "scene",
+      "file_count": 3,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmUq9fg5KRCAvyZvYwmpaf2JvSqCUbHa4UZHw8g4dZufyJ",
+      "entity_type": "scene",
+      "file_count": 17,
+      "hints": [
+        "model",
+        "image"
+      ],
+      "flags": []
+    },
+    {
+      "entity_id": "QmRkrV5rJ4yYCjv1xi9Bgk5j7mg23hHkg4z1HUgXS5huv3",
+      "entity_type": "scene",
+      "file_count": 4,
+      "hints": [
+        "model"
+      ],
+      "flags": []
+    }
+  ],
+  "collection_urns": [
+    {
+      "urn": "urn:decentraland:off-chain:base-avatars",
+      "note": "282 base avatars; exercises ExportWearablesCollectionToAssetBundles path"
+    }
+  ]
+}

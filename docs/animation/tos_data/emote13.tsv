@@ -1,0 +1,24 @@
+2781966783	Base Layer.Dog_Avatar -> Base Layer.Dog_Avatar 0
+1487628191	Dog_Avatar
+3124074683	AnyState -> Dog_Avatar
+2105523844	GravityWeight
+1334536706	Dog_Avatar -> Dog_Avatar 0
+523379288	Entry -> Base Layer.Dog_Prop
+2248954823	Base Layer.Dog_Prop 0 -> Base Layer.Dog_Prop
+3616226420	Dog_Avatar 0
+1871631532	Base Layer.Dog_Avatar
+3303154245	Base Layer.Dog_Prop 0
+4276779410	Entry -> Base Layer.Dog_Avatar
+756556552	Base Layer
+0	
+1904774231	Base Layer.Dog_Avatar 0
+1834102083	Dog_Prop 0 -> Dog_Prop
+96563969	Dog_Prop -> Dog_Prop 0
+1755420786	AnyState -> Dog_Prop
+23966416	Loop
+883031362	Dog_Prop
+1239983258	Base Layer.Dog_Prop -> Base Layer.Dog_Prop 0
+4178819316	Base Layer.Dog_Avatar 0 -> Base Layer.Dog_Avatar
+3734727768	Base Layer.Dog_Prop
+1897468396	Dog_Avatar 0 -> Dog_Avatar
+4089942390	Dog_Prop 0

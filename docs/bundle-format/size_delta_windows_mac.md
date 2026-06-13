@@ -1,0 +1,9 @@
+# Bundle envelope: 16-byte object alignment and correct file flags
+
+**Why it matters:** Windows and mac bundles were systematically smaller than prod across the corpus, and the dominant cause was not texture quality but the bundle envelope itself — how objects are aligned inside the SerializedFile and how the bundle's container flags are set. With the envelope wrong, no amount of encoder tuning could reach byte-identical output.
+
+**How it works:** Two durable rules were corrected. First, each object's data start is aligned to 16 bytes, not 8. The reference aligns every object to a 16-byte boundary — verified as a 100% invariant across every class and across platforms in the reference corpus, so this is a format-wide rule, not a per-platform special case. (An earlier port had copied UnityPy's 8-byte alignment, which is wrong.) Second, the bundle file flags must match the converter: the data flag and block-info flag tag the compression as LZ4HC, request the 16-byte pre-data padding the format reserves, and place the block-info table inline after the header rather than at the end of the file. The compressed data was already LZ4HC; the fix is purely to label and position it the way the reference does.
+
+Together these flip the corpus from predominantly-smaller to roughly symmetric around prod, with a meaningful number of bundles becoming byte-length-equal. The residual is then governed by the same envelope rules the reference uses, leaving per-block LZ4HC variance from BC7 mip-chain differences as the main remaining source of delta.
+
+**One retraction worth remembering:** the `.resS` streaming gate is not a bug for the standalone-PNG class. Only model-referenced textures stream into `.resS`; PNGs referenced solely by scene JS stay inline with an empty stream path, and abgen-rs matches prod on both. The remaining standalone-PNG deficit is BC7-driven LZ4HC variance, tracked elsewhere.

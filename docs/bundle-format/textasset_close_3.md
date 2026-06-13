@@ -1,0 +1,7 @@
+# TextAsset metadata: populating `dependencies` from sibling bundles
+
+**Why it matters:** The `metadata.json` TextAsset emitted for each glb bundle hard-coded an empty `dependencies` array. Unity instead lists the sibling bundles the asset depends on, so any bundle whose model referenced external textures diverged from production output.
+
+**How it works:** Unity treats an asset as a dependency only when it ships as its own bundle, and it derives those dependencies from the glTF's external image references. abgen-rs mirrors this: it parses the external image URIs from the glTF `images[]` array, resolves each against the entity's content map to the canonical sibling-bundle filename, and writes that list into the metadata JSON.
+
+Two distinctions are load-bearing. Only `images[]` URIs count, not `buffers[]` — Unity inlines buffer bytes at parse time and never produces a cross-bundle reference from them, so external buffers must be excluded. And image URIs that do not resolve to a shipped bundle are silently skipped, matching the rule that only assets shipping as their own bundle become dependencies. The metadata JSON is hand-formatted to match Unity's `JsonUtility.ToJson` shape (field order `timestamp, version, dependencies, mainAsset`, compact separators); with an empty dependency list the output is byte-identical to the old hard-coded literal. The standalone-texture path is a leaf with no siblings and keeps its empty array.

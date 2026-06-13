@@ -1,0 +1,7 @@
+# Empty scene-name wrap layer
+
+**Why it matters:** When a glTF scene has no name, Unity still wraps the scene's nodes under a GameObject, and the name it uses for that wrap layer feeds every descendant's recycle path — which in turn hashes into every GameObject and Transform PathID under the scene. abgen-rs previously reused the (empty) scene name for the wrap layer, collapsing the wrap segment to nothing and producing a recycle path that hashed differently from prod's, breaking every PathID in the affected bundle.
+
+**How it works:** Unity substitutes the literal name `"Scene"` for the wrap-layer GameObject whenever the source scene name is empty, giving a wrap prefix of `scenes//Scene/...`. Named scenes keep their own name (and abgen-rs's existing name-doubling behavior). The fix in `src/builder.rs` (the `wrap` branch of `build_scene`) is simply to use `"Scene"` as the wrap-layer component when the scene name is empty, and the actual name otherwise. With the correct wrap segment, every descendant recycle path matches, so the standard recycle-name to PathID chain reproduces prod's GameObject and Transform PathIDs exactly.
+
+This addresses only the empty-*scene*-name case. Two related divergences remain unaddressed: empty-name *intermediate* nodes (where Unity's fallback name for an unnamed child node is not the literal we use and has not been found by probing), and multi-primitive node merging (where Unity collapses a node's primitives into one mesh with sub-meshes and one renderer, while abgen-rs emits child GameObjects per primitive).

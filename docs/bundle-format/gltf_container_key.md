@@ -1,0 +1,5 @@
+# AssetBundle container key uses the real source extension
+
+**Why it matters:** The AssetBundle container key for the model object was hardcoded to `<root_hash>.glb` regardless of the actual source extension. For bundles built from a `.gltf` text source, Unity uses a `.gltf` key, so abgen-rs diverged on that string. Beyond the one-byte string difference, the wrong extension also placed the entry at the wrong sort position in `m_Container`, cascading into preload-index and preload-size slot mismatches in any bundle where `.glb` and `.gltf` entries coexist.
+
+**How it works:** abgen-rs detects whether the source is a `.gltf` and threads that flag into the builder, so the container key is formatted with the real extension (`gltf` vs `glb`). Because `.glb` and `.gltf` collate differently, emitting the correct key also fixes the container sort order and the downstream preload slots for mixed-source bundles. The caller already computes the extension from the filename, so there is no public API change. This change is small in raw byte terms but is a correctness fix: `.gltf`-sourced bundles now match Unity byte-for-byte on the container key and its knock-on slots.

@@ -1,0 +1,7 @@
+# TypeTree common-string interning: the zero-offset case
+
+**Why it matters:** Unity's serialized TypeTree blobs reference well-known field/type names (like `AABB`) by offset into a shared common-string table instead of writing the literal. abgen-rs was emitting a local copy of any string whose table offset was zero. Because `AABB` is the very first entry in the table, it triggered this on nearly every Mesh, SkinnedMeshRenderer, and AnimationClip. Each redundant literal shifts the name/type string offsets of every later node, which in turn shifts the SerializedFile header fields (metadata size, file size, data offset) — so the divergence cascades far beyond the one string and breaks byte-identical output.
+
+**How it works:** When interning a string, abgen-rs looks up its offset in the common-string table. If the string is present, it must always be referenced by offset (with the high bit set to flag a common-table reference); only a genuinely absent string is written as a local literal. The earlier code wrongly guarded the common-table path on a non-zero offset, conflating "not in the table" with "at offset zero." The fix distinguishes presence from offset value: any match, including offset zero, takes the common-table path.
+
+Note that UnityPy's writer carries the same bug via Python truthiness (`if common_offset:` is falsy at zero), and the older python-based generator inherited it. Real AssetBundles reference `AABB` by offset, so this fix moves abgen-rs toward the converter reference and deliberately away from the python output.

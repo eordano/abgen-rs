@@ -1,0 +1,11 @@
+# Standalone Texture2D parity: streaming gate, sub-block fallback, and the BC7 encoder wall
+
+**Why it matters:** Standalone PNG textures were the largest remaining source of Texture2D divergence from Unity. Three distinct failures kept their bundles from being byte-identical: textures that Unity streams into a shared `.resS` file were instead written inline; tiny textures got the wrong format; and the bulk of cases differed only in the compressed BC7 image bytes.
+
+**How it works:**
+
+A texture is streamed into the shared `.resS` resource file (rather than inlined in the bundle) when it is a large BC7 texture referenced by a co-built model. The rule itself lives in the standalone-texture builder; production drives it by collecting, for every co-built glb, the image URIs it resolves to, and marking matching standalone textures as model-referenced. A single-bundle parity tool cannot reconstruct that cross-bundle context, so the harness reads the stream path back out of production's own output to decide the gate — observation only, the rule is unchanged.
+
+Unity silently falls back from BC7 to uncompressed `RGBA32` when an image is too small for BC7's 4x4 block layout to fit (smaller than one block on either axis). abgen-rs reproduces this: the standalone-texture profile checks the BC7 target size and, when it is sub-block, emits an uncompressed `RGBA32` profile with a single mip. Note this is Unity's `RGBA32` discriminator with `[R, G, B, A]` byte order, which is distinct from the legacy constant that actually means `ARGB32` with `[A, R, G, B]` order; abgen-rs keeps separate encoders for the two so the byte order cannot drift.
+
+The remaining standalone cases are a single signature: identical length, identical metadata, different compressed bytes. This is the irreducible wall — abgen-rs's pure-Rust BC7 encoder and Unity's `bc7e` (ISPC) produce different bitstreams for the same pixels. Two patterns dominate: same-mode blocks with different endpoints/indices (a refinement-pass or tie-breaker mismatch), and mode-selection bias where the ISPC encoder prefers simpler partition modes. Neither is a small fix; closing it requires either pinpointing the first divergence block-by-block against the ISPC reference, or linking the native `bc7e` library via FFI at the cost of the zero-dependency build.

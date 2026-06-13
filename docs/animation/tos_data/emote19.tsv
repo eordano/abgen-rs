@@ -1,0 +1,25 @@
+1721200410	Starting_Pose.001
+2291732022	Starting_Pose.003
+243465412	Entry -> Base Layer.Starting_Pose_003
+2714725621	Base Layer.Starting_Pose_003 -> Base Layer.Starting_Pose_003
+2105523844	GravityWeight
+740161881	Starting_Pose_002
+3767311848	Entry -> Base Layer.Starting_Pose_001
+1060454629	Starting_Pose_003 -> Starting_Pose_003
+1528482255	Starting_Pose_003
+3038030051	Starting_Pose_001
+2038811730	Entry -> Base Layer.Starting_Pose_002
+974288823	Base Layer.Starting_Pose_003
+756556552	Base Layer
+0	
+3761949840	Base Layer.Starting_Pose_002 -> Base Layer.Starting_Pose_002
+23966416	Loop
+3781910488	AnyState -> Starting_Pose_002
+2523688782	AnyState -> Starting_Pose_003
+3558610587	Base Layer.Starting_Pose_001
+1293240097	Base Layer.Starting_Pose_002
+4288560800	Starting_Pose.002
+4285261897	Starting_Pose_001 -> Starting_Pose_001
+572795967	Base Layer.Starting_Pose_001 -> Base Layer.Starting_Pose_001
+1595544755	Starting_Pose_002 -> Starting_Pose_002
+2019692130	AnyState -> Starting_Pose_001

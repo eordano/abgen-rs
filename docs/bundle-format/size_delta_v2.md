@@ -1,0 +1,9 @@
+# Residual bundle-size deltas are input-byte deltas, not compression choice
+
+**Why it matters:** After the envelope fix, bundles still differed in size from prod, and it was unclear whether the cause was a compressor-config knob (LZ4HC level, streaming dictionary, alignment) or genuine differences in the bytes being compressed. If it were the former, a single config change could close large swaths of the gap; if the latter, every delta has to be chased down in the emitter.
+
+**How it works:** LZ4HC compression was proven byte-exact against the reference: decompressing the reference's blocks and recompressing them with abgen-rs reproduces those bytes in both directions, and the reference uses no cross-block streaming dictionary, packs CAB and `.resS` back-to-back with no inter-file alignment, and uses a fixed uncompressed chunk size with a short final block — all of which abgen-rs already matches. The conclusion is durable: once the envelope is correct, any remaining size delta comes purely from the input bytes (BC7 encoder differences, missing or extra content), never from the compressor.
+
+One mechanical input-byte fix landed here: standalone-texture bundles built from CIDv0 (`Qm…`) entities must not emit the metadata TextAsset and must use the source image's real extension for the container key, whereas CIDv1 entities do carry the TextAsset. This is detected from the entity CID prefix, with no per-CID table.
+
+The remaining classes are emitter-coverage gaps, not envelope or compression bugs: the `.resS` streaming gate is too narrow for larger CIDv1 textures that prod also streams, embedded-glb bundles drift on the BC7 encoding of high-mip textures (two independent bc7e implementations diverging on free choices), and some gltf sources with external buffers fail to resolve content. A decompress-then-compare metric is used to measure these as actual content differences, immune to LZ4 length amplification.

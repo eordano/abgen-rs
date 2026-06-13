@@ -1,0 +1,219 @@
+{
+  "_purpose": "abgen-rs 30-entity feature-balanced parity test corpus (per-CID)",
+  "_seed": "test30",
+  "_count": 30,
+  "_by_type": {
+    "scene": 12,
+    "wearable": 12,
+    "emote": 6
+  },
+  "_coverage": {
+    "draco": 1,
+    "morph": 1,
+    "normalmap": 5,
+    "large": 1
+  },
+  "_file_count_buckets": {
+    "1-3": 9,
+    "4-10": 17,
+    "11-50": 3,
+    "51-200": 0,
+    "200+": 1
+  },
+  "entities": [
+    {
+      "entity_id": "bafkreihqpaqnmpugw2i56dibbehlsp763asqriba7zu5nsvxrnyuuw7rre",
+      "entity_type": "scene",
+      "file_count": 1784,
+      "flags": [
+        "draco",
+        "normalmap",
+        "large"
+      ]
+    },
+    {
+      "entity_id": "QmPzip7aGwqWcnfVZDS8hcuipHbKKUY4kALxtbwcErShgG",
+      "entity_type": "scene",
+      "file_count": 3,
+      "flags": []
+    },
+    {
+      "entity_id": "QmUMzZA3LRmb3jBz72XwHFGgHV8j8hLhNYEqmgnrDZQaMr",
+      "entity_type": "scene",
+      "file_count": 3,
+      "flags": []
+    },
+    {
+      "entity_id": "QmWkfhfcYf9i6YzJbWUoEag7MWoQQzCi4fw75ZZvHzhekb",
+      "entity_type": "scene",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreievi3y72tjikpqsrkfa2f5rrb6yp3c7ngdrm3tscygutawfwoztnu",
+      "entity_type": "scene",
+      "file_count": 5,
+      "flags": []
+    },
+    {
+      "entity_id": "QmZjRZKQiCjoin12ByjPEDGf9ATQN7GZeSrTJn38zfYdtm",
+      "entity_type": "scene",
+      "file_count": 21,
+      "flags": []
+    },
+    {
+      "entity_id": "QmXMPZjx3yKEBGWm3TE8Yfh6zr6bVz52yt4TbwxxfJu6Jd",
+      "entity_type": "scene",
+      "file_count": 32,
+      "flags": []
+    },
+    {
+      "entity_id": "QmbCYMxzH5CJjHdXJC5zh69Nr5EjRfS2Y4PfMoiQXwb5wN",
+      "entity_type": "scene",
+      "file_count": 3,
+      "flags": []
+    },
+    {
+      "entity_id": "QmPAyzWU7gtdVRr9DGohiRzrSXL67NQdRuMwpfecoireUD",
+      "entity_type": "scene",
+      "file_count": 3,
+      "flags": []
+    },
+    {
+      "entity_id": "QmfRKeVzR8pg9dja1p6yc29LUHbFYdapQ1GoD8ePrjJavF",
+      "entity_type": "scene",
+      "file_count": 3,
+      "flags": []
+    },
+    {
+      "entity_id": "QmatYFPnbbBuzowQKKTEAT8Mg3YcMpjaHqwBiWSetPnq2W",
+      "entity_type": "scene",
+      "file_count": 5,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreig373k3skfqe3vdvnpokzn3x2jnzysvrcj64vvb47yf2fbsa7qj3u",
+      "entity_type": "scene",
+      "file_count": 20,
+      "flags": []
+    },
+    {
+      "entity_id": "QmUniv9pXs55urV1onGsPBPwsizJuPfqeGYhfSdQDzKUi5",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "flags": [
+        "morph"
+      ]
+    },
+    {
+      "entity_id": "bafkreibtjc4ijnxysvqk6ymoluk3rkzlpwdpzkvl7oq4fpqaovy63r7nqm",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "flags": [
+        "normalmap"
+      ]
+    },
+    {
+      "entity_id": "bafkreifhfidljgvw7wlntvzgkcgafp63r3no2issat7waapi5uneys5vbi",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "flags": [
+        "normalmap"
+      ]
+    },
+    {
+      "entity_id": "bafkreihophp4honuymli7ezjfvs4fiv2buntxp34swvbvf6cnqadc363aa",
+      "entity_type": "wearable",
+      "file_count": 3,
+      "flags": [
+        "normalmap"
+      ]
+    },
+    {
+      "entity_id": "bafkreietfoojwprpp2a4qk2tp455d5wgfgjvngmwzpdxt4zlt4oifedlqe",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "flags": [
+        "normalmap"
+      ]
+    },
+    {
+      "entity_id": "bafkreigkn4hszrzu6j7cw6rua2cogn4dtfwgkk6nyx4fbsmkafbocoxmfa",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "QmeQ48vHEVke3e5a2pT6ephnSKN6mF6NpbJ8vBtjXNgYWy",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreifrrlxig34k34w2gg2lrk2bqokvyzsojnlljk4ymq73kxzjeonepu",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreia3jxoqdjyadxf3r7q4c6j2vglpuuh6lry2glsyy4rgqxg2xlmipi",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "Qmdmdmp6KqUxbmrJidqVAKQwQ2M9YSSJnGMTF2Cz3qaoPn",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreianjvfdqxkbb5qc3wiu25kzrcn52nfetskvbepgm3zcqtf2aeptte",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreid3urcugurweudjpepa2t6c6l23ffugfyc3gcpaxhxei4jx54uh2a",
+      "entity_type": "wearable",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreidytkgmbtffjamrjlhkwk2o36jamlbzhgu2xglzzstoejb5froy6e",
+      "entity_type": "emote",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreibwcdiohxh66p553nbyd36kdy6ksdoq4vg7feerrgtz7u2eocwcuy",
+      "entity_type": "emote",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreifkwszchg7fbjcrclxjzekl5lqgcinlx3j2odhle2y2glvwgejb44",
+      "entity_type": "emote",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreighe3s3umella3m2iqulshlvnbpqjrx4pr6rpx4xg6eco2x663u6q",
+      "entity_type": "emote",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiezm35zv4chvr35u36mf2bzieprjpdpbhplrsjmpjvqvurffyddn4",
+      "entity_type": "emote",
+      "file_count": 4,
+      "flags": []
+    },
+    {
+      "entity_id": "bafkreiamujyfe2oedrbgu6ak3qjuiefwfjzfkppfikeggpainyastbciae",
+      "entity_type": "emote",
+      "file_count": 3,
+      "flags": []
+    }
+  ]
+}
