@@ -10,7 +10,6 @@ use std::sync::atomic::{AtomicU64, AtomicUsize, Ordering};
 use std::sync::Mutex;
 use std::time::{Instant, SystemTime, UNIX_EPOCH};
 
-pub const ABGEN_CONTENT_ENV_VAR: &str = "ABGEN_CONTENT_ENV";
 pub const DEFAULT_CONTENT_ENV: &str = "./content.env";
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]

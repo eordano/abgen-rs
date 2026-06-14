@@ -88,7 +88,7 @@ pub fn bc7_target_size(w: u32, h: u32, max_size: u32) -> (u32, u32) {
     let mut w = w.max(1);
     let mut h = h.max(1);
     if w > max_size || h > max_size {
-        let factor = max_size as f64 / (if w >= h { w } else { h }) as f64;
+        let factor = max_size as f64 / w.max(h) as f64;
         w = (w as f64 * factor) as u32;
         h = (h as f64 * factor) as u32;
     }
@@ -164,10 +164,8 @@ pub fn bc7_profile(src: &SourceImage, color_space: i64, is_normal: bool, max_siz
 pub fn standalone_texture_profile_named(
     src: &SourceImage,
     max_size: u32,
-    source_file: &str,
     usage_normal: Option<bool>,
 ) -> Profile {
-    let _ = source_file;
     let is_normal = usage_normal.unwrap_or(false);
 
     let (tw, th) = bc7_target_size(src.width, src.height, max_size);
@@ -352,7 +350,7 @@ mod tests {
             container: "PNG".into(),
             has_real_alpha: true,
         };
-        let p = standalone_texture_profile_named(&src, LINUX_MAX_TEXTURE_SIZE, "", None);
+        let p = standalone_texture_profile_named(&src, LINUX_MAX_TEXTURE_SIZE, None);
         assert_eq!(p.texture_format, TF_RGBA32_UNITY);
         assert_eq!(p.mip_count, 1);
         assert!(!p.compressed);
@@ -365,7 +363,7 @@ mod tests {
             container: "PNG".into(),
             has_real_alpha: false,
         };
-        let p = standalone_texture_profile_named(&src, LINUX_MAX_TEXTURE_SIZE, "", None);
+        let p = standalone_texture_profile_named(&src, LINUX_MAX_TEXTURE_SIZE, None);
         assert_eq!(p.texture_format, TF_BC7);
         assert!(p.compressed);
         assert_eq!((p.target_w, p.target_h), (4, 4));
@@ -376,7 +374,7 @@ mod tests {
             container: "PNG".into(),
             has_real_alpha: false,
         };
-        let p = standalone_texture_profile_named(&src, LINUX_MAX_TEXTURE_SIZE, "", None);
+        let p = standalone_texture_profile_named(&src, LINUX_MAX_TEXTURE_SIZE, None);
         assert_eq!(p.texture_format, TF_BC7);
         assert!(p.compressed);
 
@@ -386,7 +384,7 @@ mod tests {
             container: "PNG".into(),
             has_real_alpha: false,
         };
-        let p = standalone_texture_profile_named(&src, LINUX_MAX_TEXTURE_SIZE, "", None);
+        let p = standalone_texture_profile_named(&src, LINUX_MAX_TEXTURE_SIZE, None);
         assert_eq!(p.texture_format, TF_RGBA32_UNITY);
 
         let src = SourceImage {
@@ -395,7 +393,7 @@ mod tests {
             container: "PNG".into(),
             has_real_alpha: true,
         };
-        let p = standalone_texture_profile_named(&src, max_texture_size_for("windows"), "", None);
+        let p = standalone_texture_profile_named(&src, max_texture_size_for("windows"), None);
         assert_eq!((p.target_w, p.target_h), (512, 512));
         assert_eq!(p.texture_format, TF_BC7);
 
@@ -405,7 +403,7 @@ mod tests {
             container: "PNG".into(),
             has_real_alpha: true,
         };
-        let p = standalone_texture_profile_named(&src, max_texture_size_for("windows"), "", None);
+        let p = standalone_texture_profile_named(&src, max_texture_size_for("windows"), None);
         assert_eq!((p.target_w, p.target_h), (512, 1024));
     }
 

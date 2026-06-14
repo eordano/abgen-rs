@@ -111,6 +111,9 @@ fn main() {
         .flag_if_supported("-Wno-unused-parameter")
         .flag_if_supported("-Wno-sign-compare")
         .flag_if_supported("-Wno-narrowing")
+        // clang spells the braced-init narrowing diagnostic differently and
+        // does not alias it to -Wno-narrowing; it is an error by default.
+        .flag_if_supported("-Wno-c++11-narrowing")
         .flag_if_supported("-Wno-class-memaccess")
         .flag_if_supported("-Wno-deprecated-declarations")
         .flag_if_supported("-Wno-misleading-indentation")

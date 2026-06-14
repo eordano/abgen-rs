@@ -1494,6 +1494,8 @@ fn evaluate_solution(
         wc[0][j] = amin.c[j] as f32;
         wc[n - 1][j] = amax.c[j] as f32;
     }
+    // Only mutated under the x86_64 SIMD cfg below; stays false on other arches.
+    #[allow(unused_mut)]
     let mut wc_built = false;
     #[cfg(target_arch = "x86_64")]
     if has_avx2() {
@@ -2922,7 +2924,6 @@ struct SubsetIdx {
 }
 
 fn subset_idx_tables(total_subsets: usize) -> &'static [SubsetIdx; 64] {
-    use std::sync::OnceLock;
     static T2: OnceLock<Box<[SubsetIdx; 64]>> = OnceLock::new();
     static T3: OnceLock<Box<[SubsetIdx; 64]>> = OnceLock::new();
     let build = |table: &'static [u8; 64 * 16]| -> Box<[SubsetIdx; 64]> {
@@ -5210,7 +5211,6 @@ fn handle_alpha_block(
                 continue;
             }
             let mut params4 = base.clone();
-            params4.weights = base.weights;
             if rotation != 0 {
                 params4.weights.swap(rotation - 1, 3);
             }
@@ -5289,7 +5289,6 @@ fn handle_alpha_block(
                 continue;
             }
             let mut params5 = base.clone();
-            params5.weights = base.weights;
             if rotation != 0 {
                 params5.weights.swap(rotation - 1, 3);
             }
@@ -5678,7 +5677,6 @@ fn handle_opaque_block(
                 continue;
             }
             let mut params5 = base.clone();
-            params5.weights = base.weights;
             if rotation != 0 {
                 params5.weights.swap(rotation - 1, 3);
             }
@@ -5785,7 +5783,6 @@ fn handle_opaque_block(
                 continue;
             }
             let mut params4 = base.clone();
-            params4.weights = base.weights;
             if rotation != 0 {
                 params4.weights.swap(rotation - 1, 3);
             }
@@ -6043,7 +6040,6 @@ pub fn encode_blocks(rgba_block_major: &[u8], num_blocks: usize, params: &Params
 static BC7_CAPTURE_LOCK: std::sync::Mutex<()> = std::sync::Mutex::new(());
 
 fn bc7_capture_path() -> Option<std::path::PathBuf> {
-    use std::sync::OnceLock;
     static P: OnceLock<Option<std::path::PathBuf>> = OnceLock::new();
     P.get_or_init(|| std::env::var_os("ABGEN_BC7_CAPTURE").map(std::path::PathBuf::from))
         .clone()

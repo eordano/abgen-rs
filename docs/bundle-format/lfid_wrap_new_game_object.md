@@ -46,7 +46,7 @@ hash. Hence:
 - roots == 0 + animation: the outer wrap is the importer parent
   ("New Game Object"); glTFast's inner scene GO stays a `"Scene"` child.
 
-`src/builder.rs` (`build_scene` wrap branch) now picks the wrap segment by
+`src/builder.rs` (`build` wrap branch) now picks the wrap segment by
 `scene.root_nodes.len() <= 1 && has_anim`; the empty-anim-scene inner GO keeps
 its constructor name via a separate `inner_name`. Serialized `m_Name`s are
 untouched (the root still serializes as the entity hash — the rename happens

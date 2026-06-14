@@ -1,5 +1,9 @@
 # AnimationClip constant-curve split (blocked)
 
+> **SUPERSEDED BY [emote_constant_classification.md](emote_constant_classification.md).** The
+> constant-curve classification shipped via `classify_constant`; this "blocked" note predates
+> that resolution. Kept for the paper trail.
+
 **Why it matters:** The converter bakes a humanoid AnimationClip into a streamed-curve group plus a constant-curve group. Reproducing that exact partition is needed for byte-identical emote bundles, since the layout of both the streamed binary and the constant data depends on which curves land where.
 
 **How it works:** This is a negative finding. The attempted rule classified a curve as constant when every baked sample was bit-exactly equal to the first sample. It built cleanly and left non-emote fixtures intact, but on emotes it over-extracted: a handful of curves the reference kept streamed were marked constant. Because the two groups are positional, a single misclassified curve shifts every entry after it in both the streamed stream and the constant tail, so the bundle diverged further from the reference rather than closer — the split makes things worse unless it is exact.

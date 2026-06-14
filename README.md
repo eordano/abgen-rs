@@ -145,7 +145,7 @@ authoritative flag reference.
 
 **The default output is byte-faithful to the reference converter, quirks
 included.** The reference corpus is produced by the
-[`abc-deterministic-guids`](https://github.com/decentraland/abc-deterministic-guids)
+[`abc-deterministic-guids`](https://github.com/decentraland/asset-bundle-converter/tree/abc-deterministic-guids)
 fork of the converter running in headless batchmode, and abgen-rs
 reproduces what that setup actually emits -- not what production serves.
 Two consequences you must know about:
@@ -263,7 +263,7 @@ routing are resolved -- `abgen --help` documents each.
 A **reference corpus** is the output of Decentraland's converter on a list
 of catalyst entities, laid out `<corpus-dir>/<entity_id>/<bundle_name>`.
 Generate it with the
-[`abc-deterministic-guids`](https://github.com/decentraland/abc-deterministic-guids)
+[`abc-deterministic-guids`](https://github.com/decentraland/asset-bundle-converter/tree/abc-deterministic-guids)
 fork (the stock converter is non-deterministic -- Unity assigns sub-asset
 fileIDs from a session PRNG, so re-runs of the official converter differ
 from themselves). Entity selection lists and regeneration notes live in

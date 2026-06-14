@@ -434,8 +434,8 @@ fn hash128_append(seed: (u64, u64), data: &[u8], block: usize) -> (u64, u64) {
 
 pub fn prefab_packed_path_id(guid: &str, local_id: i64, file_type: i32) -> i64 {
     let gb = guid_raw(guid);
-    let (a1, _) = hash128_append((0, 0), &gb, 4);
     let mut s = hash128_append((0, 0), &gb, 4);
+    let a1 = s.0;
     s = spooky_short(&local_id.to_le_bytes(), s.0, s.1);
     s = spooky_short(&file_type.to_le_bytes(), s.0, s.1);
 

@@ -54,7 +54,7 @@ through the actual reference converter, twice. New facts:
 **2026-06-11 (late) — data preserved + structural disproofs + stakes revised.**
 The 21 reference orderings, the 12 controlled-name probe orderings, the prior
 solver scripts, and a consolidated runnable harness are now checked into
-`docs/tos_data/` (`emoteNN.tsv`, `probe-tos-*.tsv`, `tos_solver.py`) so this
+`docs/animation/tos_data/` (`emoteNN.tsv`, `probe-tos-*.tsv`, `tos_solver.py`) so this
 work survives `/tmp` cleanup. New results this session:
 
 - **The wall is no longer cosmetic — it is the SOLE remaining diff on the 21
@@ -89,7 +89,7 @@ work survives `/tmp` cleanup. New results this session:
 - **A consistent total order over keys exists *within a fixed table size*.**
   Pooling pairwise precedences over the 15 n=14 reference tables (114 distinct
   keys) yields **zero contradictions** and a single topological linearization
-  (`docs/tos_data/order114.py`) that every n=14 table respects exactly. This is
+  (`docs/animation/tos_data/order114.py`) that every n=14 table respects exactly. This is
   the cleanest ground truth available: the order is a deterministic function and
   the n=14 instances are all slices of one 114-key master order. BUT that master
   order is **not** `sort by hash(key) mod N` for any tested hash/N — the
@@ -129,7 +129,7 @@ run; every standard container model now disproven on controlled inputs.**
 The prescribed campaign was executed: 13 controlled probe emotes were built by
 duplicating one emote's GLB animation block under crafted names (recompute CID,
 serve flat over HTTP, convert with the real Unity 6000.2.6f2 converter) and
-their `m_TOS` tables read back. Probe set (committed in `docs/tos_data/probes2/`
+their `m_TOS` tables read back. Probe set (committed in `docs/animation/tos_data/probes2/`
 with `map.tsv` + the builder `mkemote.py`):
 
 - **count probes** `c01,c02,c03,c04,c05,c08,c09,c16,c17` — 1..17 identical-content

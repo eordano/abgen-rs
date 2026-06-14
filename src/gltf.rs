@@ -1,5 +1,4 @@
 use crate::mesh_layout;
-use crate::mesh_layout::MeshAttributes;
 use crate::scene::{
     AttrSig, Material, MorphSig, MorphTarget, Node, Primitive, Sampler, Scene, Skin, TexRef,
     TexTransform,
@@ -1445,7 +1444,7 @@ pub fn vertex_buffer(prim: &Primitive) -> (Vec<u8>, Vec<Value>) {
     } else {
         &[]
     };
-    let attrs = MeshAttributes {
+    let attrs = mesh_layout::MeshAttributes {
         positions: &prim.positions,
         normals: Some(&prim.normals),
         tangents: prim.tangents.as_deref(),

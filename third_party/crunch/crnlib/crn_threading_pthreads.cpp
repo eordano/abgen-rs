@@ -11,7 +11,9 @@
 #include "crn_winhdr.h"
 #endif
 
-#ifdef __GNUC__
+#if defined(__APPLE__)
+#include <unistd.h>      // sysconf(_SC_NPROCESSORS_ONLN); macOS has no <sys/sysinfo.h>
+#elif defined(__GNUC__)
 #include <sys/sysinfo.h>
 #endif
 
@@ -29,6 +31,8 @@ namespace crnlib
       SYSTEM_INFO g_system_info;
       GetSystemInfo(&g_system_info);
       g_number_of_processors = math::maximum<uint>(1U, g_system_info.dwNumberOfProcessors);
+#elif defined(__APPLE__)
+      g_number_of_processors = math::maximum<int>(1, (int)sysconf(_SC_NPROCESSORS_ONLN));
 #elif defined(__GNUC__)
       g_number_of_processors = math::maximum<int>(1, get_nprocs());
 #else
@@ -39,7 +43,12 @@ namespace crnlib
    crn_thread_id_t crn_get_current_thread_id()
    {
       // FIXME: Not portable
+#if defined(__APPLE__)
+      // pthread_t is an opaque pointer on macOS; static_cast ptr->int is illegal.
+      return reinterpret_cast<crn_thread_id_t>(pthread_self());
+#else
       return static_cast<crn_thread_id_t>(pthread_self());
+#endif
    }
 
    void crn_sleep(unsigned int milliseconds)
@@ -108,21 +117,38 @@ namespace crnlib
    {
       maximumCount, pName;
       CRNLIB_ASSERT(maximumCount >= initialCount);
+#if defined(__APPLE__)
+      m_sem = dispatch_semaphore_create(initialCount);
+      if (!m_sem)
+      {
+         CRNLIB_FAIL("semaphore: dispatch_semaphore_create() failed");
+      }
+#else
       if (sem_init(&m_sem, 0, initialCount))
       {
          CRNLIB_FAIL("semaphore: sem_init() failed");
       }
+#endif
    }
 
    semaphore::~semaphore()
    {
+#if defined(__APPLE__)
+      if (m_sem)
+         dispatch_release(m_sem);
+#else
       sem_destroy(&m_sem);
+#endif
    }
 
    void semaphore::release(long releaseCount)
    {
       CRNLIB_ASSERT(releaseCount >= 1);
 
+#if defined(__APPLE__)
+      while (releaseCount-- > 0)
+         dispatch_semaphore_signal(m_sem);
+#else
       int status = 0;
 #ifdef WIN32
       if (1 == releaseCount)
@@ -143,13 +169,17 @@ namespace crnlib
       {
          CRNLIB_FAIL("semaphore: sem_post() or sem_post_multiple() failed");
       }
+#endif
    }
 
    void semaphore::try_release(long releaseCount)
    {
       CRNLIB_ASSERT(releaseCount >= 1);
 
-#ifdef WIN32
+#if defined(__APPLE__)
+      while (releaseCount-- > 0)
+         dispatch_semaphore_signal(m_sem);
+#elif defined(WIN32)
       if (1 == releaseCount)
          sem_post(&m_sem);
       else
@@ -165,6 +195,12 @@ namespace crnlib
 
    bool semaphore::wait(uint32 milliseconds)
    {
+#if defined(__APPLE__)
+      dispatch_time_t timeout = (milliseconds == cUINT32_MAX)
+         ? DISPATCH_TIME_FOREVER
+         : dispatch_time(DISPATCH_TIME_NOW, (int64_t)milliseconds * 1000000LL);
+      return dispatch_semaphore_wait(m_sem, timeout) == 0;
+#else
       int status;
       if (milliseconds == cUINT32_MAX)
       {
@@ -188,11 +224,12 @@ namespace crnlib
       }
 
       return true;
+#endif
    }
 
    spinlock::spinlock()
    {
-      if (pthread_spin_init(&m_spinlock, 0))
+      if (CRN_SPIN_INIT(&m_spinlock))
       {
          CRNLIB_FAIL("spinlock: pthread_spin_init() failed");
       }
@@ -200,12 +237,12 @@ namespace crnlib
 
    spinlock::~spinlock()
    {
-      pthread_spin_destroy(&m_spinlock);
+      CRN_SPIN_DESTROY(&m_spinlock);
    }
 
    void spinlock::lock()
    {
-      if (pthread_spin_lock(&m_spinlock))
+      if (CRN_SPIN_LOCK(&m_spinlock))
       {
          CRNLIB_FAIL("spinlock: pthread_spin_lock() failed");
       }
@@ -213,7 +250,7 @@ namespace crnlib
 
    void spinlock::unlock()
    {
-      if (pthread_spin_unlock(&m_spinlock))
+      if (CRN_SPIN_UNLOCK(&m_spinlock))
       {
          CRNLIB_FAIL("spinlock: pthread_spin_unlock() failed");
       }

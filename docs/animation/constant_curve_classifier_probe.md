@@ -1,5 +1,9 @@
 # Probe: where Mecanim's constant-curve classifier lives (negative finding)
 
+> **SUPERSEDED BY [emote_constant_classification.md](emote_constant_classification.md).** The
+> shipped `classify_constant` (in `animation_mecanim.rs`) is the resolved rule; this probe
+> records the investigation. Kept for the paper trail.
+
 **Why it matters:** When the converter bakes a humanoid AnimationClip it splits curves into a streamed group and a constant group, and matching that split exactly is required for byte-identical emote bundles. To reproduce the split, abgen-rs needs the rule the converter uses to decide which curves are constant. This probe set out to derive that rule by inspecting a real production bundle, without driving the Unity Editor.
 
 **How it works:** Decoding a prod emote bundle yields the ground-truth verdict per binding. Two durable facts fell out: classification is per-binding-vector, not per-component (if any component varies, the whole binding stays streamed), and the serialized layout partitions all streamed bindings first, then all constant ones, each group preserving ingest order.

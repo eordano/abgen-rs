@@ -62,7 +62,7 @@ To rebuild a corpus from scratch:
  (e.g. draco).
 
 2. **Run the converter** — feed the entity list to the
- [`abc-deterministic-guids`](https://github.com/decentraland/abc-deterministic-guids)
+ [`abc-deterministic-guids`](https://github.com/decentraland/asset-bundle-converter/tree/abc-deterministic-guids)
  fork of `asset-bundle-converter`. Recommended commit: `fefe44e` or
  later (post-`SetDeterministicSubAssetIds` patch so re-runs are
  byte-equal). Output lands under

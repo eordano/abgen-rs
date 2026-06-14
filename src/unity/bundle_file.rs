@@ -264,19 +264,11 @@ impl Bundle {
             w.align_stream(16);
         }
 
-        if data_flag & 0x80 != 0 {
-            if data_flag & 0x200 != 0 {
-                w.align_stream(16);
-            }
-            w.write_bytes(&compressed_file_data);
-            w.write_bytes(&block_data);
-        } else {
-            w.write_bytes(&block_data);
-            if data_flag & 0x200 != 0 {
-                w.align_stream(16);
-            }
-            w.write_bytes(&compressed_file_data);
-        }
+        // data_flag is fixed at 0x243: bit 0x80 is clear (block info precedes the data)
+        // and bit 0x200 is set (16-byte alignment before the compressed file data).
+        w.write_bytes(&block_data);
+        w.align_stream(16);
+        w.write_bytes(&compressed_file_data);
 
         let end = w.buf.len() as i64;
         let size_bytes = end.to_be_bytes();

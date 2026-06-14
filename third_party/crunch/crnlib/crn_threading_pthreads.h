@@ -13,6 +13,11 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <unistd.h>
+#if defined(__APPLE__)
+// macOS has no working POSIX unnamed semaphores (sem_init fails with ENOSYS);
+// use GCD dispatch semaphores instead.
+#include <dispatch/dispatch.h>
+#endif
 
 namespace crnlib
 {
@@ -74,8 +79,29 @@ namespace crnlib
       bool wait(uint32 milliseconds = cUINT32_MAX);
 
    private:
+#if defined(__APPLE__)
+      dispatch_semaphore_t m_sem;
+#else
       sem_t m_sem;
+#endif
    };
+
+   // Apple's libpthread has no spinlocks; map the spinlock storage + ops to a
+   // mutex there (identical lock/unlock semantics). Everything else keeps using
+   // real pthread spinlocks.
+#if defined(__APPLE__)
+   typedef pthread_mutex_t crn_spinlock_storage_t;
+   #define CRN_SPIN_INIT(l)    pthread_mutex_init((l), NULL)
+   #define CRN_SPIN_DESTROY(l) pthread_mutex_destroy(l)
+   #define CRN_SPIN_LOCK(l)    pthread_mutex_lock(l)
+   #define CRN_SPIN_UNLOCK(l)  pthread_mutex_unlock(l)
+#else
+   typedef pthread_spinlock_t crn_spinlock_storage_t;
+   #define CRN_SPIN_INIT(l)    pthread_spin_init((l), 0)
+   #define CRN_SPIN_DESTROY(l) pthread_spin_destroy(l)
+   #define CRN_SPIN_LOCK(l)    pthread_spin_lock(l)
+   #define CRN_SPIN_UNLOCK(l)  pthread_spin_unlock(l)
+#endif
 
    class spinlock
    {
@@ -87,7 +113,7 @@ namespace crnlib
       void unlock();
 
    private:
-      pthread_spinlock_t m_spinlock;
+      crn_spinlock_storage_t m_spinlock;
    };
 
    class scoped_spinlock

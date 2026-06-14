@@ -94,7 +94,6 @@ impl<'a> Reader<'a> {
     }
 }
 
-#[derive(Default)]
 pub struct Writer {
     pub buf: Vec<u8>,
     pub big_endian: bool,

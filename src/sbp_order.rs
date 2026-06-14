@@ -100,7 +100,7 @@ where
     out
 }
 
-pub fn order_run_with(
+fn order_run_with(
     objects: &[Obj],
     pos: ExternalsPosition,
     cb_pos: CrossBundlePosition,

@@ -465,7 +465,6 @@ fn bake_scalar_curve(times: &[f64], values: &[f64], interp: &str) -> Vec<Value> 
             let val = values[i * 3 + 1];
             let out_t = values[i * 3 + 2];
             let mut kf = scalar_keyframe(times[i], val, in_t, out_t);
-            kf.insert("weightedMode", 0);
             kf.insert("inWeight", 0.5f64);
             kf.insert("outWeight", 0.5f64);
             out.push(kf);

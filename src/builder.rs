@@ -59,6 +59,14 @@ fn template_path() -> PathBuf {
         .join("all-types.windows.bundle")
 }
 
+/// The directory abgen loads its typetree template bundles from
+/// (`<ABGEN_ROOT>/template`). Public so tooling (e.g. the live-translate proxy)
+/// can fold the templates into a cache-invalidation key — a regenerated template
+/// must invalidate previously built bundles.
+pub fn template_dir() -> PathBuf {
+    abgen_root().join("template")
+}
+
 fn target_from_bundle_name(bundle_name: &str) -> &'static str {
     let lower = bundle_name.to_lowercase();
     for plat in ["linux", "windows", "mac", "webgl", "osx"] {
@@ -1292,7 +1300,9 @@ impl<'a> Builder<'a> {
         referenced_by_glb: bool,
     ) -> i64 {
         let mat_idx = match mat_idx {
-            None => {
+            Some(m) if m < scene.materials.len() => m,
+            // No material index, or an out-of-range one: fall back to the default material.
+            _ => {
                 if scene.materials.is_empty() {
                     return 0;
                 }
@@ -1302,18 +1312,6 @@ impl<'a> Builder<'a> {
                 }
                 return pid;
             }
-
-            Some(m) if m >= scene.materials.len() => {
-                if scene.materials.is_empty() {
-                    return 0;
-                }
-                let pid = self.default_material();
-                if referenced_by_glb && !self.glb_referenced_mats.contains(&pid) {
-                    self.glb_referenced_mats.push(pid);
-                }
-                return pid;
-            }
-            Some(m) => m,
         };
         if let Some(&pid) = self.mat_pid.get(&mat_idx) {
             if referenced_by_glb && !self.glb_referenced_mats.contains(&pid) {
@@ -3350,12 +3348,7 @@ impl<'a> StandaloneTextureBuilder<'a> {
             } else {
                 None
             };
-            let mut prof = texprofile::standalone_texture_profile_named(
-                &src,
-                cap,
-                self.source_file.as_deref().unwrap_or(""),
-                usage_normal,
-            );
+            let mut prof = texprofile::standalone_texture_profile_named(&src, cap, usage_normal);
             if let Some(cs) = self.color_space_override {
                 prof.color_space = cs;
             }

@@ -1,4 +1,4 @@
-pub const RESS_ALIGNMENT: usize = 16;
+const RESS_ALIGNMENT: usize = 16;
 
 pub const RESS_NODE_FLAGS: u32 = 0;
 
@@ -55,7 +55,7 @@ pub fn ress_node_name(cab_node_name: &str) -> String {
     format!("{cab_node_name}.resS")
 }
 
-pub fn stream_path(cab_node_name: &str) -> String {
+fn stream_path(cab_node_name: &str) -> String {
     format!("{ARCHIVE_PATH_FMT_PREFIX}{cab_node_name}/{cab_node_name}.resS")
 }
 
@@ -83,12 +83,10 @@ pub fn build_ress(
             stream_data.push((tex.path_id, StreamData::empty()));
             continue;
         }
-        if offset != 0 {
-            let pad = align_up(offset, RESS_ALIGNMENT) - offset;
-            if pad != 0 {
-                payload.resize(payload.len() + pad, 0);
-                offset += pad;
-            }
+        let pad = align_up(offset, RESS_ALIGNMENT) - offset;
+        if pad != 0 {
+            payload.resize(payload.len() + pad, 0);
+            offset += pad;
         }
         let size = tex.pixels.len();
         stream_data.push((

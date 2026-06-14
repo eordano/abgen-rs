@@ -18,7 +18,13 @@ void crnlib_fail(const char* pExp, const char* pFile, unsigned line);
 
 const bool c_crnlib_big_endian_platform = !c_crnlib_little_endian_platform;
 
-#ifdef __GNUC__
+#if defined(__APPLE__)
+   // macOS clang defines __GNUC__ but has no *64 stdio variants; off_t is
+   // already 64-bit there, so the plain calls are correct.
+   #define crn_fopen(pDstFile, f, m) *(pDstFile) = fopen(f, m)
+   #define crn_fseek fseeko
+   #define crn_ftell ftello
+#elif defined(__GNUC__)
    #define crn_fopen(pDstFile, f, m) *(pDstFile) = fopen64(f, m)
    #define crn_fseek fseeko64
    #define crn_ftell ftello64
@@ -35,6 +41,10 @@ const bool c_crnlib_big_endian_platform = !c_crnlib_little_endian_platform;
 #if CRNLIB_USE_WIN32_API
    #define CRNLIB_BREAKPOINT DebugBreak();
    #define CRNLIB_BUILTIN_EXPECT(c, v) c
+#elif defined(__aarch64__) || defined(__arm64__) || defined(__APPLE__)
+   // `int $3` is x86-only; use the portable trap builtin on arm64/Apple.
+   #define CRNLIB_BREAKPOINT __builtin_trap();
+   #define CRNLIB_BUILTIN_EXPECT(c, v) __builtin_expect(c, v)
 #elif defined(__GNUC__)
    #define CRNLIB_BREAKPOINT asm("int $3");
    #define CRNLIB_BUILTIN_EXPECT(c, v) __builtin_expect(c, v)

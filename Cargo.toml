@@ -18,6 +18,10 @@ name = "abgen-corpus"
 path = "src/bin/abgen-corpus.rs"
 
 [[bin]]
+name = "abgen-serve"
+path = "src/bin/abgen-serve.rs"
+
+[[bin]]
 name = "abgen-verify"
 path = "src/bin/abgen-verify.rs"
 

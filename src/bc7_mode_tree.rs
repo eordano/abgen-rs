@@ -803,7 +803,7 @@ pub fn block_features(pixels_rgba: &[[i32; 4]; 16]) -> [i32; 10] {
     for k in 0..3 {
         var += sq[k] / 16 - (s[k] / 16) * (s[k] / 16);
     }
-    let var_rgb = var.max(0).min(65535) as i32;
+    let var_rgb = var.clamp(0, 65535) as i32;
     let mdr = mx[0] - mn[0];
     let mdg = mx[1] - mn[1];
     let mdb = mx[2] - mn[2];

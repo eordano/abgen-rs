@@ -1,9 +1,9 @@
 use anyhow::Result;
 use std::io::Write;
 
-pub const BROTLI_QUALITY: u32 = 11;
+const BROTLI_QUALITY: u32 = 11;
 
-pub const BROTLI_LGWIN: u32 = 22;
+const BROTLI_LGWIN: u32 = 22;
 
 const BROTLI_BUFFER: usize = 4096;
 

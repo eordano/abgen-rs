@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::sync::OnceLock;
 
-pub static COMMON_STRINGS: &[&str] = &[
+static COMMON_STRINGS: &[&str] = &[
     "AABB",
     "AnimationClip",
     "AnimationCurve",

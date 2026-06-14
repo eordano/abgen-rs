@@ -48,17 +48,26 @@ fn main() {
         .expect("Failed to run CMake");
     assert!(status.success(), "CMake configuration failed");
 
-    let (build_args, install_args) = if target.contains("windows-msvc") {
-        (
-            vec!["--build", ".", "--config", "Release"],
-            vec!["--install", ".", "--config", "Release"],
-        )
+    let is_apple = target.contains("apple-darwin");
+    let build_args = if target.contains("windows-msvc") {
+        vec!["--build", ".", "--config", "Release"]
+    } else if is_apple {
+        // Apple's ld64 rejects the GNU `--start-group` flag draco's CMake passes
+        // when linking the draco_decoder CLI executable (which we don't use), so
+        // build only the static library target and link it from the build dir.
+        vec!["--build", ".", "--target", "draco_static"]
     } else {
-        (vec!["--build", "."], vec!["--install", "."])
+        vec!["--build", "."]
     };
-
     run_cmake_command(&build_args, &draco_build, "build");
-    run_cmake_command(&install_args, &draco_build, "install");
+    if !is_apple {
+        let install_args = if target.contains("windows-msvc") {
+            vec!["--install", ".", "--config", "Release"]
+        } else {
+            vec!["--install", "."]
+        };
+        run_cmake_command(&install_args, &draco_build, "install");
+    }
 
     let mut build = cxx_build::bridge("src/ffi.rs");
     build
@@ -67,7 +76,10 @@ fn main() {
         .include("third_party/draco/src")
         .include("third_party/draco/build")
         .include(format!("{draco_install}/include"))
-        .flag_if_supported("-std=c++17");
+        .flag_if_supported("-std=c++17")
+        // Silence vendored draco's legacy header warnings (deprecated-copy,
+        // sign-compare, unused-parameter, …); they're upstream, not ours.
+        .warnings(false);
 
     if target.contains("apple-darwin") {
         build.flag("-mmacosx-version-min=15.5");
@@ -80,6 +92,9 @@ fn main() {
     let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").unwrap();
     if target.contains("windows-msvc") {
         println!("cargo:rustc-link-search=native={manifest_dir}/{draco_install}");
+    } else if is_apple {
+        // No install step on Apple; libdraco.a is in the build dir.
+        println!("cargo:rustc-link-search=native={manifest_dir}/{draco_build}");
     } else {
         // CMake on x86_64 Linux installs to lib64/ via GNUInstallDirs; other
         // distros / arches use lib/. Probe whichever actually exists.

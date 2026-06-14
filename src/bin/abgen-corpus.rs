@@ -1,4 +1,5 @@
 use abgen::builder::{build_bundle, BuildOpts};
+use abgen::glbscan::file_ext_lower;
 use abgen::hashes;
 use abgen::local_store::{LocalContentStore, ABGEN_CONTENT_ROOT_ENV, DEFAULT_CONTENT_ROOT};
 use abgen::{naming, Result};
@@ -530,16 +531,6 @@ const fn civil_from_days(z: i64) -> (i64, i64, i64) {
 
 const IMAGE_EXTS: [&str; 3] = [".png", ".jpg", ".jpeg"];
 
-fn file_ext_lower(name: &str) -> String {
-    let l = name.to_lowercase();
-    for e in [".gltf", ".glb", ".png", ".jpg", ".jpeg"] {
-        if l.ends_with(e) {
-            return e.to_string();
-        }
-    }
-    String::new()
-}
-
 fn load_entity_json(store: &LocalContentStore, cid: &str) -> Option<serde_json::Value> {
     let bytes = store.fetch(cid).ok()?;
     serde_json::from_slice(&bytes).ok()
@@ -972,10 +963,6 @@ fn from_collection_urn(
         }
         if content_items.is_empty() {
             continue;
-        }
-        let mut inv: HashMap<String, String> = HashMap::new();
-        for c in &content_items {
-            inv.entry(c.hash.clone()).or_insert_with(|| c.file.clone());
         }
         let model_refs = collect_model_referenced_hashes(&store, &content_by_file);
         let (linear_refs, normal_refs) = collect_linear_texture_hashes(&store, &content_by_file);

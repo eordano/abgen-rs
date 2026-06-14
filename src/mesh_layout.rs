@@ -95,10 +95,8 @@ fn build_channels(attrs: &MeshAttributes) -> Vec<Value> {
             channels[CH_COLOR] = ch(stream, 0, color_fmt, 4);
             stream += 1;
         }
-        if n_uv > 0 {
-            for i in 0..n_uv {
-                channels[CH_TEXCOORD0 + i] = ch(stream, (i as i64) * 8, FMT_FLOAT32, 2);
-            }
+        for i in 0..n_uv {
+            channels[CH_TEXCOORD0 + i] = ch(stream, (i as i64) * 8, FMT_FLOAT32, 2);
         }
     }
 

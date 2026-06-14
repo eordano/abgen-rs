@@ -25,9 +25,8 @@ rather than a per-subset recompute (verified: prod sub-mesh AABBs equal the
 parent mesh AABB when the stream is shared). The merge is gated to vanilla
 geometry only — skinned, morphed, and collider nodes always take the split path.
 
-Status: designed, prototyped, and empirically confirmed to eliminate the
-divergence on the target bundles, but not yet landed in `src/` because it touches
-the same files as other in-flight work; it should be applied on a quiet branch.
+Status: designed, prototyped, empirically confirmed to eliminate the divergence on
+the target bundles, and since landed in `src/` (see `mesh_tree_merged` in `builder.rs`).
 The discriminator is verified to leave the parity fixtures (all in the split
 bucket) unchanged. The only residual after merging is a pre-existing ULP-level
 AABB precision drift, tracked separately.

@@ -8,7 +8,7 @@ built by Decentraland's `asset-bundle-converter` exactly. No fuzzy matching,
 no "semantically equivalent" — equal bytes or not.
 
 The reference is **not** the production CDN. It is the output of the
-[`abc-deterministic-guids`](https://github.com/decentraland/abc-deterministic-guids)
+[`abc-deterministic-guids`](https://github.com/decentraland/asset-bundle-converter/tree/abc-deterministic-guids)
 fork of `asset-bundle-converter`, run in headless batchmode against a fixed
 entity corpus. The fork exists because the stock converter is itself
 non-deterministic: Unity's `AssetDatabase.AddObjectToAsset` assigns

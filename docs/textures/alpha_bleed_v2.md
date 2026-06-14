@@ -1,5 +1,9 @@
 # Texture2D alpha-bleed v2 — banker's rounding for the RGB mean
 
+> **SUPERSEDED BY [alpha_bleed_jump_flood.md](alpha_bleed_jump_flood.md).** The shipped
+> alpha bleed is a jump-flood (nearest-seed-wins, no averaging); the mean/banker's-rounding
+> approach described here was not adopted. Kept for the paper trail.
+
 **Why it matters:** The alpha-bleed dilation writes the integer mean of an alpha=0 pixel's filled neighbors into its RGB. When that mean lands exactly on a half, the rounding rule decides the byte, and a single off-by-one channel value changes the BC7-encoded output. To stay byte-identical with the reference, the rounding has to match the converter's, which rounds half-to-even (banker's rounding) rather than half-up.
 
 **How it works:** Re-validating against a much larger corpus confirmed the existing parameters hold — a fixed pass count with 4-connectivity still dominates wider 5x5 and 8-connectivity kernels (the converter's dilation propagates strictly N/E/S/W along L1 distance) and remains the optimal pass count corpus-wide. The one tightening is the per-pixel mean: `src/alpha_bleed.rs` now rounds the sum-over-count to the nearest even on exact ties instead of rounding half up. In 4-connectivity the neighbor count is only ever 2, 3, or 4, so the tie cases are small and well-covered by a unit test. The change is a small, regression-free parity gain; kernel, pass count, and termination are unchanged.

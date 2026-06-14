@@ -206,7 +206,7 @@ fn build_tree(nodes: Vec<TypeTreeNode>) -> TypeTreeNode {
     fn assemble(
         idx: usize,
         arena: &mut Vec<TypeTreeNode>,
-        children: &Vec<Vec<usize>>,
+        children: &[Vec<usize>],
     ) -> TypeTreeNode {
         let mut node = std::mem::take(&mut arena[idx]);
         let mut kids = Vec::with_capacity(children[idx].len());

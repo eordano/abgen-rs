@@ -1,5 +1,9 @@
 # Standalone texture upscale resize, and the residual BC7 encoder gap
 
+> **SUPERSEDED BY [texture_resize_filter.md](texture_resize_filter.md).** The shipped resize
+> is a cubic (Mitchell) filter; the bilinear approach explored here was not the final one.
+> Kept for the paper trail.
+
 **Why it matters:** After the BC7 preset was settled, the remaining Texture2D divergence was entirely in standalone PNG textures — no in-glb or KTX2 residuals. Within that set, textures that had to be upscaled to a power-of-two target carried the worst per-byte error, because they were being resampled with the wrong filter before BC7 encoding.
 
 **How it works:** Unity snaps non-power-of-two PNG sources up to the next power of two and performs the upscale via `Graphics.Blit` with bilinear filtering — distinct from the point/box filtering used on the downscale path. abgen-rs had been routing the upscale branch through a nearest-neighbor resampler, which does not match. The fix is a deterministic float-bilinear upscale with half-pixel-centered taps, round-to-nearest output, and edge clamping. The same path also handles mixed cases, where one axis is downscaled and the other upscaled, since the bilinear-halve chain can leave a final step that is an upscale on one axis. The low-precision Mesa-lerp model proven byte-exact for the downscale step is deliberately not reused here: it is tied to a point-filtered source and actively hurts on the bilinear upscale path. Improving mip0 matters disproportionately because each subsequent mip is box-halved off it, so a better mip0 propagates down the whole chain.

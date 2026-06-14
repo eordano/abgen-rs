@@ -80,7 +80,7 @@ mod tests {
 
         assert_eq!(civil_from_days(10957), (2000, 1, 1));
 
-        let days_2026_05_20 = { 20593 };
+        let days_2026_05_20 = 20593;
         assert_eq!(civil_from_days(days_2026_05_20), (2026, 5, 20));
     }
 

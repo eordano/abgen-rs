@@ -316,6 +316,16 @@ namespace crnd
 #include <stdio.h>
 #ifdef WIN32
 #include <memory.h>
+#elif defined(__APPLE__)
+#include <stdlib.h>
+// Declare malloc_size directly; <malloc/malloc.h> transitively includes mach
+// headers that fail (missing uuid_t) when pulled in this early.
+#ifdef __cplusplus
+extern "C" size_t malloc_size(const void *ptr);
+#else
+size_t malloc_size(const void *ptr);
+#endif
+#define malloc_usable_size malloc_size
 #else
 #include <malloc.h>
 #endif
@@ -376,7 +386,7 @@ namespace crnd
 #ifdef _WIN64
    typedef uint64 ptr_bits;
 #else
-   #ifdef __x86_64__
+   #if defined(__x86_64__) || defined(__aarch64__) || defined(__arm64__) || defined(__LP64__)
       typedef uint64 ptr_bits;
    #else
       typedef uint32 ptr_bits;
