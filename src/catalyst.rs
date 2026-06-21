@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use std::time::Duration;
 
 pub const DEFAULT_CATALYST: &str = "http://localhost:5141/content";
-pub const UA: &str = "umbrella-ab-generator/1.0 (+https://catalyst.dcl.one)";
+pub const UA: &str = "ab-generator/1.0 (+https://catalyst.dcl.one)";
 const HTTP_TIMEOUT_SECS: u64 = 60;
 const HTTP_RETRIES: u32 = 3;
 
@@ -73,9 +73,10 @@ pub struct CatalystClient {
 
 impl CatalystClient {
     pub fn new(base_url: &str) -> Self {
-        let agent = ureq::AgentBuilder::new()
-            .timeout(Duration::from_secs(HTTP_TIMEOUT_SECS))
-            .build();
+        let agent: ureq::Agent = ureq::Agent::config_builder()
+            .timeout_global(Some(Duration::from_secs(HTTP_TIMEOUT_SECS)))
+            .build()
+            .into();
         CatalystClient {
             base: base_url.trim_end_matches('/').to_string(),
             agent,
@@ -108,20 +109,20 @@ impl CatalystClient {
         let url = format!("{}{}", self.base, path);
         let mut last: Option<String> = None;
         for attempt in 0..HTTP_RETRIES {
-            match self.agent.get(&url).set("User-Agent", UA).call() {
+            match self.agent.get(&url).header("User-Agent", UA).call() {
                 Ok(resp) => {
                     let mut buf: Vec<u8> = Vec::new();
-                    resp.into_reader().read_to_end(&mut buf)?;
+                    resp.into_body().into_reader().read_to_end(&mut buf)?;
                     return Ok(buf);
                 }
-                Err(ureq::Error::Status(code, _)) => {
+                Err(ureq::Error::StatusCode(code)) => {
                     if code == 404 {
                         bail!("404 {}", url);
                     }
                     last = Some(format!("HTTP {code}"));
                 }
-                Err(ureq::Error::Transport(t)) => {
-                    last = Some(t.to_string());
+                Err(e) => {
+                    last = Some(e.to_string());
                 }
             }
             std::thread::sleep(backoff(attempt));
@@ -136,20 +137,20 @@ impl CatalystClient {
             match self
                 .agent
                 .post(&url)
-                .set("User-Agent", UA)
-                .set("Content-Type", "application/json")
-                .send_string(&body.to_string())
+                .header("User-Agent", UA)
+                .header("Content-Type", "application/json")
+                .send(body.to_string())
             {
                 Ok(resp) => {
                     let mut buf: Vec<u8> = Vec::new();
-                    resp.into_reader().read_to_end(&mut buf)?;
+                    resp.into_body().into_reader().read_to_end(&mut buf)?;
                     return Ok(buf);
                 }
-                Err(ureq::Error::Status(code, _)) => {
+                Err(ureq::Error::StatusCode(code)) => {
                     last = Some(format!("HTTP {code}"));
                 }
-                Err(ureq::Error::Transport(t)) => {
-                    last = Some(t.to_string());
+                Err(e) => {
+                    last = Some(e.to_string());
                 }
             }
             std::thread::sleep(backoff(attempt));
@@ -244,22 +245,22 @@ impl CatalystClient {
         let mut last: Option<String> = None;
         let raw: Option<Vec<u8>> = (|| {
             for attempt in 0..HTTP_RETRIES {
-                match self.agent.get(&url).set("User-Agent", UA).call() {
+                match self.agent.get(&url).header("User-Agent", UA).call() {
                     Ok(resp) => {
                         let mut buf: Vec<u8> = Vec::new();
-                        if let Err(e) = resp.into_reader().read_to_end(&mut buf) {
+                        if let Err(e) = resp.into_body().into_reader().read_to_end(&mut buf) {
                             last = Some(e.to_string());
                         } else {
                             return Some(buf);
                         }
                     }
-                    Err(ureq::Error::Status(code, _)) => {
+                    Err(ureq::Error::StatusCode(code)) => {
                         last = Some(format!("HTTP {code}"));
                         if code == 404 {
                             return None;
                         }
                     }
-                    Err(ureq::Error::Transport(t)) => last = Some(t.to_string()),
+                    Err(e) => last = Some(e.to_string()),
                 }
                 std::thread::sleep(backoff(attempt));
             }

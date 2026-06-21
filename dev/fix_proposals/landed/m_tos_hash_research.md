@@ -123,7 +123,7 @@ ground-truth equivalent.)
 ## Files touched in this audit
 
 - ADDED: `AbgenBundleProbe.cs::ProbeAcTOS` (this repo's mirror at
- `/home/dcl/github.com-decentraland/unity-explorer/...`)
+ `<unity-explorer>/...`)
 - ADDED: this file
 - UNTOUCHED: `src/animation_mecanim.rs` — set is already correct, ordering
  cap is gated on Unity-internal info per `animator_controller_tos.md`.

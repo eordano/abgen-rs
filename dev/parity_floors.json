@@ -1,0 +1,65 @@
+{
+  "_comment": "Per-category byte-identical regression floors for abgen parity. Seeded from abgen-verify --json on real corpus outputs. tolerance=0 (byte-id is deterministic run-to-run for the fork-parity recipe; no V38/real-texture flags). Bless updates via dev/parity_gate.sh --bless. The 10 stable kind_of labels: bundle-empty, standalone-texture, standalone-texture-legacy, glb-emote, glb-wearable, glb-animated, glb-scene-empty, glb-scene-collider, glb-scene, other. (glb-with-morph is a dead usage-string label, never emitted.)",
+  "tolerance": 0,
+  "blessed_date": "2026-06-19",
+  "sets": {
+    "val300-windows": {
+      "reference": "974f971-val300-windows",
+      "reference_dir": "/path/to/abc-abgenrs-799967c3-2026-06-20/val300-windows",
+      "output_dir": "/tmp/abgen-val300-out",
+      "platform": "windows",
+      "recipe": "fork-parity-noflags",
+      "reference_bundles": 10374,
+      "floors": {
+        "bundle-empty": 4,
+        "glb-animated": 141,
+        "glb-emote": 0,
+        "glb-scene": 3152,
+        "glb-scene-collider": 47,
+        "glb-wearable": 612,
+        "other": 38,
+        "standalone-texture": 838,
+        "standalone-texture-legacy": 582
+      },
+      "total_floor": 5414
+    },
+    "val600-scenes-windows": {
+      "reference": "val600-ref-windows",
+      "reference_dir": "/path/to/abc-abgenrs-799967c3-2026-06-20/val600-scenes-windows",
+      "output_dir": "/tmp/abgen-val600-scenes-out",
+      "platform": "windows",
+      "recipe": "fork-parity-noflags",
+      "reference_bundles": 9139,
+      "floors": {
+        "bundle-empty": 14,
+        "glb-animated": 785,
+        "glb-emote": 0,
+        "glb-scene": 2549,
+        "glb-scene-collider": 33,
+        "glb-wearable": 513,
+        "other": 318,
+        "standalone-texture": 1373,
+        "standalone-texture-legacy": 160
+      },
+      "total_floor": 5745
+    },
+    "val600-we-windows": {
+      "reference": "val600-we-ref-windows",
+      "reference_dir": "/path/to/abc-abgenrs-799967c3-2026-06-20/val600-we-windows",
+      "output_dir": "/tmp/abgen-val600-we-out",
+      "platform": "windows",
+      "recipe": "fork-parity-noflags",
+      "reference_bundles": 712,
+      "floors": {
+        "glb-animated": 21,
+        "glb-emote": 0,
+        "glb-scene": 117,
+        "glb-scene-collider": 4,
+        "glb-wearable": 191,
+        "standalone-texture": 146,
+        "standalone-texture-legacy": 28
+      },
+      "total_floor": 507
+    }
+  }
+}

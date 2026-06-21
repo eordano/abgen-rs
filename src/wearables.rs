@@ -101,7 +101,7 @@ pub fn convert_entity(
             let built = (|| -> Result<(String, Vec<u8>)> {
                 let glb = client.fetch_content(h)?;
                 let ext = naming::file_extension(f);
-                let digest = naming::deps_digest_for_glb(&glb, f, &content_by_file)?;
+                let digest = naming::deps_digest_for_glb(&glb, f, &content_by_file, false)?;
                 let name = naming::canonical_filename(h, &ext, &platform, Some(&digest))?;
 
                 let resolve_fn = |uri: &str| -> Option<Vec<u8>> {

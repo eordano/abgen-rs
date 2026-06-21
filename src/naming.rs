@@ -284,6 +284,7 @@ pub fn deps_digest_for_glb(
     glb_bytes: &[u8],
     glb_file: &str,
     content_by_file: &HashMap<String, String>,
+    tolerant: bool,
 ) -> Result<String> {
     let ext = file_extension(glb_file);
     let uris = parse_gltf_dep_refs(glb_bytes, &ext)?;
@@ -291,9 +292,37 @@ pub fn deps_digest_for_glb(
     let mut deps: Vec<(String, String)> = Vec::new();
     for uri in &uris {
         let resolved = resolve_uri_to_content_file(uri, glb_file)?;
-        let h = content_by_file
-            .get(&resolved.to_lowercase())
-            .ok_or_else(|| anyhow!("dep \"{}\" -> \"{}\" not in entity content", uri, resolved))?;
+        let h = match content_by_file.get(&resolved.to_lowercase()) {
+            Some(h) => h,
+            None if tolerant => {
+                // --magenta-missing: don't fail the asset on a missing dep; the
+                // build substitutes a magenta placeholder for it. Omit it from
+                // the digest (it has no content hash to key on).
+                continue;
+            }
+            None => {
+                // Self-diagnosing: if the texture's basename is deployed
+                // elsewhere in the entity, it's a mis-pathed (kit-pack) asset —
+                // say so, so the failure reads as the content bug it is.
+                let base = resolved.rsplit('/').next().unwrap_or(&resolved);
+                let elsewhere = content_by_file
+                    .keys()
+                    .find(|k| k.rsplit('/').next() == Some(base));
+                return Err(match elsewhere {
+                    Some(other) => anyhow!(
+                        "dep \"{}\" -> \"{}\" not in entity content \
+                         (but \"{}\" is deployed at \"{}\" — mis-pathed kit-pack asset; \
+                         republish with the texture in the referenced folder)",
+                        uri, resolved, base, other
+                    ),
+                    None => anyhow!(
+                        "dep \"{}\" -> \"{}\" not in entity content \
+                         (texture not deployed in this entity)",
+                        uri, resolved
+                    ),
+                });
+            }
+        };
         let key = format!("{resolved}\0{h}");
         if seen.iter().any(|k| k == &key) {
             continue;

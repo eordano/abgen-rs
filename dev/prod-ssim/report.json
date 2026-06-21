@@ -1,0 +1,930 @@
+{
+ "abgen_git_rev": "8e6333d",
+ "date": "2026-06-19",
+ "platform": "windows",
+ "category_floors": {
+  "scene": 0.99,
+  "wearable": 0.99,
+  "emote": 0.99,
+  "standalone-tex": 0.995,
+  "_default": 0.99
+ },
+ "n_entities": 5,
+ "categories": {
+  "scene": {
+   "n_entities": 2,
+   "n_bundles": 63,
+   "byte_identical": 0,
+   "structural_diff": 45,
+   "masked_structural": 33,
+   "visual_pass_entities": 0,
+   "min_ssim": 0.692414,
+   "versions": {
+    "v36": 1,
+    "v44": 1
+   },
+   "floor": 0.99
+  },
+  "wearable": {
+   "n_entities": 2,
+   "n_bundles": 6,
+   "byte_identical": 0,
+   "structural_diff": 4,
+   "masked_structural": 4,
+   "visual_pass_entities": 2,
+   "min_ssim": 0.99877275,
+   "versions": {
+    "v38": 1,
+    "v41": 1
+   },
+   "floor": 0.99
+  },
+  "emote": {
+   "n_entities": 1,
+   "n_bundles": 3,
+   "byte_identical": 0,
+   "structural_diff": 2,
+   "masked_structural": 0,
+   "visual_pass_entities": 1,
+   "min_ssim": 0.9999573841,
+   "versions": {
+    "v44": 1
+   },
+   "floor": 0.99
+  }
+ },
+ "entities": [
+  {
+   "cid": "bafkreia22i2cn5y2ytad7n3lrivwletyqtvhtdtwdjtyskruv57cmhgmjm",
+   "type": "scene",
+   "prod_version": "v36",
+   "floor": 0.99,
+   "platform": "windows",
+   "n_bundles": 6,
+   "byte_identical_bundles": 0,
+   "structural_diff_bundles": 6,
+   "masked_structural_diffs": 3,
+   "entity_min_ssim": 0.692414,
+   "visual_pass": false,
+   "harness_rc": 1,
+   "bundles": [
+    {
+     "bundle": "bafkreiam7j7capgggmn5xy3jur3zakp65cbvuw6mu7tk7osq3t4mrf5lri_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=0 struct_w=1 obj_pairs=3 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 7229vs7309",
+     "min_ssim": 1.0,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreiap5vcskmaf7foofkt64hhms6pmelr6pthqev6iurt7kfoffnq6ba_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=1 struct_w=1 obj_pairs=3 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0006 size 104536vs72785",
+     "min_ssim": 0.999857858,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreiaqbwvy7cuwhev56hgss4c2dlhrturgviwi3uf7fhbzg2wqytcz4y_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=0 struct_w=1 obj_pairs=3 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 59184vs17903",
+     "min_ssim": 0.9808687,
+     "visual_band": "visual-degraded",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreigkfoyomgruu7qcpujxp5fmi6hw5crqwtha6hobumwqyz4xfdvlie_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=21 float_w=1 flip_w=0 tex_w=1 struct_w=27 obj_pairs=25 extra(ours/ref)=0/0 sizemis=11 ids_changed=true tex_rmse=0.0047 size 176153vs80998",
+     "min_ssim": 0.99774709,
+     "visual_band": "visual-ok",
+     "n_textures": 3,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreignwn3aulyna2miaj7zmmifm2vkk6k42rtlqvjzp23f5mhthdfwq4_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=9 float_w=0 flip_w=0 tex_w=0 struct_w=7 obj_pairs=9 extra(ours/ref)=0/0 sizemis=4 ids_changed=true tex_rmse=0.0000 size 8457vs8113",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafybeicvgpbbhusafgqqha5wpltmkfvss4xmtw4pc3j6dbgbcasdcqf2vq_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=18 float_w=0 flip_w=0 tex_w=1 struct_w=19 obj_pairs=19 extra(ours/ref)=0/0 sizemis=8 ids_changed=true tex_rmse=0.0000 size 3562363vs689469",
+     "min_ssim": 0.692414,
+     "visual_band": "visual-broken",
+     "n_textures": 3,
+     "high_ssim_structural_diff": false
+    }
+   ]
+  },
+  {
+   "cid": "bafkreic24tz5tsatlu7ggigtv64rcanybklgsoculj4nvftdbafiuuudye",
+   "type": "scene",
+   "prod_version": "v44",
+   "floor": 0.99,
+   "platform": "windows",
+   "n_bundles": 57,
+   "byte_identical_bundles": 0,
+   "structural_diff_bundles": 39,
+   "masked_structural_diffs": 30,
+   "entity_min_ssim": 0.7204729999999999,
+   "visual_pass": false,
+   "harness_rc": 1,
+   "bundles": [
+    {
+     "bundle": "bafkreiaqqinihycs5ahud3staxcvl6niam7j4sdaqv5v6w27hn6cp5lyfa_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=6 float_w=171 flip_w=0 tex_w=3 struct_w=66 obj_pairs=48 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 109533vs110306",
+     "min_ssim": 0.9999946034,
+     "visual_band": "visual-identical",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreiav3zyb6vody64gtpgax5uezxw5pqusqcbnisvp6t5rmlswickogy_windows",
+     "byte_identical": false,
+     "cat": 6,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=1 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0002 size 85499vs85371",
+     "min_ssim": 0.99999335985,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreibceg5yc5kytlihtr4drtu2saz453by5bz5sljeyrot2i6t2ssaxe_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=7 float_w=0 flip_w=0 tex_w=2 struct_w=32 obj_pairs=30 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0003 size 108440vs108379",
+     "min_ssim": 0.9999859716,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreibm5p36qbiu24aceg6m7wos4tfarbi35on4qwuy3zj3u3g3lodjwa_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=2 float_w=0 flip_w=0 tex_w=1 struct_w=6 obj_pairs=10 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0031 size 51111vs51339",
+     "min_ssim": 0.999469124,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreibvpocch7j6n3xemoopx4ktpkk44ov6umj4vyvwhkljysqfr3ufzi_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=13 float_w=2 flip_w=0 tex_w=4 struct_w=56 obj_pairs=45 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0001 size 322996vs321358",
+     "min_ssim": 0.9999949115,
+     "visual_band": "visual-identical",
+     "n_textures": 3,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreibxefote3jeusciwqxxrvwu5b4qi7uzg6lf3avexadfg7xkkz5gge_windows",
+     "byte_identical": false,
+     "cat": 6,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=1 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0004 size 74617vs74455",
+     "min_ssim": 0.9999312609,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreic7foxu5zs2avk4grfteymwkqfkqqggnguhx5cybblwroqcq4pwzu_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=53 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0005 size 10524vs10548",
+     "min_ssim": 0.999806932,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreiccazb6rdvex2q5dvbey5ptcec4ns2pfo5xlwlbor62xbpr7xzavy_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=8 float_w=170 flip_w=0 tex_w=3 struct_w=64 obj_pairs=48 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 109904vs109301",
+     "min_ssim": 0.9999946034,
+     "visual_band": "visual-identical",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreicfrzxevc4eq7gtbqxm5pmfnmyxlcdjartxpiy2efije4ppsdc7pi_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=3 struct_w=23 obj_pairs=27 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 96108vs95985",
+     "min_ssim": 0.9999946034,
+     "visual_band": "visual-identical",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreicisttekuq34l352q7jvfnpq6uh6ddwvfbcngevcgrt2an6zrw3s4_windows",
+     "byte_identical": false,
+     "cat": 6,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=33 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0001 size 146025vs146015",
+     "min_ssim": 0.999964264,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreickcqquuytobhkc3fq533fx3h636wcwhx66q3xvij3rxquzqmgsoq_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=10 float_w=169 flip_w=0 tex_w=3 struct_w=59 obj_pairs=48 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 110439vs111182",
+     "min_ssim": 0.9999946034,
+     "visual_band": "visual-identical",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreicrlkbki2hnwvhjb332wfme3f6n6nl2lionunqtykhzxlv6kjv2di_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=0 struct_w=20 obj_pairs=23 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 25178vs25198",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreicz56wvwao537yh35edfrcyeytydyz2xlwmb5vl555rkvpcfggx54_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=2 struct_w=6 obj_pairs=10 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0001 size 87888vs87806",
+     "min_ssim": 0.9999949115,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreid3ztllijyhra775khstemtx53m3wt4rdemin4ynof2b7fwkvzuaq_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=6 tex_w=2 struct_w=22 obj_pairs=24 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0001 size 64538vs64625",
+     "min_ssim": 0.99999377134,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreid5f3qxounkrh7kwm2ipyqhrfhxxekf5opugkaceebkavhe5b6kjq_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=1 struct_w=25 obj_pairs=20 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0003 size 71600vs71647",
+     "min_ssim": 0.99999659535,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreid5txzpunkjvp2wx5jnhcxoiqahejxjepkvkross4en7jy2s5vbzy_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=2 struct_w=14 obj_pairs=17 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0001 size 93117vs93127",
+     "min_ssim": 0.9999949115,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreidagr2rnd664szknm4z3xwcfwmfrlcoc63kxjawgecd4yssk6u37q_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=4 flip_w=0 tex_w=2 struct_w=43 obj_pairs=41 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0003 size 123621vs123157",
+     "min_ssim": 0.9999859716,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreide7e4f6sqmun25zof6icenjqt56mgreihrygpndgfen6xv5o4jne_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=2 struct_w=13 obj_pairs=17 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0003 size 96719vs96760",
+     "min_ssim": 0.9999859716,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreidfa4bb574t3k6tvhayy7tbq4vd75g4il2cuikvmqaf6dktntj2hi_windows",
+     "byte_identical": false,
+     "cat": 6,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=39 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 44046vs44042",
+     "min_ssim": 0.999862692,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreidfir2nfh3jgwi376tkg7fgsioswjmpzbxrhkusgiiwpzcin52wri_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=2 float_w=0 flip_w=0 tex_w=0 struct_w=5 obj_pairs=9 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 8511vs8499",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreidj3bf7midchbgrag2bnrptasonvqkli5yv7tixfdt3wotflhygre_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=5 struct_w=14 obj_pairs=18 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0003 size 770546vs769505",
+     "min_ssim": 0.9999720843,
+     "visual_band": "visual-ok",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreidqn7wus6pzrvv253cz7ccnpko63mbrsjwc7cwxlngiqnkmbecyjy_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=4 float_w=2 flip_w=0 tex_w=2 struct_w=15 obj_pairs=20 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 54122vs54117",
+     "min_ssim": 0.99999838179,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreidrmfipfae4adqiuzah4ajqxerybzxwlr6hv6oqo47p4xpxlejcm4_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=4 float_w=0 flip_w=0 tex_w=0 struct_w=13 obj_pairs=17 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 13573vs13603",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreidzr6ankbumaiw5clcony5vsygkvycv4whxeorjgcc4ixcmg4w6py_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=1 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0001 size 52849vs52857",
+     "min_ssim": 0.99999389098,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreie23rirhuqc6cbfsa5tufgkqbwdggxaz7y7ajqk5vjqc7izgewubu_windows",
+     "byte_identical": false,
+     "cat": 2,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=0 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 57729vs57729",
+     "min_ssim": 1.0,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreie4n7gmlpdx6hhw2vffauqvrjheonlfoazyhx75qo5dao5if45yty_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=2 struct_w=6 obj_pairs=10 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0001 size 87859vs87791",
+     "min_ssim": 0.9999949115,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreiefntstpu3u6qzbptiqq3x6higf2akke76miyp42ioooh6xjmqb5a_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=24 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 103301vs103322",
+     "min_ssim": 0.999964332,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreieihlxu4k77u7gfqclbg7hqcglxv4yhb4z3czda2svkvcrdrynhpq_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=4 float_w=0 flip_w=0 tex_w=2 struct_w=19 obj_pairs=20 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 54933vs54954",
+     "min_ssim": 0.99999768832,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreiel45isn4ipmthjsbfu2cad66bqqg5rcs3vvbnrjipip5e6nc5l2m_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=3 float_w=1 flip_w=0 tex_w=2 struct_w=11 obj_pairs=15 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 54253vs54203",
+     "min_ssim": 0.99999768832,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreiepag533osdwk2vcphhqkmosmkap5uokouzwofqhflcvqkc3s4y3i_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=61 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 83442vs83491",
+     "min_ssim": 0.9999158958,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreieqdmqw7ohg5wuse4kbs5rcr6ckclffrpfzk5kxwwwihetxaa2suq_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=6 float_w=170 flip_w=0 tex_w=5 struct_w=61 obj_pairs=48 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 113228vs112536",
+     "min_ssim": 0.9999946034,
+     "visual_band": "visual-identical",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreiessijzsda23xojfsn62dlzwcimwcahwsqq55yqc6rjpkrwq3v5y4_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=2 struct_w=5 obj_pairs=10 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0001 size 39760vs39809",
+     "min_ssim": 0.9999943398,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreif3axlgxq5pumbdc5nlax4pq4yckn7brkjlqnbssk365ej7letmji_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=6 float_w=0 flip_w=0 tex_w=2 struct_w=18 obj_pairs=24 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0007 size 269418vs269238",
+     "min_ssim": 0.999769622,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreifazlkohjfrdclren4rq3y6r6nzb3ljm2fshujmyuqhljaggkjkfu_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=0 struct_w=18 obj_pairs=23 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 41914vs41442",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreifb2dzlaium4ojtzvyr55lqryy2ilgrr5h4sh5i4jdzji7amhnfj4_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=54 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 86492vs86508",
+     "min_ssim": 0.9999368513,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreifbfawml5e3kv4gus4czxm5oe2h4lzvac6gcbybgb7qqtqu34uedi_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=1 flip_w=0 tex_w=3 struct_w=23 obj_pairs=27 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 96050vs96008",
+     "min_ssim": 0.9999946034,
+     "visual_band": "visual-identical",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreifhh7dhmilyqvyow24u5wvv63dtz6hvmmcfthk2zyhxgb44izea6i_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=2 float_w=0 flip_w=0 tex_w=0 struct_w=21 obj_pairs=17 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 8456vs8455",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreifj7edyuksyatx5rlujz3vd5spd7yxs36s5pykwsfto5k4esvpxbu_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=4 float_w=0 flip_w=0 tex_w=3 struct_w=15 obj_pairs=19 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 25446vs25536",
+     "min_ssim": 1.0,
+     "visual_band": "visual-identical",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreifxxnsduc4yrrdxdornajxp2byeufh3wfwxdkjwzsieoftdxeqbwa_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=12 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 43958vs43962",
+     "min_ssim": 1.0,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreifymlqcxokuqhkuptaqz35fohwja744wm4cxac4hwyci6xpw6rhze_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=2 struct_w=5 obj_pairs=10 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0001 size 14065vs14123",
+     "min_ssim": 0.99999750262,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreig2xm4gzxjnad2ym7l7bvsprkucqczcqv4nsiqcobgpjdkxewfucy_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=4 float_w=3 flip_w=0 tex_w=2 struct_w=34 obj_pairs=37 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0003 size 109712vs109658",
+     "min_ssim": 0.9999859716,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreig4bps3cn7npd23weyyql5ruek7qjbzbxl3ffdlbf7eeesvd5zgfq_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=4 float_w=0 flip_w=0 tex_w=3 struct_w=15 obj_pairs=19 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 25464vs25614",
+     "min_ssim": 1.0,
+     "visual_band": "visual-identical",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreigioq22szmj4d6nciaw4pwgxu2egz64uyhuhbks4fftsvuvrjrtte_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=4 float_w=1 flip_w=0 tex_w=3 struct_w=14 obj_pairs=19 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 25412vs25581",
+     "min_ssim": 1.0,
+     "visual_band": "visual-identical",
+     "n_textures": 2,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreigm6aspqcl7nchxwojqhtfvpeuyp22xdn56r453bw4utggfzm3ypa_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=1 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0002 size 249727vs250951",
+     "min_ssim": 0.9999859371,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreigovfdxo4z4daxwoejgywgqvht5ueoopglgmzsjnmv7kcjjqle2cm_windows",
+     "byte_identical": false,
+     "cat": 3,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=1 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0003 size 69579vs69579",
+     "min_ssim": 0.9999859716,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreihbmja4yijvoqfuqqi372ftd7bntgfgcp3x3yxpcbyfamqgvsn374_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=4 float_w=0 flip_w=0 tex_w=0 struct_w=13 obj_pairs=17 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 10085vs10106",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreihhobfaiwkvj6cpyrm6mv2j6gvv3tuufcg6c6axxn4tzaqbucsjxu_windows",
+     "byte_identical": false,
+     "cat": 6,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=0 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 2090vs2083",
+     "min_ssim": 1.0,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreihqhy2jk2l2w3gcmtnpzlbcrj6ngjonsv4hifhlsw5ulwcst66f4e_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=2 float_w=0 flip_w=0 tex_w=0 struct_w=5 obj_pairs=9 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 44093vs44147",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreihscin6gkdrjxghp6jizdnaakyjg5hbujjy2uer3nya7jypudw4f4_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=4 float_w=0 flip_w=0 tex_w=2 struct_w=17 obj_pairs=20 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0002 size 54164vs54134",
+     "min_ssim": 0.99999838179,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreihv4jqhpjiiccfwa7uvijlcqxfqiovtq4lo7pq6dydh4ohfrqjtyy_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=2 struct_w=14 obj_pairs=17 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0001 size 93094vs93105",
+     "min_ssim": 0.9999949115,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafkreihzteekl4trapql6qoweaupdj3ki76euvat4bcx7adau3yqmgt3ku_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=0 struct_w=18 obj_pairs=23 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 32695vs32743",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafybeicdgxlymkqpfqizabtpadbcrbsmsqfqeg33h7fcphstqev6zuqebe_windows",
+     "byte_identical": false,
+     "cat": 6,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=1 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0004 size 632287vs632258",
+     "min_ssim": 0.999978805,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafybeigfnvinayc262zn7mnz5v7zs3isomdsmkfnqz2dkrio367wcwrmrm_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=1 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0002 size 1123642vs1123660",
+     "min_ssim": 0.9999882558,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafybeih44ahtk7niix4mhujs3oaxg5earlvrpa2ydbghvn775th7shqo7e_windows",
+     "byte_identical": false,
+     "cat": 6,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=780 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0087 size 117260vs117077",
+     "min_ssim": 0.99744722,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafybeih6quffoz7h6g522ut4m7yuiuvwjpcroohimf4omh7neenquqgtty_windows",
+     "byte_identical": false,
+     "cat": 8,
+     "structural_bucket": "STRUCTURAL-tex-far",
+     "evidence": "id_w=8 float_w=38 flip_w=0 tex_w=4 struct_w=25 obj_pairs=28 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.3267 size 670076vs638859",
+     "min_ssim": 0.7204729999999999,
+     "visual_band": "visual-broken",
+     "n_textures": 2,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafybeihibucmuz5ijunazw3jpvhqkludvadxucuvxth3xorlxtkbjwbbzu_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=1 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0002 size 1033234vs1033564",
+     "min_ssim": 0.9999867415,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafybeihkslk2vjpyqmsn6jxtd4snh67i5v4a5nhpbpwq2ykd4wwewlma7e_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=6 float_w=0 flip_w=0 tex_w=1 struct_w=29 obj_pairs=27 extra(ours/ref)=0/0 sizemis=2 ids_changed=true tex_rmse=0.0011 size 196954vs197067",
+     "min_ssim": 0.9999884486,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    }
+   ]
+  },
+  {
+   "cid": "bafkreiaba2qxp4a5ksk3kzjlszg7ccawhiur5imxmod7jx77nrenodhpie",
+   "type": "wearable",
+   "prod_version": "v38",
+   "floor": 0.99,
+   "platform": "windows",
+   "n_bundles": 3,
+   "byte_identical_bundles": 0,
+   "structural_diff_bundles": 3,
+   "masked_structural_diffs": 3,
+   "entity_min_ssim": 0.999497253,
+   "visual_pass": true,
+   "harness_rc": 0,
+   "bundles": [
+    {
+     "bundle": "bafkreigztcvh6fclfskzwrjfojllgtstyd65wb6wg73gnqtzudr53tahme_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=0 struct_w=1 obj_pairs=3 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 175098vs175194",
+     "min_ssim": 1.0,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafybeiclgwxmjd3j7z4bkurn5crkg4epvd6emmyfsq5gvgnv4ra75igtey_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=17 float_w=8 flip_w=0 tex_w=1 struct_w=190 obj_pairs=135 extra(ours/ref)=0/0 sizemis=5 ids_changed=true tex_rmse=0.0001 size 304258vs217616",
+     "min_ssim": 0.99999597671,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    },
+    {
+     "bundle": "bafybeieg3hekadryfsywlx73w5lcrdhycvspl3eojtjrb5ydvwl3sa73jy_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=0 struct_w=1 obj_pairs=3 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0001 size 388609vs388613",
+     "min_ssim": 0.999497253,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": true
+    }
+   ]
+  },
+  {
+   "cid": "bafkreiabanrbjenczq6al77bzv3rc4fptj2s7cwooi7cdt3bgpczgfdfcy",
+   "type": "wearable",
+   "prod_version": "v41",
+   "floor": 0.99,
+   "platform": "windows",
+   "n_bundles": 3,
+   "byte_identical_bundles": 0,
+   "structural_diff_bundles": 1,
+   "masked_structural_diffs": 1,
+   "entity_min_ssim": 0.99877275,
+   "visual_pass": true,
+   "harness_rc": 0,
+   "bundles": [
+    {
+     "bundle": "bafkreidszwnznrf2t3hrt3dba2qqcqjdynx3wrsl4fqr65lha77lgriiim_windows",
+     "byte_identical": false,
+     "cat": 5,
+     "structural_bucket": "ordering/id-only",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=127 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 162333vs162377",
+     "min_ssim": 0.9999346471,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreiefchzjbqi4xyuiyfn2uixaiadja2s745d5uaucwa4j5l232qcnjq_windows",
+     "byte_identical": false,
+     "cat": 6,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=3 float_w=0 flip_w=0 tex_w=0 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 154292vs154286",
+     "min_ssim": 1.0,
+     "visual_band": "visual-identical",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafybeid67rvpghi7vkwfq3mdv2tjasv5kbpehchis4chtxt7fzjl5gmj3m_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=9 float_w=8 flip_w=0 tex_w=5 struct_w=217 obj_pairs=155 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0100 size 789890vs756224",
+     "min_ssim": 0.99877275,
+     "visual_band": "visual-ok",
+     "n_textures": 4,
+     "high_ssim_structural_diff": true
+    }
+   ]
+  },
+  {
+   "cid": "bafkreigb24h3cog26hwa53gdyehdj44j4vorknl425uf526fg447axnqbm",
+   "type": "emote",
+   "prod_version": "v44",
+   "floor": 0.99,
+   "platform": "windows",
+   "n_bundles": 3,
+   "byte_identical_bundles": 0,
+   "structural_diff_bundles": 2,
+   "masked_structural_diffs": 0,
+   "entity_min_ssim": 0.9999573841,
+   "visual_pass": true,
+   "harness_rc": 0,
+   "bundles": [
+    {
+     "bundle": "bafkreib3bhymwux23ybpra4fxokndtbd64ohvboawy55rpfl5s23qns2zi_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=8 float_w=1 flip_w=0 tex_w=0 struct_w=189 obj_pairs=134 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 264318vs264866",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreie23c6syinuvkh2c6cliqrv5udgbsr2s7kak4d3mj4ajcunsmd5ie_windows",
+     "byte_identical": false,
+     "cat": 7,
+     "structural_bucket": "STRUCTURAL",
+     "evidence": "id_w=7 float_w=4 flip_w=0 tex_w=0 struct_w=188 obj_pairs=134 extra(ours/ref)=0/0 sizemis=1 ids_changed=true tex_rmse=0.0000 size 265325vs265574",
+     "min_ssim": null,
+     "visual_band": "no-texture",
+     "n_textures": 0,
+     "high_ssim_structural_diff": false
+    },
+    {
+     "bundle": "bafkreihnqso567d26aejaodlt2j47kgmah6drfpvwlbgfdqmqdzv2q7bti_windows",
+     "byte_identical": false,
+     "cat": 6,
+     "structural_bucket": "value-noise",
+     "evidence": "id_w=5 float_w=0 flip_w=0 tex_w=60 struct_w=0 obj_pairs=3 extra(ours/ref)=0/0 sizemis=0 ids_changed=true tex_rmse=0.0000 size 14998vs14950",
+     "min_ssim": 0.9999573841,
+     "visual_band": "visual-ok",
+     "n_textures": 1,
+     "high_ssim_structural_diff": false
+    }
+   ]
+  }
+ ]
+}

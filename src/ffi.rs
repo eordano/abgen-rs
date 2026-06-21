@@ -110,6 +110,10 @@ impl TurboJpeg {
 
 static TURBOJPEG: OnceLock<Result<TurboJpeg, String>> = OnceLock::new();
 
+pub fn turbojpeg_available() -> bool {
+    turbojpeg().is_ok()
+}
+
 fn turbojpeg() -> Result<&'static TurboJpeg> {
     TURBOJPEG
         .get_or_init(|| TurboJpeg::load().map_err(|e| e.to_string()))

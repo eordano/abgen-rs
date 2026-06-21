@@ -1,7 +1,7 @@
 # Mesh tangent 1-ULP residual — recoverability research (RESEARCH_AREAS #10, follow-up)
 
 Baseline commit: 12e0ff4. Reference: `ad0564d-windows` test-set.
-Builds/binaries run through `dcl-shell`. Corpus regenerated from
+Builds/binaries run through an FHS shell. Corpus regenerated from
 `--from-reference` into `/tmp/ours_*`, censused with
 `examples/mesh_nt_census.rs`. New tools added this pass:
 `examples/tan_predicate.rs` (rounding-direction predicate analysis),

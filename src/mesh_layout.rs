@@ -204,26 +204,31 @@ pub fn vertex_buffer(attrs: &MeshAttributes) -> (Vec<u8>, Vec<Value>) {
                     let p = attrs.positions[v];
                     pack_f32(&mut row, off, &[p[0], p[1], p[2]]);
                 } else if ci == CH_NORMAL {
-                    let nrm = attrs.normals.unwrap()[v];
+                    // Length-safe: a malformed primitive can declare a channel whose
+                    // accessor is shorter than positions (count mismatch / 0-length
+                    // attribute). Pad with a default instead of panicking on [v].
+                    // For well-formed meshes (every attr len == n) this is
+                    // byte-identical to direct indexing.
+                    let nrm = attrs.normals.unwrap().get(v).copied().unwrap_or([0.0, 0.0, 0.0]);
                     pack_f32(&mut row, off, &[nrm[0], nrm[1], nrm[2]]);
                 } else if ci == CH_TANGENT {
-                    let t = attrs.tangents.unwrap()[v];
+                    let t = attrs.tangents.unwrap().get(v).copied().unwrap_or([0.0, 0.0, 0.0, 0.0]);
                     pack_f32(&mut row, off, &[t[0], t[1], t[2], t[3]]);
                 } else if ci == CH_COLOR {
-                    let c = attrs.colors.unwrap()[v];
+                    let c = attrs.colors.unwrap().get(v).copied().unwrap_or([1.0, 1.0, 1.0, 1.0]);
                     if attrs.color_unorm16 {
                         pack_unorm16(&mut row, off, &[c[0], c[1], c[2], c[3]]);
                     } else {
                         pack_f32(&mut row, off, &[c[0], c[1], c[2], c[3]]);
                     }
                 } else if ci >= CH_TEXCOORD0 && ci < CH_TEXCOORD0 + attrs.uv_sets.len() {
-                    let uv = attrs.uv_sets[ci - CH_TEXCOORD0][v];
+                    let uv = attrs.uv_sets[ci - CH_TEXCOORD0].get(v).copied().unwrap_or([0.0, 0.0]);
                     pack_f32(&mut row, off, &[uv[0], uv[1]]);
                 } else if ci == CH_BLENDWEIGHT {
-                    let w = attrs.weights.unwrap()[v];
+                    let w = attrs.weights.unwrap().get(v).copied().unwrap_or([0.0, 0.0, 0.0, 0.0]);
                     pack_f32(&mut row, off, &[w[0], w[1], w[2], w[3]]);
                 } else if ci == CH_BLENDINDICES {
-                    let j = attrs.joints.unwrap()[v];
+                    let j = attrs.joints.unwrap().get(v).copied().unwrap_or([0, 0, 0, 0]);
                     pack_u32(&mut row, off, &[j[0], j[1], j[2], j[3]]);
                 }
             }

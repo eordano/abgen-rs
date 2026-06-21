@@ -61,7 +61,7 @@ fn rd(p: &Path) -> BTreeMap<i64, Vec<[u32; 4]>> {
         let mut sb: BTreeMap<i64, (usize, usize)> = BTreeMap::new();
         for (si, (s, cis)) in bs.iter().enumerate() {
             if si > 0 {
-                while base % 16 != 0 {
+                while !base.is_multiple_of(16) {
                     base += 1;
                 }
             }
@@ -82,13 +82,13 @@ fn rd(p: &Path) -> BTreeMap<i64, Vec<[u32; 4]>> {
         for vi in 0..vc {
             let row = b0 + vi * st;
             let mut w = [0u32; 4];
-            for k in 0..4 {
+            for (k, wk) in w.iter_mut().enumerate() {
                 let off = row + coff + k * 4;
                 if off + 4 > data.len() {
                     ok = false;
                     break;
                 }
-                w[k] = u32::from_le_bytes([data[off], data[off + 1], data[off + 2], data[off + 3]]);
+                *wk = u32::from_le_bytes([data[off], data[off + 1], data[off + 2], data[off + 3]]);
             }
             if !ok {
                 break;
@@ -153,8 +153,8 @@ fn main() {
                     tot += 1;
                     let av = [b2f(p[0]), b2f(p[1]), b2f(p[2]), b2f(p[3])];
                     let ws = ((av[0] + av[1]) + av[2]) + av[3];
-                    let ws64 = (((av[0] as f64) + (av[1] as f64) + (av[2] as f64) + (av[3] as f64))
-                        as f32);
+                    let ws64 = ((av[0] as f64) + (av[1] as f64) + (av[2] as f64) + (av[3] as f64))
+                        as f32 ;
                     let rcp = 1.0f32 / ws;
                     let rcp64 = 1.0f32 / ws64;
                     let mut ea = true;

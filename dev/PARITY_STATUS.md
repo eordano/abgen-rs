@@ -17,7 +17,7 @@ converter on the same input differ. The fork rewrites sub-asset ids
 deterministically, giving a stable oracle to diff against. Corpus entity
 selection lives in `tests/corpora/` (the `validation300` list is the
 standard scoreboard); on this machine the generated references sit in
-`../unity-reference-ab/ad0564d-val300-{windows,mac}/`. Regeneration notes:
+`../abc-abgenrs-799967c3-2026-06-20/val300-{windows,mac}/`. Regeneration notes:
 `tests/corpora/README.md`.
 
 Parity is scored with **defaults only** — no `--real-textures`, no
@@ -26,17 +26,17 @@ from the reference (see the main README's "Build modes").
 
 ## How to reproduce the score
 
-Run inside `dcl-shell` (or with `TURBOJPEG_LIB` set — a wrong/missing
+Run inside an FHS shell (or with `TURBOJPEG_LIB` set — a wrong/missing
 libturbojpeg silently changes JPEG decode and costs ~300 byte-identical
 bundles; see the README gotcha):
 
 ```bash
-export ABGEN_CONTENT_ROOT=/home/dcl/umbrella/data/content_server/contents
+export ABGEN_CONTENT_ROOT=/path/to/content/contents
 ./target/release/abgen-corpus --from-reference \
-    ../unity-reference-ab/ad0564d-val300-windows /tmp/abgen-val300 \
+    ../abc-abgenrs-799967c3-2026-06-20/val300-windows /tmp/abgen-val300 \
     --platform windows -j 80
 ./target/release/abgen-verify /tmp/abgen-val300 \
-    ../unity-reference-ab/ad0564d-val300-windows
+    ../abc-abgenrs-799967c3-2026-06-20/val300-windows
 ```
 
 The byte-identical count is the metric. It is deterministic: the same
@@ -88,7 +88,7 @@ decompress both sides first:
 ```bash
 cargo build --release --example rawcmp
 ./target/release/examples/rawcmp /tmp/abgen-val300 \
-    ../unity-reference-ab/ad0564d-val300-windows
+    ../abc-abgenrs-799967c3-2026-06-20/val300-windows
 ```
 
 `rawcmp` splits pairs into *structural* (different raw length) vs

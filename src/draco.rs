@@ -170,7 +170,7 @@ pub fn materialize(gltf: &mut J, buffers: &mut [Vec<u8>]) -> Result<()> {
                 .unwrap_or(COMPONENT_TYPE_UNSIGNED_INT);
             let idx_count = cfg.index_count() as usize;
 
-            let draco_idx_u32: Vec<u32> = if cfg.vertex_count() <= u16::MAX as u32 {
+            let draco_idx_u32: Vec<u32> = if cfg.index_count() <= u16::MAX as u32 {
                 let il = cfg.index_length() as usize;
                 let raw = &data[..il];
                 raw.chunks_exact(2)

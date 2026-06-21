@@ -112,6 +112,6 @@ paired_diff_bits.
 - `animation_curve_data_residuals.md` — prior framing of proposal #1 + #2.
 - `animator_controller_tos.md` — same Unity-internal-state blocker.
 - Probe scripts (tmp, not checked in): the prod inspection used UnityPy via
- `cd /home/dcl/umbrella/ab-generator && nix-shell --run "python3 …"`
+ `cd <repo-root> && nix-shell --run "python3 …"`
  reading `m_MuscleClip.m_Clip.data.{m_StreamedClip, m_ConstantClip}` and
  `m_ValueArrayDelta`.

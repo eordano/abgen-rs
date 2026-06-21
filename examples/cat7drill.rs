@@ -102,7 +102,7 @@ fn main() {
             "OBJ {} pid={} name='{}' sizes {}/{}  raw: {}",
             class_name(oo.class_id),
             pid,
-            go_name(&osf, oo),
+            go_name(osf, oo),
             oo.data.len(),
             ro.data.len(),
             bytes_diff_desc(&oo.data, &ro.data)

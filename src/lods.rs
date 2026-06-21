@@ -110,17 +110,18 @@ fn fetch_lod_bytes(client: &CatalystClient, locator: &str) -> Result<Vec<u8>> {
 }
 
 fn http_get(url: &str) -> Result<Vec<u8>> {
-    let agent = ureq::AgentBuilder::new()
-        .timeout(std::time::Duration::from_secs(120))
-        .build();
+    let agent: ureq::Agent = ureq::Agent::config_builder()
+        .timeout_global(Some(std::time::Duration::from_secs(120)))
+        .build()
+        .into();
     let resp = agent
         .get(url)
-        .set("User-Agent", crate::catalyst::UA)
+        .header("User-Agent", crate::catalyst::UA)
         .call()
         .map_err(|e| anyhow!("GET {url}: {e}"))?;
     let mut buf = Vec::new();
     use std::io::Read;
-    resp.into_reader().read_to_end(&mut buf)?;
+    resp.into_body().into_reader().read_to_end(&mut buf)?;
     Ok(buf)
 }
 

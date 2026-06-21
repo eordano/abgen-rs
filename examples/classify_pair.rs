@@ -95,7 +95,7 @@ fn load_side(path: &str) -> Result<Side, String> {
                 29 => texture2ddecoder::decode_bc5(&payload, w, h, px_buf(&mut rgba)).is_ok(),
                 10 => texture2ddecoder::decode_bc1(&payload, w, h, px_buf(&mut rgba)).is_ok(),
                 12 => texture2ddecoder::decode_bc3(&payload, w, h, px_buf(&mut rgba)).is_ok(),
-                4 | 5 | 3 => {
+                3..=5 => {
                     raw_to_rgba(&payload, w, h, fmt, &mut rgba);
                     true
                 }
@@ -332,6 +332,8 @@ fn classify(ours: &str, refp: &str) -> (u8, String) {
     }
 
     for pass in 0..3 {
+        // `j` is used by value (pairs.push) and indexes used_r/rs.objs; range loop is clearest.
+        #[allow(clippy::needless_range_loop)]
         for j in 0..rs.objs.len() {
             if used_r[j] {
                 continue;
@@ -381,12 +383,8 @@ fn classify(ours: &str, refp: &str) -> (u8, String) {
     for (name, rd) in &rs.ress {
         match os.ress.iter().find(|(n, _)| n == name) {
             Some((_, od)) if od == rd => {}
-            Some((_, od)) => {
-                if od.len() == rd.len() {
-                    w.tex += 1;
-                } else {
-                    w.tex += 1;
-                }
+            Some((_, _od)) => {
+                w.tex += 1;
             }
             None => w.structural += 1,
         }

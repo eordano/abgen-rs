@@ -171,6 +171,8 @@ fn main() {
         let c = load(fp);
         let (tan1, _tan2) = accumulate(&c);
         let n = c.pos.len();
+        // `i` indexes c.nrm and tan1 at the same position; range loop is clearest.
+        #[allow(clippy::needless_range_loop)]
         for i in 0..n {
             let nn = c.nrm[i];
             let t = tan1[i];
@@ -290,7 +292,7 @@ fn main() {
     let mut re_near: Vec<f64> = real_pts
         .iter()
         .map(|p| p.1)
-        .filter(|&o| o >= 1e-6 && o < 1e-5)
+        .filter(|&o| (1e-6..1e-5).contains(&o))
         .collect();
     re_near.sort_by(|a, b| a.partial_cmp(b).unwrap());
     let mut fb_near: Vec<f64> = fb_pts.iter().map(|p| p.1).filter(|&o| o >= 1e-6).collect();

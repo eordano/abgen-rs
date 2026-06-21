@@ -29,11 +29,14 @@ fn store_path(store: &Path, cid: &str) -> PathBuf {
 
 fn http_get(url: &str) -> Result<Vec<u8>> {
     let resp = ureq::get(url)
-        .timeout(std::time::Duration::from_secs(120))
+        .config()
+        .timeout_global(Some(std::time::Duration::from_secs(120)))
+        .build()
         .call()
         .with_context(|| format!("GET {url}"))?;
     let mut buf = Vec::new();
-    resp.into_reader()
+    resp.into_body()
+        .into_reader()
         .take(512 * 1024 * 1024)
         .read_to_end(&mut buf)
         .with_context(|| format!("read body of {url}"))?;
@@ -117,6 +120,7 @@ fn run() -> Result<()> {
 
     let mut entity_ids: Vec<String> = Vec::new();
     for world in &worlds {
+        let res: Result<()> = (|| {
         let about_url = format!("{worlds_url}/world/{world}/about");
         let about: serde_json::Value = serde_json::from_slice(&http_get(&about_url)?)
             .with_context(|| format!("parse {about_url}"))?;
@@ -126,7 +130,7 @@ fn run() -> Result<()> {
             .ok_or_else(|| anyhow!("{world}: no configurations.scenesUrn in {about_url}"))?;
         if urns.is_empty() {
             eprintln!("{world}: no scenes deployed, skipping");
-            continue;
+            return Ok(());
         }
         for urn in urns {
             let urn = urn.as_str().unwrap_or("");
@@ -178,6 +182,11 @@ fn run() -> Result<()> {
                 content.len()
             );
             entity_ids.push(cid.to_string());
+        }
+        Ok(())
+        })();
+        if let Err(e) = res {
+            eprintln!("skip {world}: {e:#}");
         }
     }
 

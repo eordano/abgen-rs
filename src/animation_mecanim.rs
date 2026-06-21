@@ -300,7 +300,7 @@ fn gather_clip_curves(
     (ordered_bindings, scalar_curves)
 }
 
-pub const CONST_CURVE_VALUE_TOL: f32 = 9.5367431640625e-07;
+pub const CONST_CURVE_VALUE_TOL: f32 = 9.536_743e-7;
 
 pub const CONST_CURVE_SLOPE_TOL: f32 = 8.940705e-07;
 

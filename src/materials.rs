@@ -116,6 +116,29 @@ pub fn classify_spec_color_only_images(scene: &Scene) -> std::collections::HashS
     spec.difference(&other).copied().collect()
 }
 
+pub fn classify_unbound_images(scene: &Scene) -> std::collections::HashSet<usize> {
+    let mut bound: std::collections::HashSet<usize> = std::collections::HashSet::new();
+    for m in &scene.materials {
+        for (_slot, accessor) in MATERIAL_TEXTURE_SLOTS.iter() {
+            if let Some(tr) = accessor(m) {
+                bound.insert(tr.image);
+            }
+        }
+    }
+    let spec_only = classify_spec_color_only_images(scene);
+    let mut out: std::collections::HashSet<usize> = std::collections::HashSet::new();
+    for tr in &scene.texture_refs {
+        let img = tr.image;
+        if img < scene.image_uri.len() && scene.image_uri[img].is_some() {
+            continue;
+        }
+        if !bound.contains(&img) && !spec_only.contains(&img) {
+            out.insert(img);
+        }
+    }
+    out
+}
+
 pub fn classify_texture_colorspaces(scene: &Scene) -> HashMap<usize, i64> {
     let mut srgb: std::collections::HashSet<usize> = std::collections::HashSet::new();
     let mut linear: std::collections::HashSet<usize> = std::collections::HashSet::new();
@@ -328,8 +351,10 @@ pub fn build_material_tree(
 
     let (er, eg, eb) = (m.emissive[0], m.emissive[1], m.emissive[2]);
 
-    const EMISSION_LINEAR_THRESHOLD: f64 = 0.5 / 255.0;
-    let emissive_on = er.max(eg).max(eb) >= EMISSION_LINEAR_THRESHOLD;
+    const COLOR_EQ_EPSILON: f32 = 9.999_999_4e-11;
+    let (erf, egf, ebf) = (er as f32, eg as f32, eb as f32);
+    let emissive_sqr_mag = erf * erf + egf * egf + ebf * ebf;
+    let emissive_on = emissive_sqr_mag >= COLOR_EQ_EPSILON;
 
     let has_tex_transform = !m.tex_transforms.is_empty();
     let (valid, invalid) = material_keywords(

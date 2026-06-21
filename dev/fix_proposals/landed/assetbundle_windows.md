@@ -177,7 +177,7 @@ big payload differences and dilutes small ones.
 ## Repro
 
 ```bash
-/home/dcl/linux-rigging/dcl-shell -c "cargo build --release --bin ab-build-local"
+<fhs-shell> -c "cargo build --release --bin ab-build-local"
 ABGEN_FILTER_CLASS=AssetBundle nix-shell --run \
     "python3 abgen-rs/dev/bitwise_residuals_windows.py" shell.nix
 nix-shell --run "python3 abgen-rs/dev/measure_bits_assetbundle_windows.py" shell.nix

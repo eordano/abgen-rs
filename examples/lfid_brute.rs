@@ -40,7 +40,7 @@ fn main() {
     }
     eprintln!("paths: {}", paths.len());
 
-    let mut check = |t: &str, name: &str| {
+    let check = |t: &str, name: &str| {
         for idx in 0u32..4 {
             let lid = pathids::local_id_for_recycle_name_indexed(t, name, idx);
             for &ft in &[2i32, 3i32] {

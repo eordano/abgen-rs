@@ -67,7 +67,7 @@ fn read_blendweights(p: &Path) -> Vec<(i64, MeshVtx)> {
         let mut stream_base: BTreeMap<i64, (usize, usize)> = BTreeMap::new();
         for (si, (s, cis)) in by_stream.iter().enumerate() {
             if si > 0 {
-                while base % 16 != 0 {
+                while !base.is_multiple_of(16) {
                     base += 1;
                 }
             }
@@ -88,13 +88,13 @@ fn read_blendweights(p: &Path) -> Vec<(i64, MeshVtx)> {
         for vix in 0..vc {
             let row = b0 + vix * st;
             let mut w = [0u32; 4];
-            for k in 0..4 {
+            for (k, wk) in w.iter_mut().enumerate() {
                 let off = row + coff + k * 4;
                 if off + 4 > data.len() {
                     ok = false;
                     break;
                 }
-                w[k] = u32::from_le_bytes([data[off], data[off + 1], data[off + 2], data[off + 3]]);
+                *wk = u32::from_le_bytes([data[off], data[off + 1], data[off + 2], data[off + 3]]);
             }
             if !ok {
                 break;
@@ -252,7 +252,7 @@ fn harvest_pair(
             *n_skinned_meshes += 1;
             for (wo, wr) in om.weights.iter().zip(rm.weights.iter()) {
                 *n_vertices += 1;
-                let total = (((f32b(wo[0]) + f32b(wo[1])) + f32b(wo[2])) + f32b(wo[3])) as f32;
+                let total = ((f32b(wo[0]) + f32b(wo[1])) + f32b(wo[2])) + f32b(wo[3]);
                 if wo == wr {
                     *n_already_id += 1;
                     continue;

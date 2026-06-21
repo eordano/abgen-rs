@@ -144,9 +144,9 @@ Post-landing top-15 windows residuals are now dominated by:
 ## Reproduce
 
 ```bash
-cd /home/dcl/umbrella/.claude/worktrees/<wt>/ab-generator/abgen-rs
-/home/dcl/linux-rigging/dcl-shell -c "cargo build --release --bin ab-build-local"
-cd /home/dcl/umbrella/ab-generator
+cd <repo>
+<fhs-shell> -c "cargo build --release --bin ab-build-local"
+cd <repo-root>
 ABGEN_AB_BIN=<wt>/.../target/release/ab-build-local \
  nix-shell --run "python -u <wt>/.../dev/measure_bits_texture2d_windows.py"
 ```

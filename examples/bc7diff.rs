@@ -50,7 +50,7 @@ fn parse_block(b: &[u8; 16]) -> Option<BlockFields> {
         ..Default::default()
     };
 
-    let (ns, pb, rb, imb, cb, ab, npb, shared, ib1, ib2) = match mode {
+    let (ns, pb, rb, imb, cb, ab, npb, _shared, ib1, ib2) = match mode {
         0 => (3, 4, 0, 0, 4, 0, 6, false, 3, 0),
         1 => (2, 6, 0, 0, 6, 0, 2, true, 3, 0),
         2 => (3, 6, 0, 0, 5, 0, 0, false, 2, 0),
@@ -77,14 +77,8 @@ fn parse_block(b: &[u8; 16]) -> Option<BlockFields> {
         }
     }
     f.endpoints = eps;
-    if shared {
-        for _ in 0..npb {
-            f.pbits.push(r.read(1) as u8);
-        }
-    } else {
-        for _ in 0..npb {
-            f.pbits.push(r.read(1) as u8);
-        }
+    for _ in 0..npb {
+        f.pbits.push(r.read(1) as u8);
     }
 
     let anchors2 = [
@@ -287,7 +281,7 @@ fn main() {
 
             let ref_has_alpha = match rf.mode {
                 4 | 5 => true,
-                6 => rf.endpoints.iter().any(|e| e[3] != 127) || rf.pbits.iter().any(|p| *p == 0),
+                6 => rf.endpoints.iter().any(|e| e[3] != 127) || rf.pbits.contains(&0),
                 7 => true,
                 _ => false,
             };

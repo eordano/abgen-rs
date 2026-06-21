@@ -150,10 +150,10 @@ parity (both already 100% on this population) rather than compressed bundle size
 ## Reproduce
 
 ```bash
-export ABGEN_CONTENT_ROOT=/home/dcl/umbrella/data/content_server/contents
-REF=/home/dcl/umbrella/ab-generator/unity-reference-ab/ad0564d-val300-windows
+export ABGEN_CONTENT_ROOT=/path/to/content/contents
+REF=/path/to/abc-abgenrs-799967c3-2026-06-20/val300-windows
 OURS=/tmp/abgen-val300-integrated
-T=/home/dcl/umbrella/ab-generator/abgen-rs/target/release
+T=<repo>/target/release
 E=QmWDB7zBET827mHk5gVCai1dk5m9ZLt12KGTY7Y1EUB6rW
 B=QmVLGRFfAJjqyc7HTQRpPDHYHLGUsciZP1A4LkTavnU7rz_windows
 $T/examples/objalign      $OURS/$E/$B $REF/$E/$B   # object counts equal, only DIFF on equal-size rows

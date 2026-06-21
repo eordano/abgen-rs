@@ -3,7 +3,7 @@
 Diagnosis of the 76 non-zero `glb-animated` size deltas in
 `/tmp/abgen-val300-integrated-report.json` (corpus
 `/tmp/abgen-val300-integrated` vs ref
-`unity-reference-ab/ad0564d-val300-windows`).
+`abc-abgenrs-799967c3-2026-06-20/val300-windows`).
 
 ## TL;DR
 
@@ -192,9 +192,9 @@ bundles, then a full `abgen-verify` pass to confirm no parity regression.
 ## Reproduction
 
 ```bash
-export ABGEN_CONTENT_ROOT=/home/dcl/umbrella/data/content_server/contents
+export ABGEN_CONTENT_ROOT=/path/to/content/contents
 OURS=/tmp/abgen-val300-integrated
-REF=/home/dcl/umbrella/ab-generator/unity-reference-ab/ad0564d-val300-windows
+REF=/path/to/abc-abgenrs-799967c3-2026-06-20/val300-windows
 B=QmUwmgapjirBnBxdKeeyDvubTFucf95NHzmhdkpMMb4Zve/QmPTpGqQukY3hvc77FWT4G7TXkBbfuxqSYbA1FiR48NBvW_windows
 ./target/release/examples/objalign $OURS/$B $REF/$B   # 183 vs 168, 15 OURS!, 3 collider GOs
 # source mesh: 4 prims sharing accessors 211/212/213/214/215  →  merge-eligible

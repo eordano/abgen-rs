@@ -151,7 +151,7 @@ fn scan_one(
     };
     let resolve: crate::gltf::Resolve = Some(&resolve_fn);
     let parsed = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
-        crate::gltf::parse(&data, parse_ext, resolve)
+        crate::gltf::parse(&data, parse_ext, resolve, false)
     }));
     if let Ok(Ok(scene)) = parsed {
         let image_hash = |idx: usize| -> Option<String> {

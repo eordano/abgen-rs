@@ -52,7 +52,7 @@ fn main() {
     let mut stream_base: BTreeMap<i64, (usize, usize)> = BTreeMap::new();
     for (si, (s, cis)) in by_stream.iter().enumerate() {
         if si > 0 {
-            while base % 16 != 0 {
+            while !base.is_multiple_of(16) {
                 base += 1;
             }
         }

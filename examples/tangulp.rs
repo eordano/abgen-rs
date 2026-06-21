@@ -87,6 +87,9 @@ fn finalize(nn: [f64; 3], t: [f64; 3], tb: [f64; 3]) -> [u32; 4] {
     let oz = t[2] - nn[2] * d;
     let mag = (ox * ox + oy * oy + oz * oz).sqrt();
     let (fb, b2) = fb_axes(nn);
+    // NaN or magnitude <= 1e-6 both count as degenerate; the negated
+    // compare is deliberate (`mag <= 1e-6` would let NaN slip through).
+    #[allow(clippy::neg_cmp_op_on_partial_ord)]
     let degenerate = !(mag > 1e-6);
     let (tgx, tgy, tgz);
     if !degenerate {
@@ -231,6 +234,8 @@ fn main() {
                 inc[tri[ci]].push((tri, ci));
             }
         }
+        // `i` also indexes c.nrm/c.refr at the same position; range loop is clearest.
+        #[allow(clippy::needless_range_loop)]
         for i in 0..n {
             let k = inc[i].len();
             if k == 0 || k > max_tris {
@@ -266,10 +271,10 @@ fn main() {
             'outer: for mask in 0..3usize.pow(np as u32) {
                 let mut m = mask;
                 let mut ws = w0.clone();
-                for j in 0..np {
+                for w in ws.iter_mut().take(np) {
                     match m % 3 {
-                        1 => ws[j] = ulp_up(ws[j]),
-                        2 => ws[j] = ulp_dn(ws[j]),
+                        1 => *w = ulp_up(*w),
+                        2 => *w = ulp_dn(*w),
                         _ => {}
                     }
                     m /= 3;

@@ -59,10 +59,6 @@ fn template_path() -> PathBuf {
         .join("all-types.windows.bundle")
 }
 
-/// The directory abgen loads its typetree template bundles from
-/// (`<ABGEN_ROOT>/template`). Public so tooling (e.g. the live-translate proxy)
-/// can fold the templates into a cache-invalidation key — a regenerated template
-/// must invalidate previously built bundles.
 pub fn template_dir() -> PathBuf {
     abgen_root().join("template")
 }
@@ -109,11 +105,7 @@ fn metadata_timestamp() -> i64 {
         }
     }
 
-    const UNIX_EPOCH_TICKS: i64 = 621_355_968_000_000_000;
-    let now = std::time::SystemTime::now()
-        .duration_since(std::time::UNIX_EPOCH)
-        .unwrap_or_default();
-    UNIX_EPOCH_TICKS + (now.as_secs() as i64) * 10_000_000 + (now.subsec_nanos() as i64) / 100
+    0
 }
 
 fn is_psd(raw: &[u8]) -> bool {
@@ -238,7 +230,8 @@ fn metadata_version_for_target(target: &str) -> &'static str {
         return "7.0";
     }
     match target {
-        "mac" | "osx" | "windows" => "8.0",
+        // Genuine Unity Linux64 stamps 8.0 exactly like Windows/Mac standalone.
+        "mac" | "osx" | "windows" | "linux" => "8.0",
         _ => "7.0",
     }
 }
@@ -602,6 +595,7 @@ struct Builder<'a> {
     dxt1_images: HashSet<usize>,
     bc5_normal_images: HashSet<usize>,
     spec_color_only_images: HashSet<usize>,
+    unbound_images: HashSet<usize>,
     tex_pid: HashMap<(usize, Option<usize>), i64>,
     tex_name: HashMap<(usize, Option<usize>), String>,
     tex_first_sampler: HashMap<usize, Option<usize>>,
@@ -623,6 +617,8 @@ struct Builder<'a> {
     glb_referenced_mats: Vec<i64>,
     recycle_seen: HashMap<String, i64>,
     mesh_pid_by_gltf: HashMap<(usize, usize, i64, Option<usize>), i64>,
+
+    collidable_mesh_keys: HashSet<(usize, usize, Option<usize>)>,
     component_pids: Vec<i64>,
     component_roles: Vec<(i64, Role)>,
     root_go_pid: i64,
@@ -630,6 +626,7 @@ struct Builder<'a> {
 
     anim_target_go: i64,
     anim_target_recycle: String,
+    anim_clip_name_pids: Vec<(String, i64)>,
     meta_pid: i64,
     ab_pid: i64,
     glb_bytes: Vec<u8>,
@@ -644,9 +641,11 @@ struct Builder<'a> {
     externals_position: Option<ExternalsPosition>,
     cross_bundle_position: Option<CrossBundlePosition>,
     material_externals_overrides: Option<Vec<(ExternalsPosition, CrossBundlePosition)>>,
+    force_default_material: bool,
 }
 
 impl<'a> Builder<'a> {
+    #[allow(clippy::too_many_arguments)]
     fn new(
         proto: &'a HashMap<String, SerializedType>,
         base: &'a HashMap<String, Value>,
@@ -664,6 +663,7 @@ impl<'a> Builder<'a> {
         externals_position: Option<ExternalsPosition>,
         cross_bundle_position: Option<CrossBundlePosition>,
         material_externals_overrides: Option<Vec<(ExternalsPosition, CrossBundlePosition)>>,
+        force_default_material: bool,
     ) -> Self {
         let target = target_from_bundle_name(&bundle_name);
         let glb_guid = pathids::asset_guid(&root_hash);
@@ -687,6 +687,7 @@ impl<'a> Builder<'a> {
             dxt1_images: HashSet::new(),
             bc5_normal_images: HashSet::new(),
             spec_color_only_images: HashSet::new(),
+            unbound_images: HashSet::new(),
             tex_pid: HashMap::new(),
             tex_name: HashMap::new(),
             tex_first_sampler: HashMap::new(),
@@ -706,12 +707,14 @@ impl<'a> Builder<'a> {
             glb_referenced_mats: Vec::new(),
             recycle_seen: HashMap::new(),
             mesh_pid_by_gltf: HashMap::new(),
+            collidable_mesh_keys: HashSet::new(),
             component_pids: Vec::new(),
             component_roles: Vec::new(),
             root_go_pid: 0,
             bundle_root_assigned: false,
             anim_target_go: 0,
             anim_target_recycle: String::new(),
+            anim_clip_name_pids: Vec::new(),
             meta_pid: 0,
             ab_pid: 0,
             glb_bytes,
@@ -726,6 +729,7 @@ impl<'a> Builder<'a> {
             externals_position,
             cross_bundle_position,
             material_externals_overrides,
+            force_default_material,
         }
     }
 
@@ -1009,6 +1013,11 @@ impl<'a> Builder<'a> {
             }
         }
 
+        if self.unbound_images.contains(&idx) && bc7_p.compressed {
+            bc7_p.texture_format = texprofile::TF_DXT5;
+            bc7_p.color_space = 1;
+        }
+
         let unc_wrap_u = texprofile::sampler_wrap_mode(ws);
         let unc_wrap_v = texprofile::sampler_wrap_mode(wt);
         let img = scene.images[idx].clone().unwrap();
@@ -1230,11 +1239,7 @@ impl<'a> Builder<'a> {
                 prof.color_space == 1,
             );
             if force_inglb_stub {
-                // Unity stubs the streamed (external) copy of an uncompressed
-                // RGBA32 texture with the canonical 0xCD fill, exactly like the
-                // BC7/DXT5 external stubs above. Reuse the real encoder's output
-                // only for its length/mip-count, then overwrite the payload so
-                // the in-glb readable copy stays the sole bearer of real pixels.
+
                 (vec![0xcd_u8; data.len()], mips)
             } else {
                 (data, mips)
@@ -1301,7 +1306,7 @@ impl<'a> Builder<'a> {
     ) -> i64 {
         let mat_idx = match mat_idx {
             Some(m) if m < scene.materials.len() => m,
-            // No material index, or an out-of-range one: fall back to the default material.
+
             _ => {
                 if scene.materials.is_empty() {
                     return 0;
@@ -1703,7 +1708,8 @@ impl<'a> Builder<'a> {
             return Some(Vec::new());
         }
 
-        let mesh_pid = self.add_mesh_merged(prims, mesh_base, 0);
+        let usage: i64 = if self.mesh_collidable(&prims[0]) { 16 } else { 0 };
+        let mesh_pid = self.add_mesh_merged(prims, mesh_base, usage);
         self.scene_object_pids.push(mesh_pid);
         let mf = self.add(
             "MeshFilter",
@@ -1779,13 +1785,15 @@ impl<'a> Builder<'a> {
             true,
             node_path,
             mesh_base,
+            node.extra_colliders,
         );
         let node_components = self.component_pids.clone();
         let node_roles = std::mem::take(&mut self.component_roles);
 
         let mut extra_child_transforms: Vec<i64> = Vec::new();
+        let child_base = if mesh_base.is_empty() { "Primitive" } else { mesh_base };
         for (ci, (_, cluster)) in clusters.iter().enumerate().skip(1) {
-            let child_name = format!("{mesh_base}_{ci}");
+            let child_name = format!("{child_base}_{ci}");
             let child_path = format!("{node_path}/{child_name}");
             let cgo = self.npid();
             let ctr = self.npid();
@@ -1797,6 +1805,7 @@ impl<'a> Builder<'a> {
                 false,
                 &child_path,
                 mesh_base,
+                0,
             );
             let mut ccomp = vec![ctr];
             ccomp.extend(self.component_pids.clone());
@@ -1843,6 +1852,7 @@ impl<'a> Builder<'a> {
         is_parent_prim: bool,
         node_path: &str,
         mesh_base: &str,
+        extra_colliders: usize,
     ) {
         let p0 = prims[0];
         let has_smr_proto = self.proto.contains_key("SkinnedMeshRenderer");
@@ -1855,7 +1865,7 @@ impl<'a> Builder<'a> {
 
         let usage: i64 = if becomes_smr {
             1
-        } else if becomes_collider {
+        } else if becomes_collider || self.mesh_collidable(p0) {
             16
         } else {
             0
@@ -1909,7 +1919,10 @@ impl<'a> Builder<'a> {
             self.component_roles = Vec::new();
 
             let go_name = node_path.rsplit('/').next().unwrap_or("");
-            if !is_parent_prim && go_name.to_lowercase().contains("_collider") {
+
+            let n_extra = extra_colliders
+                + usize::from(!is_parent_prim && go_name.to_lowercase().contains("_collider"));
+            for idx in 1..=n_extra {
                 let mut mc2 = self.base_clone("MeshCollider");
                 mc2.insert("m_GameObject", crate::value::pptr(0, go_pid));
                 mc2.insert("m_Mesh", crate::value::pptr(0, mesh_pid));
@@ -1919,7 +1932,7 @@ impl<'a> Builder<'a> {
                     Role::GlbIdx(
                         "MeshCollider".into(),
                         format!("{node_path}/MeshCollider"),
-                        1,
+                        idx as u32,
                     ),
                 );
                 self.scene_object_pids.push(mc2_pid);
@@ -1983,11 +1996,37 @@ impl<'a> Builder<'a> {
         self.component_roles = Vec::new();
     }
 
+    fn mesh_collidable(&self, prim: &Primitive) -> bool {
+        match prim.gltf_mesh_index {
+            Some(mi) => self
+                .collidable_mesh_keys
+                .contains(&(mi, prim.gltf_prim_index, prim.skin_index)),
+            None => false,
+        }
+    }
+
+    fn collect_collidable_mesh_keys(&mut self, scene: &Scene) {
+        self.collidable_mesh_keys.clear();
+        for node in &scene.nodes {
+            if !node.is_collider {
+                continue;
+            }
+            for p in &node.primitives {
+                if let Some(mi) = p.gltf_mesh_index {
+                    self.collidable_mesh_keys
+                        .insert((mi, p.gltf_prim_index, p.skin_index));
+                }
+            }
+        }
+    }
+
     fn build(&mut self, scene: &Scene) -> Result<()> {
+        self.collect_collidable_mesh_keys(scene);
         self.colorspaces = materials::classify_texture_colorspaces(scene);
         self.dxt1_images = materials::classify_dxt1_images(scene);
         self.bc5_normal_images = materials::classify_bc5_normal_images(scene);
         self.spec_color_only_images = materials::classify_spec_color_only_images(scene);
+        self.unbound_images = materials::classify_unbound_images(scene);
 
         self.build_sampler_canon(scene);
         for tr in &scene.texture_refs {
@@ -2005,7 +2044,7 @@ impl<'a> Builder<'a> {
             }
         }
 
-        if v38_compat() || collection_mode() {
+        if v38_compat() || collection_mode() || self.force_default_material {
             let _ = self.default_material();
         }
 
@@ -2030,11 +2069,7 @@ impl<'a> Builder<'a> {
         let scene_name: &str = scene.name.as_deref().unwrap_or("");
         let scene_path = format!("scenes/{scene_name}");
 
-        let root_needs_wrap = scene.root_nodes.len() == 1 && {
-            let r = &scene.nodes[scene.root_nodes[0]];
-            !r.primitives.is_empty() && !r.children.is_empty()
-        };
-        let wrap = scene.root_nodes.len() != 1 || has_anim || (!glb_is_binary && root_needs_wrap);
+        let wrap = scene.root_nodes.len() != 1 || has_anim;
 
         self.count_scene_visits(scene, &scene.root_nodes);
 
@@ -2255,6 +2290,7 @@ impl<'a> Builder<'a> {
                     comp,
                     Role::Glb("Animation".into(), format!("{anim_recycle}/Animation")),
                 ));
+                self.anim_clip_name_pids = clip_name_pids;
             }
         }
 
@@ -2319,6 +2355,12 @@ impl<'a> Builder<'a> {
 
         for (name, roots) in scene.extra_scenes.clone() {
             self.build_extra_scene(scene, name.as_deref(), &roots);
+        }
+
+        for mat_idx in 0..scene.materials.len() {
+            if !self.mat_pid.contains_key(&mat_idx) {
+                let _ = self.material_orphan(scene, Some(mat_idx));
+            }
         }
 
         if emits_metadata_textasset(&self.root_hash) {
@@ -2483,12 +2525,14 @@ impl<'a> Builder<'a> {
                     true,
                     &node_path,
                     &mesh_base,
+                    node.extra_colliders,
                 );
                 components.extend(self.component_pids.clone());
                 comp_roles.extend(std::mem::take(&mut self.component_roles));
+                let child_base = if mesh_base.is_empty() { "Primitive" } else { mesh_base.as_str() };
                 for pi in 1..node.primitives.len() {
                     let prim = &node.primitives[pi].clone();
-                    let child_name = format!("{mesh_base}_{pi}");
+                    let child_name = format!("{child_base}_{pi}");
                     let child_path = format!("{node_path}/{child_name}");
                     let cgo = self.npid();
                     let ctr = self.npid();
@@ -2500,6 +2544,7 @@ impl<'a> Builder<'a> {
                         false,
                         &child_path,
                         &mesh_base,
+                        0,
                     );
                     let mut ccomp = vec![ctr];
                     ccomp.extend(self.component_pids.clone());
@@ -2610,10 +2655,54 @@ impl<'a> Builder<'a> {
         let wrap_path = format!("{scene_path}/{wrap_inner}");
         let wrap_go = self.npid();
         let wrap_tr = self.npid();
-        let child_trs: Vec<i64> = roots
+        let mut child_trs: Vec<i64> = roots
             .iter()
             .map(|ri| self.build_node(scene, *ri, wrap_tr, &wrap_path).1)
             .collect();
+        let has_animation_clips =
+            !self.anim_clip_name_pids.is_empty() && self.proto.contains_key("Animation");
+        if roots.is_empty() && has_animation_clips {
+            let inner_name = if scene_name.is_empty() {
+                "Scene"
+            } else {
+                scene_name
+            };
+            let inner_path = format!("{wrap_path}/{inner_name}");
+            let inner_go = self.npid();
+            let inner_tr = self.npid();
+            let inner_tr_tree = self.transform_tree(
+                inner_go,
+                [0.0, 0.0, 0.0],
+                [0.0, 0.0, 0.0, 1.0],
+                [1.0, 1.0, 1.0],
+                &[],
+                wrap_tr,
+            );
+            self.set_obj(
+                inner_tr,
+                "Transform",
+                inner_tr_tree,
+                Role::Glb("Transform".into(), format!("{inner_path}/Transform")),
+            );
+            let clips = self.anim_clip_name_pids.clone();
+            let comp = animation::build_animation_component(inner_go, &clips);
+            let acp = self.add(
+                "Animation",
+                comp,
+                Role::Glb("Animation".into(), format!("{inner_path}/Animation")),
+            );
+            self.scene_object_pids.push(acp);
+            let inner_go_tree = self.go_tree(inner_name, &[inner_tr, acp]);
+            self.set_obj(
+                inner_go,
+                "GameObject",
+                inner_go_tree,
+                Role::Glb("GameObject".into(), inner_path),
+            );
+            self.scene_object_pids.push(inner_tr);
+            self.scene_object_pids.push(inner_go);
+            child_trs.push(inner_tr);
+        }
         let tr_tree = self.transform_tree(
             wrap_go,
             [0.0, 0.0, 0.0],
@@ -2628,7 +2717,19 @@ impl<'a> Builder<'a> {
             tr_tree,
             Role::Glb("Transform".into(), format!("{wrap_path}/Transform")),
         );
-        let go_tree = self.go_tree(wrap_inner, &[wrap_tr]);
+        let mut wrap_components = vec![wrap_tr];
+        if !roots.is_empty() && has_animation_clips {
+            let clips = self.anim_clip_name_pids.clone();
+            let comp = animation::build_animation_component(wrap_go, &clips);
+            let acp = self.add(
+                "Animation",
+                comp,
+                Role::Glb("Animation".into(), format!("{wrap_path}/Animation")),
+            );
+            self.scene_object_pids.push(acp);
+            wrap_components.push(acp);
+        }
+        let go_tree = self.go_tree(wrap_inner, &wrap_components);
         self.set_obj(
             wrap_go,
             "GameObject",
@@ -2663,7 +2764,9 @@ impl<'a> Builder<'a> {
                 let mesh_pid = self.add_mesh(prim, 0, None, &mesh_base);
                 self.scene_object_pids.push(mesh_pid);
 
-                let _ = self.material_orphan(scene, prim.material_index);
+                if prim.material_index.is_some() {
+                    let _ = self.material_orphan(scene, prim.material_index);
+                }
             }
         }
     }
@@ -2677,6 +2780,7 @@ impl<'a> Builder<'a> {
         is_parent_prim: bool,
         node_path: &str,
         mesh_base: &str,
+        extra_colliders: usize,
     ) {
         let has_smr_proto = self.proto.contains_key("SkinnedMeshRenderer");
         let is_skinned_node = prim.skin_index.is_some() && prim.weights.is_some() && has_smr_proto;
@@ -2689,7 +2793,7 @@ impl<'a> Builder<'a> {
 
         let usage: i64 = if becomes_smr {
             1
-        } else if becomes_collider {
+        } else if becomes_collider || self.mesh_collidable(prim) {
             16
         } else {
             0
@@ -2738,7 +2842,10 @@ impl<'a> Builder<'a> {
             self.component_roles = Vec::new();
 
             let go_name = node_path.rsplit('/').next().unwrap_or("");
-            if !is_parent_prim && go_name.to_lowercase().contains("_collider") {
+
+            let n_extra = extra_colliders
+                + usize::from(!is_parent_prim && go_name.to_lowercase().contains("_collider"));
+            for idx in 1..=n_extra {
                 let mut mc2 = self.base_clone("MeshCollider");
                 mc2.insert("m_GameObject", crate::value::pptr(0, go_pid));
                 mc2.insert("m_Mesh", crate::value::pptr(0, mesh_pid));
@@ -2748,7 +2855,7 @@ impl<'a> Builder<'a> {
                     Role::GlbIdx(
                         "MeshCollider".into(),
                         format!("{node_path}/MeshCollider"),
-                        1,
+                        idx as u32,
                     ),
                 );
                 self.scene_object_pids.push(mc2_pid);
@@ -3071,7 +3178,7 @@ impl<'a> Builder<'a> {
             .iter()
             .map(|bf| cabname::cab_name(bf).to_lowercase())
             .collect();
-        let use_cab_merge = matches!(self.target, "windows" | "mac")
+        let use_cab_merge = matches!(self.target, "windows" | "mac" | "linux")
             && self.externals_position.is_none()
             && self.cross_bundle_position.is_none()
             && self.material_externals_overrides.is_none();
@@ -3385,16 +3492,7 @@ impl<'a> StandaloneTextureBuilder<'a> {
             } else {
                 img
             };
-            // Unity's `alphaIsTransparency` edge-bleed runs on the
-            // source-resolution texture *before* the importer resizes it to
-            // power-of-two (AssetBundleConverter.cs sets alphaIsTransparency=true,
-            // then ImportAsset resizes + mips). So bleed first, then resize. For
-            // power-of-two sources the two stages do not overlap and the order is
-            // immaterial; but for NPOT-with-alpha sources, resizing first smears
-            // the un-bled (source-white) transparent RGB across the silhouette so
-            // every transparent and partial-alpha block diverges. Bleeding at
-            // source resolution then resizing reproduces the reference edges.
-            // See docs/textures/alpha_bleed_resize_order.md.
+
             let bled_src;
             let img: &RgbaImage = if has_real_alpha && prof.compressed {
                 let mut buf = img.as_raw().clone();
@@ -3422,7 +3520,7 @@ impl<'a> StandaloneTextureBuilder<'a> {
                 img
             };
             let bc7_profile = match self.target {
-                "windows" | "mac" if !self.model_referenced => bc7_pure::Bc7Profile::Basic,
+                "windows" | "mac" | "linux" if !self.model_referenced => bc7_pure::Bc7Profile::Basic,
                 _ => bc7_pure::Bc7Profile::Slow,
             };
             let (data, mips) = if stub_canonical {
@@ -3835,6 +3933,23 @@ pub struct BuildOpts<'a> {
     pub standalone_color_space: Option<i64>,
 
     pub standalone_normal: bool,
+
+    /// Reference-driven: emit the unreferenced "DCL_Scene" default Material (+ its
+    /// `DCL_Scene.mat` container/preload entries) for this glb bundle, the way
+    /// production glTFast does for the first glb-bearing conversion of an editor
+    /// session (its `s_DefaultMaterial` static cache materializes once and the
+    /// asset-bundle-converter captures it into every bundle produced during that
+    /// first conversion). Set per-bundle by `--from-reference` when the matching
+    /// reference bundle actually contains DCL_Scene, so abgen mirrors the
+    /// reference's presence exactly without over-emitting on bundles that
+    /// genuinely lack it.
+    pub force_default_material: bool,
+
+    /// `--magenta-missing`: instead of dropping a texture that fails to resolve
+    /// or decode, substitute a magenta placeholder with the failure baked in as
+    /// text (see `crate::placeholder`). Makes broken content renderable and
+    /// obviously broken. Off by default so parity output stays byte-exact.
+    pub magenta_missing: bool,
 }
 
 impl<'a> BuildOpts<'a> {
@@ -3860,6 +3975,8 @@ impl<'a> Default for BuildOpts<'a> {
             expect_hash: None,
             standalone_color_space: None,
             standalone_normal: false,
+            force_default_material: false,
+            magenta_missing: false,
         }
     }
 }
@@ -4044,7 +4161,7 @@ fn build_glb_with_overrides(
 
     let (gltf_json, gltf_buffers) =
         gltf::load_gltf_inputs(bytes, ext, opts.resolve).context("load gltf inputs")?;
-    let scene = gltf::parse(bytes, ext, opts.resolve).context("parse glb")?;
+    let scene = gltf::parse(bytes, ext, opts.resolve, opts.magenta_missing).context("parse glb")?;
     let image_uri = scene.image_uri.clone();
 
     let is_gltf = ext == ".gltf";
@@ -4068,6 +4185,7 @@ fn build_glb_with_overrides(
         externals_position,
         cross_bundle_position,
         material_externals_overrides,
+        opts.force_default_material,
     );
     b.build(&scene)?;
     b.finalize_pathids()?;
@@ -4332,5 +4450,47 @@ mod tests {
         assert_eq!(on_zero.dcl_scene_container, Some(2));
         let dz = on_zero.dcl_scene_pid.unwrap();
         assert!(on_zero.renderer_mat_pids.iter().all(|&p| p != dz));
+    }
+
+    fn build_tiny_force_dcl_scene(n_materials: usize) -> BundleProbe {
+        let gltf = tiny_gltf(n_materials);
+        let opts = BuildOpts {
+            source_file: Some("test.gltf"),
+            force_default_material: true,
+            ..BuildOpts::default()
+        };
+        let art = build_bundle(&gltf, "QmTestForceDcl_windows", "QmTestForceDcl", &opts)
+            .expect("build_bundle");
+        probe(&art.data)
+    }
+
+    #[test]
+    fn force_default_material_emits_dcl_scene_without_v38() {
+        if !template_path().exists() {
+            eprintln!(
+                "skipping: template bundle not found at {}",
+                template_path().display()
+            );
+            return;
+        }
+        // The per-bundle opts flag (set by --from-reference) must emit DCL_Scene
+        // even though V38_COMPAT / COLLECTION_MODE are unset, mirroring a reference
+        // bundle that contains it — and it must NOT bind DCL_Scene to renderers.
+        std::env::remove_var(BuildOpts::V38_COMPAT_ENV);
+        std::env::remove_var(BuildOpts::COLLECTION_MODE_ENV);
+
+        // glb with a real material: DCL_Scene is the second, unreferenced material.
+        let on = build_tiny_force_dcl_scene(1);
+        assert_eq!(on.dcl_scene_materials, 1);
+        assert_eq!(on.material_names.len(), 2);
+        assert_eq!(on.dcl_scene_container, Some(2));
+        let ds = on.dcl_scene_pid.unwrap();
+        assert!(on.renderer_mat_pids.iter().all(|&p| p != ds));
+
+        // zero-material glb: DCL_Scene is the only material.
+        let on_zero = build_tiny_force_dcl_scene(0);
+        assert_eq!(on_zero.dcl_scene_materials, 1);
+        assert_eq!(on_zero.material_names, vec!["DCL_Scene".to_string()]);
+        assert_eq!(on_zero.dcl_scene_container, Some(2));
     }
 }

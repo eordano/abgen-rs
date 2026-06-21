@@ -37,6 +37,8 @@ fn po2_fill(rgba: &mut [u8], w: usize, h: usize, offsets: &[usize], prio: &[usiz
                             }
                         }
                     }
+                    // guard also covers filled[idx]; integer rounding division is intended.
+                    #[allow(clippy::manual_checked_ops)]
                     if cnt > 0 {
                         for c in 0..3 {
                             rgba[idx * 4 + c] = ((s[c] + cnt / 2) / cnt) as u8;
@@ -230,15 +232,13 @@ fn main() {
                         (y >= k).then(|| idx - k * w),
                         (y + k < h).then(|| idx + k * w),
                     ];
-                    for opt in taps {
-                        if let Some(p) = opt {
-                            let sd = snap_seed[p];
-                            if sd >= 0 {
-                                let d = d_of(idx, sd);
-                                if d < bestd {
-                                    bestd = d;
-                                    best = sd;
-                                }
+                    for p in taps.into_iter().flatten() {
+                        let sd = snap_seed[p];
+                        if sd >= 0 {
+                            let d = d_of(idx, sd);
+                            if d < bestd {
+                                bestd = d;
+                                best = sd;
                             }
                         }
                     }
@@ -410,15 +410,13 @@ fn main() {
             flipped[y * w * 4..(y + 1) * w * 4]
                 .copy_from_slice(&buf[(h - 1 - y) * w * 4..(h - y) * w * 4]);
         }
-        let mips = (rpay.len() != bw * bh * 16)
-            .then(|| {
+        let mips = if rpay.len() != bw * bh * 16 { {
                 let mut m = 1;
                 while abgen::bc7_pure::compute_mip_chain_size(tw, th, m) < rpay.len() {
                     m += 1;
                 }
                 m
-            })
-            .unwrap_or(1);
+            } } else { 1 };
         let (enc, _) = abgen::bc7_pure::encode_bc7_mip_chain_with_profile(
             &flipped,
             tw,
@@ -615,9 +613,9 @@ fn main() {
 
                         let n = cands.len() as u32;
                         let mut mean = [0u8; 3];
-                        for c in 0..3 {
+                        for (c, m) in mean.iter_mut().enumerate() {
                             let s: u32 = cands.iter().map(|cc| cc.1[c] as u32).sum();
-                            mean[c] = ((s + n / 2) / n) as u8;
+                            *m = ((s + n / 2) / n) as u8;
                         }
                         let key = if !who.is_empty() {
                             format!("k={k} taps={} exact={}", cands.len(), who)

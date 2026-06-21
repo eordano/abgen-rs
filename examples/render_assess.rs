@@ -20,13 +20,9 @@ struct Tex {
     rgba: Option<Vec<u8>>,
 }
 
-fn decode_blocks(
-    data: &[u8],
-    w: usize,
-    h: usize,
-    out: &mut [u32],
-    f: fn(&[u8], usize, usize, &mut [u32]) -> Result<(), &'static str>,
-) -> bool {
+type DecodeFn = fn(&[u8], usize, usize, &mut [u32]) -> Result<(), &'static str>;
+
+fn decode_blocks(data: &[u8], w: usize, h: usize, out: &mut [u32], f: DecodeFn) -> bool {
     f(data, w, h, out).is_ok()
 }
 
@@ -174,7 +170,6 @@ fn main() {
     let to = read_texes(&bo);
     let tr = read_texes(&br);
 
-    // structural: texture count mismatch or name set mismatch
     let mut struct_diff = to.len() != tr.len();
     let mut hdr_fields: Vec<&str> = Vec::new();
     let mut pxmax = 0i64;
@@ -186,7 +181,6 @@ fn main() {
     let mut undecoded = false;
     let mut dimmis = false;
 
-    // match by path_id first, fall back to name
     let by_name_r: BTreeMap<&str, &Tex> = tr.values().map(|t| (t.name.as_str(), t)).collect();
     for (pid, o) in &to {
         let r = tr.get(pid).or_else(|| by_name_r.get(o.name.as_str()).copied());

@@ -130,6 +130,8 @@ fn main() {
                 inc[tri[ci]].push((tri, ci));
             }
         }
+        // `i` indexes inc at multiple positions; range loop is clearest.
+        #[allow(clippy::needless_range_loop)]
         for i in 0..n {
             if shown >= max_rows {
                 break;

@@ -1494,7 +1494,7 @@ fn evaluate_solution(
         wc[0][j] = amin.c[j] as f32;
         wc[n - 1][j] = amax.c[j] as f32;
     }
-    // Only mutated under the x86_64 SIMD cfg below; stays false on other arches.
+
     #[allow(unused_mut)]
     let mut wc_built = false;
     #[cfg(target_arch = "x86_64")]

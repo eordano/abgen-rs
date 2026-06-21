@@ -95,7 +95,7 @@ is a string/varint/alignment insert.
 ## Verification
 
 - Baseline build: `abgen-corpus --from-reference …/ad0564d-windows` (ABGEN_ROOT
-  must point at `/home/dcl/umbrella/ab-generator` so the template bundle
+  must point at `<repo-root>` so the template bundle
   resolves from a worktree).
 - `cargo test --release --test parity_bytes` → 2 passed (gate green; no code
   change made).

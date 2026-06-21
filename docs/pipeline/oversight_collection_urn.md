@@ -7,7 +7,7 @@ content, and abgen-rs has an `ABGEN_COLLECTION_MODE` switch that models that
 difference. This note maps the concrete divergences and how they were gated.
 
 **Status update (gated against a real corpus).** There IS now a collection
-reference on disk: `unity-reference-ab/collection-base-avatars-windows` (547
+reference on disk: `abc-abgenrs-799967c3-2026-06-20/collection-base-avatars-windows` (547
 bundles, the base-avatars collection built by
 `ExportWearablesCollectionToAssetBundles`). Build the matching set with
 `abgen-corpus --collection-urn urn:decentraland:off-chain:base-avatars

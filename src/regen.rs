@@ -57,6 +57,14 @@ pub struct RegenConfig {
     pub content_env: String,
     pub progress_every: usize,
     pub local: Option<String>,
+    /// Rebuild every asset even if its output already exists on disk.
+    /// Default false: already-present outputs are skipped (incremental "top off").
+    pub force: bool,
+    /// `--magenta-missing`: ship broken content as renderable magenta placeholders
+    /// (named with the failure) instead of failing it. Relaxes the dep digest to
+    /// tolerate missing deps and substitutes magenta in the build. Off by default
+    /// so parity corpora stay byte-exact.
+    pub magenta_missing: bool,
 }
 
 impl Default for RegenConfig {
@@ -76,6 +84,8 @@ impl Default for RegenConfig {
             content_env: DEFAULT_CONTENT_ENV.to_string(),
             progress_every: 25,
             local: None,
+            force: false,
+            magenta_missing: false,
         }
     }
 }
@@ -241,7 +251,7 @@ fn manifest_path(cfg: &RegenConfig, entity_id: &str) -> PathBuf {
     dir.join(fname)
 }
 
-fn guard<T>(f: impl FnOnce() -> Result<T>) -> Result<T> {
+pub fn guard<T>(f: impl FnOnce() -> Result<T>) -> Result<T> {
     use std::panic::{catch_unwind, AssertUnwindSafe};
     match catch_unwind(AssertUnwindSafe(f)) {
         Ok(r) => r,
@@ -265,7 +275,7 @@ fn plan_asset(
 ) -> Result<(String, Vec<u8>)> {
     let ext = naming::file_extension(glb_file);
     let glb = cli.fetch_content(glb_hash)?;
-    let digest = naming::deps_digest_for_glb(&glb, glb_file, content_by_file)?;
+    let digest = naming::deps_digest_for_glb(&glb, glb_file, content_by_file, cfg.magenta_missing)?;
     let name = naming::canonical_filename(glb_hash, &ext, &cfg.platform, Some(&digest))?;
     Ok((name, glb))
 }
@@ -297,6 +307,7 @@ fn convert_and_write(
             source_file: Some(glb_file),
             entity_type: Some(entity_type),
             resolve,
+            magenta_missing: cfg.magenta_missing,
             ..Default::default()
         };
         build_bundle(glb_bytes, canonical_name, glb_hash, &opts).map(|a| a.data)
@@ -332,7 +343,7 @@ fn write_entity_manifest(
         "files": files,
         "exitCode": 0,
         "contentServerUrl": cli_base(cfg),
-        "date": iso8601_utc_now(),
+        "date": crate::manifest::provenance(entity_id),
     });
     let path = manifest_path(cfg, entity_id);
     if let Some(parent) = path.parent() {
@@ -410,7 +421,7 @@ pub fn regenerate(cfg: &RegenConfig) -> Result<RegenReport> {
                 entity_names.push(name.clone());
 
                 let final_path = assets.join(&name);
-                if final_path.exists() {
+                if !cfg.force && final_path.exists() {
                     already.fetch_add(1, Ordering::Relaxed);
                     continue;
                 }
@@ -515,7 +526,7 @@ fn dry_run(
                 Ok((name, glb)) => {
                     let mut u = unique.lock().unwrap();
                     if u.insert(name.clone()) {
-                        if assets.join(&name).exists() {
+                        if !cfg.force && assets.join(&name).exists() {
                             on_disk.fetch_add(1, Ordering::Relaxed);
                         }
                         glb_byte_total.fetch_add(glb.len() as u64, Ordering::Relaxed);
@@ -553,6 +564,7 @@ fn dry_run(
     Ok(report)
 }
 
+#[allow(dead_code)]
 fn iso8601_utc_now() -> String {
     let dur = SystemTime::now()
         .duration_since(UNIX_EPOCH)

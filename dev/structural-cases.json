@@ -1,0 +1,968 @@
+{
+ "bafkreiawt62rolw6vrs7qhadan67h5moljdbigoniizkr7imnzxcrrbtlu": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "tangent.w sign-flip wall (flip_w=2)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreicruyj5ufo4tuik5zgtycz3fynp2nmwleuvokwr3l7tof7xggfbju": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreia2sds5vrdlnab6vrdpqqq2ua5hrl62zh7quwih6orq3vnk5j55w4": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController equal-size DIFF; 14-entry key set identical, only order differs) \u2014 orchestrator-confirmed 20260619-1820",
+  "last_run": "20260619-1820"
+ },
+ "bafkreibkc66t7igtbykj7sd7ku33uibnp36txhhpaamrhhsi7hno3x7xo4": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreieyffw7kv4mjj2l3vzqzvcrkbgssk27h655cshrs3davupt6764g4": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController equal-size DIFF; 14-entry key set identical, only order differs) \u2014 orchestrator-confirmed 20260619-1820",
+  "last_run": "20260619-1820"
+ },
+ "bafkreihp4g3b2x3tymgbpmv5tg7hjet2szlungbx7sf7xmahrvxpuxuvuq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "mesh/transform float-residue wall (float_w=12)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreig5w6ujastqd7dhnmyumkrgi2il72nunkxxpvcqbh3rm23d7y62cm": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "mesh/transform float-residue wall (float_w=1)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreifsm7g57w4txrsekfitduagcpqyt3i3afputb3a5v44atspsvj2eu": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreihfvzz4zp6vk7exge6c3uxuygsgvxatj4rick43zmsg7p2bsc4x7m": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreia44servarwqevuzt62d56myf5aj5d3fs3qj2eey7eozbphvcdw7q": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "Mecanim constant-clip 1-ULP gate wall (single binding exactly 1 ULP from native collapse threshold) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreidf3n3a5ajzmadxdgypiwyzid4ieo6t5bag4wzw4eohn6dwa3tbde": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController equal-size DIFF; 14-entry key set identical, only order differs) \u2014 orchestrator-confirmed 20260619-1820",
+  "last_run": "20260619-1820"
+ },
+ "bafkreicrijtqb72erfmqqj6eqq6tx6s6bjo7e4bch7yvkjyld5mzh6ok5m": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "Mecanim constant-clip 1-ULP gate wall (single binding exactly 1 ULP from native collapse threshold) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreiha2iwdatxw76ok6o3jkbnvtatddbtzsxqzsag673z6stzxmykb6u": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController equal-size DIFF; 14-entry key set identical, only order differs) \u2014 orchestrator-confirmed 20260619-1820",
+  "last_run": "20260619-1820"
+ },
+ "bafkreiel25kobqehrdbryw67kr3jqmylvu5hrbsunftord7iunjn7lqjq4": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "RecalculateTangents catastrophic-cancellation residue wall (UV-seam vertex; ref-fallback-we-real) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreig2eg27l5pxl3nylm5xws7rdgw3yhjd2wjizyp6ezwb7pzs5vmh4q": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "tangent.w sign-flip wall (flip_w=1)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreibf7ogmlw7nxxdkrdgtpfy7uu7mhixm2tog2fqkzi3i75zraasqyi": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "mesh/transform float-residue wall (float_w=12)",
+  "last_run": "20260619-1720"
+ },
+ "QmUwmgapjirBnBxdKeeyDvubTFucf95NHzmhdkpMMb4Zve": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "mesh/transform float-residue wall (float_w=176)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreif4cesn4bihqotup5dxaq77cwgryitpyvtkh2a64perihevcbno6u": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreigkfykviaoezafzqq7liivbkuvilmwfr62psrb7sdittvwdkjuuy4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "tangent.w sign-flip wall (flip_w=4304)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreiakxbnxxcsmqo7dddfrk2kl4syqajtxlo45ls2fa5wbqb74cjgvem": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreif2lbgowhxk6g4cczsl7ang66pqtzb4hcyb3azwm3fhji2yf5yolq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "mesh/transform float-residue wall (float_w=1)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreidtxkycnkkdioxxb3yzrtxohqjtrtmsnkrzo3wvkwetats4wrlk4y": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "tangent.w sign-flip wall (flip_w=8)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreieopkplhcre77sgt7qtfv3vvyi2e53skmxo6u56f5u4rmfabgetay": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "mesh/transform float-residue wall (float_w=1)",
+  "last_run": "20260619-1720"
+ },
+ "QmNY2Kq5n8koD5bfiSJeKSo4tRTWSAoaXD1SBYLVFSfPNp": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "warmup/DCL_Scene session-state artifact (not content-derivable)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreigcreq7rv6b2wf4zc4fsnif43ziwb4q46v4qhsewpf7gbsyxew3om": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreie276zysczxryyfpodeshgmr2xmxu36t7tq5rlgnfs5mxjs2lnenu": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "tangent.w sign-flip wall (flip_w=8)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreifdoggfc3jjke5b7ir2sxhtiaksubqrreoxrfbchy47hpxmqxmt3q": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreib2tzkcucc2y5g7nvent5u3ui6tk7fqojk4n6z7jftvty5xmvupeu": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreiathqagvccfr7ozxqvgp5fby5scoah6jevq5athdp5zq52xrzokq4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "mesh/transform float-residue wall (float_w=556)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreib65ugzxzgmf4ed67nnmafef6owchhxdbmftmcsm72yssyjrwqsp4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "mesh/transform float-residue wall (float_w=40)",
+  "last_run": "20260619-1720"
+ },
+ "bafkreifhoa3zffqnszplclrmczzpns3es527dmnywlt4e2c2fp6ao3gaiy": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "RecalculateTangents catastrophic-cancellation residue wall (UV-seam vertex; ref-fallback-we-real) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreiakbscr2burr7nexsowsm7vteaaiuo5mnr6fpagwnbqhymuzeg3vu": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreihnwuo54jkwkanpbguchr3t4ld4q3ljvqsigblhlerpwiodathhta": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "m_TOS hashtable iteration-order wall (AnimatorController; identical key set, Unity-native order not content-derivable) \u2014 agent-confirmed 20260619-1720",
+  "last_run": "20260619-1720"
+ },
+ "bafkreiash3q7upmq34xgcztnq3dw4gsaczdofksgsxu6c7jg32uisqwdge": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "unnamed mesh-node naming Node-{i} (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreig6a4rscikomxe5ogwgv7kteuwamuzuvq2gk376hwn4s6gw4mixde": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "unnamed mesh-node naming (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "QmWLwrEPDQXDjwFUqRXpAGFMA8GxstQq2sLt97kHZBsgeW": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "unnamed mesh-node naming (key-absence gated) (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreic4zfh3e7vedpci3hkebzzdcdv7wtxgy6j5i5hs4hnibebv7ohdsu": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "unnamed mesh-node naming (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreigzb6hccvdvwitrc22ltksypu2r625mjsmmjjwsoe4xe5jto22vby": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "unnamed-mesh primitive-child naming Primitive_{i} (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreiho5xrsw46lizo3yyheau2p4e3a6kw2fxunlhx5zxbf7kojb2yz24": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "primitive-child naming (residual relabel wall) (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreifomxmeygywp2yt4kjhqyeakiku4ylo33kvcotmja3jq2nzojywhe": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "extra-scene inner GO+Transform+Animation (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreiauwoojhf4cnefjpoxefctm7sjuj75bra6rz5rkwg2feuagecopse": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "single-root .gltf wrap removal (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreibqyyfnqxcloyhn5gin3thcs7mam4j24zwn2zmoi46fjwmmd264au": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "single-root .gltf wrap removal (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreiac7laxyd655xv3gnirbyztrq7fvk4hto7badasi7e3rvjitqfdcy": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "collider mesh dedup (usage union) (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreialf4jvgrueogzkzll2tk2ossoextkdzqxqrb3w2ie2lxzn3pff3y": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "unused-material emission (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreigfqvsfxozkl355dvbgpnfivkosgu7yfbsii2nuzmz2en45d42tpa": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "unused-material emission (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreibfvcl2mbxqugrgappshe6j4aantud3gasc7zmpsmsvoaikgxgfbm": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "unused-material emission (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "QmWvD782NFF7QzcGBWv7rCRwyBdJkyTz5GuZXdfGWEKboV": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "unused-material emission (landed 20260619-1846)",
+  "last_run": "20260619-1846"
+ },
+ "bafkreibbu6r7go4s2q7xmgg52hvrtuhjxxgqwsujf6do4twltofnosc5am": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "nested-collider multi-emit \u2014 RESOLVED the run-1846 double-collider WALL (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreih7lvbj3utrjrgnnzwyjsqcuw2ror3yllb5riglz6nisia2swmizm": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreia724ku55dwdghau5hsgcmvckampnxnn2fhbica5di77gkbvmunjy": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiban5fegexmlbx5c75fxmkucij4qcxjztocr6aiovahmfyrnwrwki": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihq4fgdejfobisltpf7ljzmv757qrbeajgluueeai2wi7nrt5x4sq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreih7hlqvkhonxnf22pp3fbjuz56a6mglujgvteidjmtipzjcgmfzse": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiebo6ulxhetndf24o6vi64wcutykvh2pz5wktjf6mqbjzgjusle5i": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihpzabs5rhwjhoyazsomezzrdb3wd7svbq7kpvj3hvskph5545j7u": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreie7jmiz56s3rdqi6hngsousctmuxyvzrxmg4bzb7gm5l3ht2wttii": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreic2h5c6e3yjughm4ajxb4q262dn2qrszpggq2d2fgtr2jerbs6xs4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreifzfmkpdmdcnpuju4w54maqglnjfxer2nwmbcw6ymv4jy23b6zcvq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreidlb5rtx6bslxput52lsvr5iayyuxwrvdunlrsgqrtvsf2uy5qnfq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreicidge2cvgjtcuzpyc4zx32fp5qlbzmgs36fa3pn4ikmkovezmlyy": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreigj6enc6maoevdz2tzoohzqlz5itnqcaknzrrggojkhg2btlq7p2e": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiauwfkzsgzk6fxmjvyyucsq3iq52m62hrp2tjp4f6twyrcvu72r2e": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreifp7pdens7vd3yd67yk5xenypa5zoqmqy7ndv2b6uk4rdyg2afx4e": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreidnc7g6y3nxayr44fod6gin64zw3pqbimfuf4jivlacdupthfebu4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreih2kcpeccinmcbkqeg46xno4ytbo3kbtmajdeaj67mshnxux2kmfq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiadutr6pyqplhbr26fuwe65xtdylfaed7uqlmkg6upfdvmlgwyhru": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiarheqgyo3lgdpgccmdbsua2loqkjfbyyz2g46o5h4jypbes2etmi": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreierclhe7rpnztvdnxaw67invc77nfu6ecvexfeukurcrwhot64r74": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiaxowlmkeiknkoabsdmcgvcegqualjyxkyojlorazivfqdneshvxi": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreigrfaodt4itqfyqm47liszkntmelowwk7wzi2kmpzwkkxf3a6r6wm": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreid4luuk4uz35pp57y26swjl3ufiyl7jupeltpbo4ii6bkmdmuti3y": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihyucwf4gpdvxapazy5vcl4qvkbaljvjfyzxtvsbbec2ohf2nh7he": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreighv4iqlmfy6pvp3z6fcyhfyytf7jsnce2bmxfmfznre2ilqqqoha": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreieiwpymszqa6oqxrtqfj63olzstmglkkz5qrqavy6jgusyshdx7ny": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreigsyvliloylhtbuylxrc4ujguz5naqcordevlmr37yuhvzwa4hd2u": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreidjmr3tuh7eroewhpzwfatwwrtedjpsazrasbx5xodmaaenwtvbau": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreif3iqz5zwjfhtlcoqd55indz52fnzbzbjrchnu5mryshy7z7mwgua": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiex7lmhslbdthax7qnkew6m3hsqsgvbduadtrhjiblcra6ckftmqi": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreideizxeikoxf7phz4yj2shayfx7427x33bqpcicwtjvtaxerfnnwm": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiawgx757bc3w7t3mg6uxvxgkkhpfzavnrmmnexzoif56gldcxfwi4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreifrbhprbbx5cs47fmpcditmcnekizqgc57qwz4wtfdxljq22rtsb4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreicyk343of5oh5fhma4gqygyumlkgdwee6s3kw2fiutfprwo4gnioa": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiawjv6nwo4pzcupc34ablzzsacnflviqmchax3rfkbtisuaht5cjq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihy6uib3xn4qlw5fmu2fjj6whumhifpvzqs3yuqgsmrsnlxofjbje": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihydffemgzepigvinx5f63z4roteoowet2r7hxbaorhi4g5r2fewq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiexkvkbbn2373cewhlzx2ajmxohge7r2r7mjy3tyvcggeodpskfgi": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiccgov44yskhk4qvrb6l5frkhpswj5ryrnbru6tsaq6c4a2lkzfo4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreicg2t6gi2hrczl4z5g5d5hbsccpxujnpzeuibhd3o5vpnesefsfja": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreifdor5slxtzswcuiwzyedo7zsmhbcbfcwtu3qpjxsu7pzch2xw2q4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreid6hbyjndnhmij3wz7oxhrw23q5ff6g2mzftdpcmxm6butauptw7u": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreicwbbuyfjrzjgbrkhxy4b3k4qyaho7l3oxa2hqfs62lqqmzvrswg4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreidw3kigtr6p664g5telqqv3vvw5xi7gi6teadnffoo7nxzjvnls4y": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreid5k7l7ql2ippg6ob4oxmwvsub53nm6caut2iswd2wpd6td6btrd4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreifx5apabacc2se345oyh3fxlotvr4vg7tey4fxatprtjdvoacchby": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreib72fjdy53imjctufjwxoqrnmipdjvwhijg6vnnuz546hjo5lc4ma": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiayhjkyxtlzwn6cflyij3icqcvzlu64dtqpt7vgmaaxpco4joe2mu": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihy5425bu35g4b4niq3nymts5bm6prrnbcdmkis2somkwyvpc5nlm": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreialcu326ncaobrkhzpe4pbb25q75ldhuutfkgrgky3hrrjg5nt23a": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihk6rv5cqqp5ptc4ndgo2nfz5nmqsqu6tybyatzj56j7uc2yafhbm": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiexg3tvrnbrzlfygn7j2eaudmoersaykfjxqzu2ewjpvxr2omjdvy": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreibdy4l3t3vooizgxlbtsafuc2ichiaidh2bqsbqjassp4uiwv4iuu": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiflywdbih4rouqb3skimtdtlakkv6sa4zg3oi3x3qrq7cwwsqigc4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "QmexPWX3xP5E9DKuixALD8mX9q8hp3o24EYYC3s34kbD8X": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreigme3gscp6jno36loivpcs4qqcfmv55uwntkpswkespbybtqle4qe": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreid3qwch55eho3nsk3zdob7ulwybevneabffgsyhrynu47hxu6icuq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiagohanjze5l4f4abl437qv2oq3ohinph7jig3lo3p4iiwlodgd4a": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiglru2gzfdu62d47vkzuygrrauqjucuvkwytu6llirudpezh2gzne": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihv24p4efmgkvn3cia33wj4xiht26fj2hzgz7oesqwmxhll5r4ohy": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreigq7k76lbww6ypajh2cyn5ud5zanhgzwe3vsiksslozqmnrp4kko4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreideoeh6jch7ctugxwezpdndvl3y5fmvywsud2dhtvciy7ius3l3ga": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreigc3jbkqmkdnvcjim2vbzlxnjz66y3rewqjzsniq4mplwg7wfhddq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreigkk2gy557oqxl6dcfn55xpmjbcebu672obysszbhugdxpdcndyf4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreifoov6e2taazynxa5f32mueskm3isgxmvwb6eljebfzdvxbrkhhly": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihhtbqtzdesgnm24a26qk56bo76gtibiq6f67vqyftchgxxxudgiq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "QmNa5QHwLonpdfw3pXBCEixWk973CH6eqyyj4eRQUsRGJD": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiczxesul7fhlecnpdkwfpuw6657zbjbwughepu3beeath5rkibgw4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiaxo5bjlydan5wkhl2w2vm57v4764hwvkyauboitkl5n5a3w3x354": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiblsxqacir5uhlifjirnfg2bjvhteklkd5kqv3ugj3fw2mctsw5cm": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihxwn7522gxumat2xmateya4hxsdxsm5ajqdh66lhphww3c4hnjbi": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiaiil5djuzwg5pgx2jblx42jtjqmckfbqucimys2npql6lquffm5a": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "QmeEmsefXrFzRudw65hr6j3s5MDDRdH9hGfwbdHDYsWW4N": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreibixelqinyoyuwiq26eqlo5gj7mqdsr76chpoi7of24islauejd4y": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreigkjnh7l2o7xsqtgcqg6xajjphixzbg7vqcufhftsjlafapcnnt3i": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreifzo6moaq5hhob4r42eu6mddg6nwmmlfvjxvrfflau5tz36mojs5e": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreibqkcbwvcvcai2mvd2gnzv4ljkj6m5g46dpxpa6zpnlobjhyclnsq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreic5dxyxeqqt63znrsw6burxjxkvqod3y74tmhleorztjn37miqja4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiccjfrc56eotdkzi5k6h4jyvi2cxks3ch7wuknsxs7yudrddrgfwy": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiaafmcdhsof5qyhvxjn7n22asckm2xuuy3ksg5wwfpjpizmft6ona": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreifbzdxrlvhbvaxczvspli7lwercqp5hdzryxju2xgykpi6oizxao4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreie37yozkt6z5u76tlo6ljdimthcc5anwjjvkbjqcsuk5rx6nr2zoy": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreie734yvhcuouoin2c6nqyiqnquysqby5yt6yu2o6nhye7fwge6cuy": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreicn3wdnxeb2h43d7wog5lqtp6h3wrv5gqiqemwsj7sz3kldg2fmri": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreih6enutdb7a4yqc34x6gz4gomzjg2jr6e5ng6rfii3jk7skhxjlte": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:float-residue (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreidt7ntbsafjvdr5hzkpyn3ac5qji2c7quygcqqq6y23ge77cin55i": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreigcou4ndpctzm2xedaksly47lcwqzrlig74xjhqszgixoirnl5bse": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreibkp4kv6x4iyqtlyejfdimixjmtdgidrx6oaiqbvi7bmecdaitove": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreiap2q6kfhqidpyyjedw3ltew5ely2zssmc24w5lwk24x7mqfqjzhu": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:tangent (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreicr5kns5rgnv6mm6ejuxlomhk7da2gb7l5h4whkioymxixqjg6ut4": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreid2z5b56mskgmemwl2f2e6rimn2paed2gh46nnu7bnbtu3eilxvlq": {
+  "status": "wall",
+  "attempts": 0,
+  "note": "wall:m_TOS(avatar) (signature pre-triage 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "QmZg55yFMxELi5wZgfh1C3PUCP8MJLd2HEWvia7vPdQpL1": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "DCL_Scene over-emit on orphan null-material prim (guard material_orphan) (landed 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreicxbegozlgh67pjqk2uxjcvndxhhkcgb64sfnilpumhyn2obwy7t4": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "texture load dimension cap max(w,h)<=8192 (was 32Mpx; dropped big textures) (landed 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreihh2mgaqi42kz247dfyme6pg3vgk7aqcdqsijsjnbue4c4yqmp7me": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "texture dimension cap (same fix) (landed 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreidyl2elhuq5ixz4zzwc45ttn6hqibutxyzbf6n7tilit4bnblaw7q": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "texture dimension cap (same fix) (landed 20260619-2115)",
+  "last_run": "20260619-2115"
+ },
+ "bafkreidj6p2bmlqaa7fxowdg3gxf7qrowaspnxqcwfvqbi5s4ayyzyfyum": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "collider name-nuance (mesh _collider only for unnamed node) (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreiccycnk3htsncplhkgyzby7kn55lcx4mkptl2umqnmgkyjon25abe": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "collider seeding requires mesh-bearing node (meshless _collider group) (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreigtyns6c3j3g6aeblwsuy2i6qotuhcqdpuiaqn4tqkcpfnqrdxjwu": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "collider name-nuance (node-name else mesh-name) (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreigfutimjqdqkfwwdzmyecbuhlitsbakunpgovxqgddtxuso5gbica": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "per-scene legacy Animation on multi-scene glb (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreifmrzgf2e6iwbwmqz5gp3fm47xqculg4sob6bojqqfr4l2gu5bctm": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "collider seeding requires mesh-bearing node (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreiakcajl6clhgfr465bhf4ymreyzx2i53o264c6e5dtzf3w2b5egqy": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "nested-collider multi-emit (ConfigureColliders recursion) (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "QmUyA48ofZ4BJ6iSwqKzq8QfSsyCsQMZusuewp7nf7GG6X": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "blendShape curves per v38 primitive-cluster GO (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreiegpnwdzz4wcn5xtowqrdeaosranjv2zmerbjmc2m67lyq7ztsrsy": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "blendShape curves per primitive cluster (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreic7nbj5nvg5yeul63qg5h5u44k27l5hlzxi3dh4dc5ipr2kfeyzli": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "draco index-buffer read width keyed on index_count (residual stream-split wall) (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreieooy6xt5epyd5qpvsnfqeezw27aqrikd26kxszgwo2mzsshfb7oq": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "emission gate = Color!=black sqrMagnitude epsilon (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreifxjtpjqstlcisnrdu3ibsvxlows3jr5xbsnn4lwpb6nrp5brl6ym": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "recompute tangents for draco normal-mapped prims (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "bafkreigxoy7tcar2pb5nhhja3zbwwd4rtopbvpmmab4drjlnak37dpad4q": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "KHR_texture_transform rotation baked into scale/offset (residual BC7 wall) (landed 20260619-2220)",
+  "last_run": "20260619-2220"
+ },
+ "QmTPS4gGck2P4N6wMfXR1ySRwPrDeVd8vJkwfXfVVBUqz3": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "0-byte/broken glb upload \u2014 degenerate import, session-PRNG PathIDs 20260619-2220",
+  "last_run": "20260619-2220"
+ },
+ "bafkreidrdwhnhhtkbk7dwl6l3aqrowfja7k4jfuzmr65cgo6hvulv22ce4": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "dup-texture (same hash, 2 extensions) AssetDB guid collision -> session PathID 20260619-2220",
+  "last_run": "20260619-2220"
+ },
+ "bafkreiczie3k5d67xswje23zoz5kqltumko2wfpyzqlasefwpj3mn2eqsi": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "dual emote import (magnet_emote/emote_magnet) two-pass PathID relabel 20260619-2220",
+  "last_run": "20260619-2220"
+ },
+ "bafkreidy4lwssd436rz6fk5qebthg6ugiehloacqiczqfs7si7wn5e4w7i": {
+  "status": "fixed",
+  "attempts": 1,
+  "note": "_UV_CHANNEL_SELECT keyword gate = texCoord!=0 && <2 (UV1 only) (landed 20260619-2348)",
+  "last_run": "20260619-2348"
+ },
+ "bafkreiek6xnju3n7v4nxnanyibg7i5b27mei6lon77agtgqm4pua7crkuq": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "RecalculateTangents catastrophic-cancellation residue (cap/seam vertices) 20260619-2348",
+  "last_run": "20260619-2348"
+ },
+ "bafkreidofcphutmh7k3z5laqcy2upur3xrktie2c6dz5vch56el6jpzsje": {
+  "status": "wall",
+  "attempts": 1,
+  "note": "legacy Animation m_Animations dedup first-vs-last-wins \u2014 non-content-derivable (net regression) 20260619-2348",
+  "last_run": "20260619-2348"
+ }
+}

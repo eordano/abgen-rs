@@ -24,9 +24,9 @@ import sys
 from collections import Counter, defaultdict
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-CONTENT_ROOT = "/home/dcl/umbrella/data/content_server/contents"
-ENV_FILE = "/home/dcl/umbrella/env/content.env"
-PG_SOCK = "/home/dcl/umbrella/data/run"
+CONTENT_ROOT = os.environ.get("ABGEN_CONTENT_ROOT", "/path/to/content_server/contents")
+ENV_FILE = os.environ.get("ABGEN_CONTENT_ENV", "/path/to/content.env")
+PG_SOCK = os.environ.get("ABGEN_PG_SOCK", "/path/to/pg/run")
 PG_PORT = "5433"
 PG_DB = "content"
 SEED = "test2"

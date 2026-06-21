@@ -74,6 +74,7 @@ fn run() -> Result<()> {
     let mut content_map_path: Option<String> = None;
     let mut content_dir: Option<String> = None;
     let mut model_referenced = false;
+    let mut magenta_missing = false;
     let mut expect_hash: Option<String> = None;
     let mut expect_hash_file: Option<String> = None;
 
@@ -124,6 +125,7 @@ fn run() -> Result<()> {
                 }));
             }
             "--model-referenced" => model_referenced = true,
+            "--magenta-missing" => magenta_missing = true,
             "--expect-hash" => {
                 i += 1;
                 expect_hash = Some(argv.get(i).cloned().unwrap_or_else(|| {
@@ -251,6 +253,8 @@ fn run() -> Result<()> {
         expect_hash: expect_hash_owned.as_deref(),
         standalone_color_space: None,
         standalone_normal: false,
+        magenta_missing,
+        ..Default::default()
     };
     let artifact = build_bundle(&glb[..], bundle_name, root_hash, &opts)?;
     std::fs::write(&out_path, &artifact.data)?;

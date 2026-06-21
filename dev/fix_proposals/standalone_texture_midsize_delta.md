@@ -7,7 +7,7 @@
 > texture-size/mip/split bug.
 
 Data: `/tmp/abgen-val300-integrated` (ours) vs
-`unity-reference-ab/ad0564d-val300-windows` (truth);
+`abc-abgenrs-799967c3-2026-06-20/val300-windows` (truth);
 `/tmp/abgen-val300-integrated-report.json`.
 
 ## Cluster definition and split

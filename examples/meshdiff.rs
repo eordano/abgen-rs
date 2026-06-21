@@ -1,6 +1,4 @@
-//! meshdiff — compare Mesh geometry between two bundles, matched by m_Name.
-//! Surfaces channel-layout / vertex-format / bind-pose divergence that makes
-//! skinned avatars explode. Usage: meshdiff <bundleA> <bundleB>
+
 use abgen::unity::bundle_file::{Bundle, FileContent};
 use abgen::value::Value;
 use std::collections::BTreeMap;
@@ -13,7 +11,7 @@ fn gi(v: &Value, k: &str) -> i64 {
 #[derive(Debug, Default)]
 struct MeshInfo {
     vcount: i64,
-    channels: Vec<(i64, i64, i64, i64)>, // stream, offset, format, dimension
+    channels: Vec<(i64, i64, i64, i64)>,
     vdata_len: usize,
     vdata_sum: u64,
     idx_format: i64,

@@ -80,6 +80,7 @@ Triage and size-noise (mostly negative):
 - [`mip_chain_arithmetic_verdict.md`](textures/mip_chain_arithmetic_verdict.md) — the mip downsampling arithmetic is correct; the deep-mip diffs are the encoder, not the filter.
 - [`glb_scene_large_outliers.md`](textures/glb_scene_large_outliers.md) — for certain oversized glb textures the reference ships a degenerate placeholder BC7 block, not a real encode.
 - [`standalone_texture_validation_regression.md`](textures/standalone_texture_validation_regression.md) — the headless-batchmode mean-color stub fires only when Unity's pre-resize step actually ran; origin of `--real-textures`.
+- [`load_image_dimension_cap.md`](textures/load_image_dimension_cap.md) — Unity's `LoadImage` gate is a max-dimension cap (8192), not a 32-megapixel pixel count; large-but-loadable glb images were being dropped.
 - [`standalone_texture_size_session.md`](textures/standalone_texture_size_session.md) / [`standalone_texture_midsize_delta.md`](textures/standalone_texture_midsize_delta.md) / [`standalone_texture_legacy_mid_deltas.md`](textures/standalone_texture_legacy_mid_deltas.md) — standalone-texture structural size verified correct; deltas are encoder noise (plus a PSD decode gap).
 - [`texture_size_delta_lz4_noise.md`](textures/texture_size_delta_lz4_noise.md) — tiny on-disk deltas are LZ4 noise over BC7 texel diffs, not structure (negative finding).
 
@@ -144,6 +145,7 @@ problem.
 
 - [`animationclip_content.md`](animation/animationclip_content.md) — keyframe weights, node-path strings, and blendshape attribute naming conventions in baked clips.
 - [`animation_duplicate_channels.md`](animation/animation_duplicate_channels.md) — one curve per `(node, target path)`; duplicate glTF channels collapse.
+- [`multi_scene_legacy_animation.md`](animation/multi_scene_legacy_animation.md) — glbs with multiple glTF scenes get one legacy `Animation` component per scene, each carrying the full clip list.
 - [`rare.md`](animation/rare.md) — morph-target weights animate through AnimationClip float curves and SkinnedMeshRenderer blend-shape weights.
 - [`wearable_animation_method_none.md`](animation/wearable_animation_method_none.md) — legacy `type:"wearable"` emotes convert with `AnimationMethod.None`: skeleton-only bundles, no clip, collapsed root.
 - [`emote_constant_classification.md`](animation/emote_constant_classification.md) — the streamed-vs-constant split for emote muscle-clip curves, black-box recovered.

@@ -1,0 +1,12 @@
+# 5-entity probe set spanning scene/wearable/emote and prod versions v15..v44.
+# Each is present in BOTH content_rust and the prod AB-CDN mirror.
+# scene  v36
+bafkreia22i2cn5y2ytad7n3lrivwletyqtvhtdtwdjtyskruv57cmhgmjm
+# scene  v44
+bafkreic24tz5tsatlu7ggigtv64rcanybklgsoculj4nvftdbafiuuudye
+# wearable v38
+bafkreiaba2qxp4a5ksk3kzjlszg7ccawhiur5imxmod7jx77nrenodhpie
+# wearable v41
+bafkreiabanrbjenczq6al77bzv3rc4fptj2s7cwooi7cdt3bgpczgfdfcy
+# emote v44
+bafkreigb24h3cog26hwa53gdyehdj44j4vorknl425uf526fg447axnqbm

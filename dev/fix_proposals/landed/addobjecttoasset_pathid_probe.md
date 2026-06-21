@@ -32,9 +32,9 @@ diff acceptance — bookkeep the 2 emote bundles in the windows-corpus as
 ## Reproducer
 
 ```bash
-PROJ=/home/dcl/workspaces/abgen-verify
-UNITY=/home/dcl/linux-rigging/Unity-Editors/6000.4.0f1/Editor/Unity
-FHS=/nix/store/rkmgwx91dpdr376194jrgy8j8vfqnccv-unityhub-fhs-env-3.16.4/bin/unityhub-fhs-env
+PROJ=<workspace>
+UNITY=<unity-editor>
+FHS=<unityhub-fhs-env>
 OUT=/abs/out.jsonl
 
 ABGEN_AOA_OUT=$OUT $FHS $UNITY -batchmode -nographics -quit \

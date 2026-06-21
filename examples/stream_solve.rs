@@ -2,8 +2,10 @@ use abgen::unity::bundle_file::{Bundle, FileContent};
 use std::collections::BTreeMap;
 
 type Keys = BTreeMap<(u32, i32), [u32; 4]>;
+type Frames = Vec<(u32, Vec<i32>)>;
+type Clip = (String, Keys, Frames);
 
-fn clips(b: &Bundle) -> Vec<(String, Keys, Vec<(u32, Vec<i32>)>)> {
+fn clips(b: &Bundle) -> Vec<Clip> {
     let mut out = Vec::new();
     for f in &b.files {
         if let FileContent::Serialized(sf) = &f.content {

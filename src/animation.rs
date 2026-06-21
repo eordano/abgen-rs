@@ -107,14 +107,20 @@ pub(crate) mod glb {
         acc_idx: usize,
     ) -> Vec<Vec<f64>> {
         let acc = &gltf["accessors"][acc_idx];
-        let bv_idx = acc["bufferView"].as_u64().expect("accessor bufferView") as usize;
-        let bv = &gltf["bufferViews"][bv_idx];
-        let buffer_idx = bv["buffer"].as_u64().unwrap_or(0) as usize;
-        let buf = &buffers[buffer_idx];
         let component_type = acc["componentType"].as_i64().expect("componentType");
         let t = acc["type"].as_str().expect("accessor type");
         let dim = type_dim(t);
         let csize = comp_size(component_type);
+        let count = acc["count"].as_u64().expect("accessor count") as usize;
+        // glTF spec: accessor.bufferView is OPTIONAL — when absent the accessor is
+        // zero-initialized (placeholder / sparse base). Return zeros instead of
+        // panicking. Byte-identical to the old path when bufferView is present.
+        let Some(bv_idx) = acc["bufferView"].as_u64().map(|x| x as usize) else {
+            return vec![vec![0.0; dim]; count];
+        };
+        let bv = &gltf["bufferViews"][bv_idx];
+        let buffer_idx = bv["buffer"].as_u64().unwrap_or(0) as usize;
+        let buf = &buffers[buffer_idx];
         let bv_off = bv["byteOffset"].as_u64().unwrap_or(0) as usize;
         let acc_off = acc["byteOffset"].as_u64().unwrap_or(0) as usize;
         let start = bv_off + acc_off;
@@ -122,7 +128,6 @@ pub(crate) mod glb {
             .as_u64()
             .map(|s| s as usize)
             .unwrap_or(csize * dim);
-        let count = acc["count"].as_u64().expect("accessor count") as usize;
         let mut out = Vec::with_capacity(count);
         for i in 0..count {
             let off = start + i * stride;
@@ -559,6 +564,78 @@ fn flush_cubic_tangent_neg_zero(raw: &mut [Vec<f64>]) {
     }
 }
 
+fn primitive_cluster_key(prim: &serde_json::Value) -> Vec<i64> {
+    let attrs = &prim["attributes"];
+    let ji = |v: &serde_json::Value, k: &str| -> i64 { v[k].as_i64().unwrap_or(-1) };
+    let mut key: Vec<i64> = vec![
+        ji(attrs, "POSITION"),
+        ji(attrs, "NORMAL"),
+        ji(attrs, "TANGENT"),
+        -100,
+    ];
+    for ui in 0..8 {
+        match attrs.get(format!("TEXCOORD_{ui}")) {
+            Some(a) if a.as_i64().is_some() => key.push(a.as_i64().unwrap()),
+            _ => break,
+        }
+    }
+    key.push(-101);
+    key.push(ji(attrs, "COLOR_0"));
+
+    key.push(-102);
+    if let Some(targets) = prim["targets"].as_array() {
+        for t in targets {
+            key.push(ji(t, "POSITION"));
+            key.push(ji(t, "NORMAL"));
+            key.push(ji(t, "TANGENT"));
+        }
+    }
+    key
+}
+
+fn blendshape_curve_paths(
+    gltf: &serde_json::Value,
+    mesh_idx: usize,
+    node_path: &str,
+) -> Vec<String> {
+    let mesh = &gltf["meshes"][mesh_idx];
+    let prims = match mesh["primitives"].as_array() {
+        Some(p) if !p.is_empty() => p,
+        _ => return vec![node_path.to_string()],
+    };
+
+    let mut clusters: Vec<(Vec<i64>, bool)> = Vec::new();
+    for p in prims {
+        let key = primitive_cluster_key(p);
+        let has_morph = p["targets"].as_array().map(|a| !a.is_empty()).unwrap_or(false);
+        match clusters.iter_mut().find(|(k, _)| *k == key) {
+            Some((_, hm)) => {
+                *hm = *hm || has_morph;
+            }
+            None => clusters.push((key, has_morph)),
+        }
+    }
+
+    if clusters.len() <= 1 {
+        return vec![node_path.to_string()];
+    }
+    let mesh_name = mesh["name"].as_str().filter(|s| !s.is_empty());
+    let child_base: String = mesh_name.map(|s| s.to_string()).unwrap_or_else(|| {
+
+        "Primitive".to_string()
+    });
+    let mut paths: Vec<String> = Vec::new();
+    for (ci, (_, has_morph)) in clusters.iter().enumerate() {
+        if ci == 0 {
+
+            paths.push(node_path.to_string());
+        } else if *has_morph {
+            paths.push(format!("{node_path}/{child_base}_{ci}"));
+        }
+    }
+    paths
+}
+
 pub fn build_animation_clips_from_gltf(
     gltf: &serde_json::Value,
     buffers: &[Vec<u8>],
@@ -666,12 +743,16 @@ pub fn build_animation_clips_from_gltf(
                 if flat.len() != times.len() * n_targets {
                     continue;
                 }
-                for ti in 0..n_targets {
-                    let values_t: Vec<f64> =
-                        (0..times.len()).map(|i| flat[i * n_targets + ti]).collect();
-                    let kf = bake_scalar_curve(&times, &values_t, &interp);
-                    let attribute = format!("blendShape.{}", target_names[ti]);
-                    float_curves.push(float_curve_entry(kf, &attribute, &path));
+
+                let curve_paths = blendshape_curve_paths(gltf, mesh_idx, &path);
+                for cpath in &curve_paths {
+                    for ti in 0..n_targets {
+                        let values_t: Vec<f64> =
+                            (0..times.len()).map(|i| flat[i * n_targets + ti]).collect();
+                        let kf = bake_scalar_curve(&times, &values_t, &interp);
+                        let attribute = format!("blendShape.{}", target_names[ti]);
+                        float_curves.push(float_curve_entry(kf, &attribute, cpath));
+                    }
                 }
             }
         }

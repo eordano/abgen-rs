@@ -143,13 +143,13 @@ golden already covers `cases_first` since the windows fix landed.
 ## Repro
 
 ```bash
-/home/dcl/linux-rigging/dcl-shell -c "cargo build --release --bin ab-build-local"
-ABGEN_REPO_ROOT=/home/dcl/umbrella/ab-generator \
+<fhs-shell> -c "cargo build --release --bin ab-build-local"
+ABGEN_REPO_ROOT=<repo-root> \
 ABGEN_AB_BIN=$PWD/abgen-rs/target/release/ab-build-local \
 nix-shell --run \
  "python3 abgen-rs/dev/measure_bits_assetbundle_mac.py" shell.nix
 
-ABGEN_REPO_ROOT=/home/dcl/umbrella/ab-generator \
+ABGEN_REPO_ROOT=<repo-root> \
 ABGEN_AB_BIN=$PWD/abgen-rs/target/release/ab-build-local \
 nix-shell --run \
  "python3 abgen-rs/dev/bitwise_residuals_mac.py" shell.nix

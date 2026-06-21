@@ -7,7 +7,9 @@ fn gi(v: &Value, k: &str) -> i64 {
     v.get(k).and_then(|x| x.as_i64()).unwrap_or(0)
 }
 
-fn extract(bundle: &Bundle) -> Vec<(usize, usize, i64, Vec<u8>)> {
+type Entry = (usize, usize, i64, Vec<u8>);
+
+fn extract(bundle: &Bundle) -> Vec<Entry> {
     let mut ress: Vec<(String, &Vec<u8>)> = Vec::new();
     for f in &bundle.files {
         if let FileContent::Raw(data) = &f.content {
@@ -15,7 +17,7 @@ fn extract(bundle: &Bundle) -> Vec<(usize, usize, i64, Vec<u8>)> {
         }
     }
     let mut out = Vec::new();
-    let mut entries: Vec<(i64, (usize, usize, i64, Vec<u8>))> = Vec::new();
+    let mut entries: Vec<(i64, Entry)> = Vec::new();
     for f in &bundle.files {
         let FileContent::Serialized(sf) = &f.content else {
             continue;
@@ -137,11 +139,7 @@ fn main() {
         let mut rdr = std::io::BufReader::with_capacity(1 << 24, f);
         let mut buf = [0u8; 80];
         let mut seen = 0u64;
-        loop {
-            match rdr.read_exact(&mut buf) {
-                Ok(()) => {}
-                Err(_) => break,
-            }
+        while let Ok(()) = rdr.read_exact(&mut buf) {
             seen += 1;
             let mut k = [0u8; 16];
             k.copy_from_slice(&buf[..16]);
@@ -150,7 +148,7 @@ fn main() {
                 vv.copy_from_slice(&buf[16..80]);
                 map.insert(k, vv);
             }
-            if seen % 50_000_000 == 0 {
+            if seen.is_multiple_of(50_000_000) {
                 eprintln!("  scanned {seen}M*1e-6 ... map {}", map.len());
             }
         }

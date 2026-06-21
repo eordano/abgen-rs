@@ -1,5 +1,4 @@
-//! tplcheck — dump the fields that decide whether abgen output renders:
-//! Mesh m_IsReadable, AssetBundle preload/container sizes, Material texenv PPtrs.
+
 use abgen::unity::bundle_file::{Bundle, FileContent};
 use abgen::value::Value;
 use std::path::Path;
@@ -40,7 +39,7 @@ fn main() {
                     println!("Material '{name}' path={}", obj.path_id);
                     if let Some(tx) = v.get("m_SavedProperties").and_then(|s| s.get("m_TexEnvs")).and_then(|x| x.as_array()) {
                         for e in tx.iter() {
-                            // each entry: [name, {m_Texture: PPtr, ...}] or {first,second}
+
                             let tex = e.get("second").and_then(|s| s.get("m_Texture"))
                                 .or_else(|| e.get("m_Texture"));
                             if let Some(t) = tex { println!("  texenv tex {}", pptr(t)); }

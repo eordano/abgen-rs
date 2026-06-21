@@ -163,5 +163,5 @@ infrastructure already exists.
 - `examples/diff_classify.rs` — bulk classifier, reads pair-paths from
  stdin, writes per-bundle pattern counts CSV (added).
 
-All five build under `dcl-shell cargo build --release --example <name>`
+All five build under `<fhs-shell> -c cargo build --release --example <name>`
 and read both ours and ref bundles directly via `Bundle::load`.

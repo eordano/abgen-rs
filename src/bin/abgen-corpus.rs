@@ -55,6 +55,14 @@ struct BundleSpec {
 
     #[serde(default)]
     standalone_normal: bool,
+
+    /// Reference-driven: emit the unreferenced DCL_Scene default Material because
+    /// the matching reference bundle actually contains it (production glTFast's
+    /// first-conversion `s_DefaultMaterial` static-cache quirk). Set by
+    /// `--from-reference` after inspecting the reference bundle; never present in
+    /// the JSON manifest format.
+    #[serde(default)]
+    force_default_material: bool,
 }
 
 fn usage() -> ! {
@@ -110,7 +118,12 @@ fn usage() -> ! {
          (+ DCL_Scene.mat container entry) in every glb bundle the v38 way\n  \
          (always, even for zero-material glbs; never bound by renderers;\n  \
          texture bundles unaffected). Matches prod bundles; may diverge\n  \
-         from fork byte-parity. Default OFF."
+         from fork byte-parity. Default OFF.\n\
+         \n\
+         --skip-existing: skip any bundle whose output file already exists and is\n  \
+         non-empty (incremental top-off). --force: rebuild even if it exists. The\n  \
+         default rebuilds/overwrites every bundle (golden/determinism workflows\n  \
+         rely on that)."
     );
     std::process::exit(2);
 }
@@ -139,6 +152,8 @@ fn run() -> Result<()> {
     let mut cdn_layout = false;
     let mut ab_version = DEFAULT_CDN_AB_VERSION.to_string();
     let mut content_server_url = DEFAULT_CONTENT_SERVER_URL.to_string();
+    let mut skip_existing = false;
+    let mut force = false;
     let mut i = 0;
     while i < argv.len() {
         match argv[i].as_str() {
@@ -202,6 +217,12 @@ fn run() -> Result<()> {
             }
             "--expect-hash" => {
                 expect_hash_enable = true;
+            }
+            "--skip-existing" => {
+                skip_existing = true;
+            }
+            "--force" => {
+                force = true;
             }
             "-h" | "--help" => usage(),
             other if other.starts_with("--") => {
@@ -297,6 +318,7 @@ fn run() -> Result<()> {
     let total: usize = manifest.entities.iter().map(|e| e.bundles.len()).sum();
     let built = AtomicUsize::new(0);
     let errs = AtomicUsize::new(0);
+    let skipped = AtomicUsize::new(0);
 
     let first_written: Mutex<HashMap<String, PathBuf>> = Mutex::new(HashMap::new());
 
@@ -323,6 +345,25 @@ fn run() -> Result<()> {
                 return;
             }
             let out_path = ent_out.join(&spec.bundle_name);
+
+            // Incremental top-off: skip a bundle whose output already exists and is
+            // non-empty, unless --force. (Default rebuilds/overwrites — test and
+            // golden/determinism workflows depend on that.)
+            if skip_existing && !force {
+                if let Ok(m) = std::fs::metadata(&out_path) {
+                    if m.is_file() && m.len() > 0 {
+                        skipped.fetch_add(1, Ordering::Relaxed);
+                        if cdn_layout {
+                            first_written
+                                .lock()
+                                .unwrap()
+                                .entry(spec.bundle_name.clone())
+                                .or_insert_with(|| out_path.clone());
+                        }
+                        return;
+                    }
+                }
+            }
 
             if cdn_layout {
                 let prior = first_written
@@ -356,7 +397,7 @@ fn run() -> Result<()> {
                             .or_insert_with(|| out_path.clone());
                     }
                     let n = built.fetch_add(1, Ordering::Relaxed) + 1;
-                    if n % 100 == 0 {
+                    if n.is_multiple_of(100) {
                         eprintln!("  {n}/{total}");
                     }
                 }
@@ -404,7 +445,8 @@ fn run() -> Result<()> {
 
     let n_built = built.load(Ordering::Relaxed);
     let n_errs = errs.load(Ordering::Relaxed) + manifest_errs;
-    println!("DONE built={n_built} errs={n_errs} total={total}");
+    let n_skipped = skipped.load(Ordering::Relaxed);
+    println!("DONE built={n_built} skipped={n_skipped} errs={n_errs} total={total}");
     if n_errs > 0 {
         std::process::exit(1);
     }
@@ -459,6 +501,8 @@ fn build_one(
         expect_hash: spec.expect_hash.as_deref(),
         standalone_color_space: spec.standalone_color_space,
         standalone_normal: spec.standalone_normal,
+        force_default_material: spec.force_default_material,
+        magenta_missing: false,
     };
     let artifact = build_bundle(&glb[..], &spec.bundle_name, &spec.cid, &opts)?;
     std::fs::write(out_path, &artifact.data)?;
@@ -490,7 +534,8 @@ fn write_cdn_manifest(
         "files": files,
         "exitCode": 0,
         "contentServerUrl": content_server_url,
-        "date": iso8601_utc_now(),
+
+        "date": abgen::manifest::provenance(entity_id),
     });
     let dir = out_root.join(entity_id);
     std::fs::create_dir_all(&dir)?;
@@ -500,6 +545,7 @@ fn write_cdn_manifest(
     Ok(missing.len())
 }
 
+#[allow(dead_code)]
 fn iso8601_utc_now() -> String {
     let dur = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
@@ -534,6 +580,34 @@ const IMAGE_EXTS: [&str; 3] = [".png", ".jpg", ".jpeg"];
 fn load_entity_json(store: &LocalContentStore, cid: &str) -> Option<serde_json::Value> {
     let bytes = store.fetch(cid).ok()?;
     serde_json::from_slice(&bytes).ok()
+}
+
+/// Returns true if the reference AssetBundle at `path` contains a Material
+/// (class 21) named "DCL_Scene" — the unreferenced default Material that
+/// production glTFast injects for the first glb-bearing conversion of an editor
+/// session. Used by `--from-reference` to mirror that presence per bundle.
+fn reference_bundle_has_dcl_scene(path: &Path) -> bool {
+    use abgen::unity::bundle_file::{Bundle, FileContent};
+    const C_MATERIAL: i32 = 21;
+    let Ok(bundle) = Bundle::load(path) else {
+        return false;
+    };
+    for f in &bundle.files {
+        let FileContent::Serialized(sf) = &f.content else {
+            continue;
+        };
+        for obj in &sf.objects {
+            if obj.class_id != C_MATERIAL {
+                continue;
+            }
+            if let Ok(v) = sf.read_typetree(obj) {
+                if v.get("m_Name").and_then(|x| x.as_str()) == Some("DCL_Scene") {
+                    return true;
+                }
+            }
+        }
+    }
+    false
 }
 
 fn cid_from_bundle_name(name: &str, platform: &str) -> String {
@@ -621,7 +695,7 @@ fn collect_linear_texture_hashes(
         };
         let resolve: abgen::gltf::Resolve = Some(&resolve_fn);
         let parsed = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
-            abgen::gltf::parse(&data, ext, resolve)
+            abgen::gltf::parse(&data, ext, resolve, false)
         }));
         let scene = match parsed {
             Ok(Ok(s)) => s,
@@ -752,7 +826,7 @@ fn from_entity_ids(
             let loaded = load_entity_json(&store, ent_id);
             load_ns.fetch_add(t_load.elapsed().as_nanos() as u64, Ordering::Relaxed);
             let done = processed.fetch_add(1, Ordering::Relaxed) + 1;
-            if done % 5000 == 0 {
+            if done.is_multiple_of(5000) {
                 let secs = t0.elapsed().as_secs_f64().max(0.001);
                 eprintln!(
                     "  manifest: {done}/{n_total} entities ({:.0}/s, {:.0}s) | glbs={} \
@@ -846,6 +920,8 @@ fn from_entity_ids(
                     expect_hash: None,
                     standalone_color_space,
                     standalone_normal,
+                    // collection mode already forces DCL_Scene via the env gate.
+                    force_default_material: false,
                 });
             }
             if bundles.is_empty() {
@@ -912,10 +988,15 @@ fn from_collection_urn(
     let url = format!("{base}/collections/wearables?collectionId={urn}");
     eprintln!("resolving collection {urn} via {url}");
     let body = ureq::get(&url)
-        .timeout(std::time::Duration::from_secs(30))
+        .config()
+        .timeout_global(Some(std::time::Duration::from_secs(30)))
+        .build()
         .call()
         .with_context(|| format!("GET {url}"))?
-        .into_string()
+        .into_body()
+        .into_with_config()
+        .limit(512 * 1024 * 1024)
+        .read_to_string()
         .context("read lambdas response")?;
     let doc: serde_json::Value = serde_json::from_str(&body).context("parse lambdas JSON")?;
     let wearables = doc
@@ -1008,6 +1089,8 @@ fn from_collection_urn(
                 expect_hash: None,
                 standalone_color_space,
                 standalone_normal,
+                // collection mode already forces DCL_Scene via the env gate.
+                force_default_material: false,
             });
         }
         if !bundles.is_empty() {
@@ -1130,7 +1213,7 @@ fn from_reference(
             let (model_refs, linear_refs, normal_refs) =
                 (&scan.model_refs, &scan.linear_refs, &scan.normal_refs);
 
-            let mut bundle_paths: Vec<PathBuf> = std::fs::read_dir(&ent_dir)
+            let mut bundle_paths: Vec<PathBuf> = std::fs::read_dir(ent_dir)
                 .with_context(|| format!("read_dir {}", ent_dir.display()))?
                 .filter_map(|e| e.ok())
                 .map(|e| e.path())
@@ -1174,13 +1257,12 @@ fn from_reference(
                     None
                 };
                 let standalone_normal = is_image && normal_refs.contains(&cid);
-                let source_file = if inv.contains_key(&cid)
+                let source_file = if (inv.contains_key(&cid)
                     && (glb_file_l.ends_with(".gltf")
                         || glb_file_l.ends_with("_emote.glb")
-                        || glb_file_l.ends_with(".glb"))
+                        || glb_file_l.ends_with(".glb")))
+                    || is_image
                 {
-                    Some(glb_file.clone())
-                } else if is_image {
                     Some(glb_file.clone())
                 } else {
                     None
@@ -1190,6 +1272,18 @@ fn from_reference(
                 } else {
                     None
                 };
+                // Reference-driven DCL_Scene mirroring: production glTFast emits the
+                // unreferenced DCL_Scene default Material only for the first
+                // glb-bearing conversion of an editor session (its s_DefaultMaterial
+                // static cache materializes once and the asset-bundle-converter
+                // captures it into every bundle of that conversion). Whether a given
+                // reference bundle has it is session/order state, not a per-bundle
+                // property abgen could recompute from the glb. But in
+                // --from-reference mode the matching reference bundle bytes are in
+                // hand, so we mirror its presence exactly: emit DCL_Scene iff the
+                // reference bundle contains a DCL_Scene Material. Texture bundles
+                // never have it; this is a no-op for them.
+                let force_default_material = reference_bundle_has_dcl_scene(&bp);
                 bundles.push(BundleSpec {
                     cid,
                     bundle_name: name,
@@ -1204,6 +1298,7 @@ fn from_reference(
                     expect_hash,
                     standalone_color_space,
                     standalone_normal,
+                    force_default_material,
                 });
             }
 

@@ -6,13 +6,9 @@ fn gi(v: &Value, k: &str) -> i64 {
     v.get(k).and_then(|x| x.as_i64()).unwrap_or(0)
 }
 
-fn decode_blocks(
-    data: &[u8],
-    w: usize,
-    h: usize,
-    out: &mut [u32],
-    f: fn(&[u8], usize, usize, &mut [u32]) -> Result<(), &'static str>,
-) -> bool {
+type DecodeFn = fn(&[u8], usize, usize, &mut [u32]) -> Result<(), &'static str>;
+
+fn decode_blocks(data: &[u8], w: usize, h: usize, out: &mut [u32], f: DecodeFn) -> bool {
     f(data, w, h, out).is_ok()
 }
 

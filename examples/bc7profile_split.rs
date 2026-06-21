@@ -8,14 +8,17 @@ fn gi(v: &Value, k: &str) -> i64 {
     v.get(k).and_then(|x| x.as_i64()).unwrap_or(0)
 }
 
-fn extract(b: &Bundle) -> Vec<(usize, usize, Vec<u8>)> {
+type Tex = (usize, usize, Vec<u8>);
+type Blocks = (Vec<[u8; 16]>, Vec<[u8; 16]>);
+
+fn extract(b: &Bundle) -> Vec<Tex> {
     let mut ress: Vec<(String, &Vec<u8>)> = Vec::new();
     for f in &b.files {
         if let FileContent::Raw(d) = &f.content {
             ress.push((f.name.clone(), d));
         }
     }
-    let mut e: Vec<(i64, (usize, usize, Vec<u8>))> = Vec::new();
+    let mut e: Vec<(i64, Tex)> = Vec::new();
     for f in &b.files {
         let FileContent::Serialized(sf) = &f.content else {
             continue;
@@ -72,7 +75,7 @@ fn main() {
         .map(|s| s.to_string())
         .collect();
     let mut wanted: HashSet<[u8; 16]> = HashSet::new();
-    let mut tex: Vec<(Vec<[u8; 16]>, Vec<[u8; 16]>)> = Vec::new();
+    let mut tex: Vec<Blocks> = Vec::new();
     for line in &lines {
         let p: Vec<&str> = line.split('\t').collect();
         if p.len() < 3 || !p[2].starts_with("standalone-texture") {

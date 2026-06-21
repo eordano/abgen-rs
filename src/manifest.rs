@@ -30,7 +30,7 @@ pub fn write_scene(
         "version": ab_version,
         "files": files,
         "exitCode": exit_code,
-        "date": iso8601_utc_now(),
+        "date": provenance(entity_id),
     });
 
     let text = serde_json::to_string_pretty(&manifest)?;
@@ -38,6 +38,15 @@ pub fn write_scene(
     Ok(base)
 }
 
+pub fn provenance(entity_id: &str) -> String {
+    use sha1::{Digest, Sha1};
+    let mut h = Sha1::new();
+    h.update(entity_id.as_bytes());
+    let inputs: String = h.finalize().iter().take(8).map(|b| format!("{b:02x}")).collect();
+    format!("{inputs}+{}", env!("ABGEN_GIT_COMMIT"))
+}
+
+#[allow(dead_code)]
 fn iso8601_utc_now() -> String {
     let dur = SystemTime::now()
         .duration_since(UNIX_EPOCH)

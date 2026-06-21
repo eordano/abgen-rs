@@ -29,11 +29,13 @@ pub mod mesh_layout;
 pub mod naming;
 pub mod normals;
 pub mod pathids;
+pub mod placeholder;
 pub mod png;
 pub mod resize;
 pub mod ress;
 pub mod sbp_order;
 pub mod skeleton;
+pub mod space;
 pub mod tangents;
 pub mod texprofile;
 
@@ -53,6 +55,7 @@ pub mod compress;
 pub mod lods;
 pub mod regen;
 pub mod shader;
+pub mod validate;
 pub mod wearables;
 
 pub use anyhow::{anyhow, bail, Context, Result};

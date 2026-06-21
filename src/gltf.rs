@@ -67,7 +67,11 @@ fn apply_sparse(gltf: &J, buffers: &[Vec<u8>], acc: &J, dim: usize, out: &mut [V
     if sp_count == 0 {
         return;
     }
-    let buffer_views = jarr(gltf, "bufferViews").expect("bufferViews");
+    // Malformed sparse accessor with no "bufferViews": skip sparse substitution
+    // rather than panicking (the base accessor values stand).
+    let Some(buffer_views) = jarr(gltf, "bufferViews") else {
+        return;
+    };
 
     let idx_obj = sp.get("indices").expect("sparse.indices");
     let idx_bv =
@@ -123,8 +127,13 @@ fn read_accessor(gltf: &J, buffers: &[Vec<u8>], acc_idx: i64) -> Vec<Vec<f64>> {
 
     let mut out: Vec<Vec<f64>> = match ji(acc, "bufferView") {
         Some(bv_idx) => {
-            let buffer_views = jarr(gltf, "bufferViews").expect("bufferViews");
-            let bv = &buffer_views[bv_idx as usize];
+            // Malformed glTF can reference a bufferView index with no (or too
+            // short) "bufferViews" array. Treat as zero-filled rather than
+            // panicking — byte-identical when the bufferView is present.
+            let bv = match jarr(gltf, "bufferViews").and_then(|bvs| bvs.get(bv_idx as usize)) {
+                Some(bv) => bv,
+                None => return vec![vec![0.0; dim]; count],
+            };
             let buf = &buffers[ji(bv, "buffer").unwrap_or(0) as usize];
             let start =
                 (ji(bv, "byteOffset").unwrap_or(0) + ji(acc, "byteOffset").unwrap_or(0)) as usize;
@@ -435,7 +444,6 @@ fn parse_glb(bytes: &[u8]) -> Result<(J, Vec<u8>)> {
     Ok((json, bin_chunk))
 }
 
-/// Return the raw bytes of a GLB's JSON chunk (un-parsed), or `None` if absent.
 fn glb_json_chunk(bytes: &[u8]) -> Option<Vec<u8>> {
     if bytes.len() < 12 || &bytes[0..4] != b"glTF" {
         return None;
@@ -463,23 +471,6 @@ fn glb_json_chunk(bytes: &[u8]) -> Option<Vec<u8>> {
     None
 }
 
-/// Mirror Unity's `JsonUtility` signed-zero quirk on node rotations.
-///
-/// glTF permits the integer token `-0` for a quaternion component. Unity's
-/// `JsonUtility.FromJson` parses an integer-form token (no `.`/`e`/`E`) through
-/// an integer path that discards the sign of zero, yielding `+0.0f`; a
-/// decimal-form token like `-0.0` goes through the float path and keeps the
-/// IEEE sign bit (`-0.0f`). serde_json collapses both to `-0.0`, losing that
-/// distinction. Node rotation lanes y/z are negated by the glTF→Unity basis
-/// flip, so an integer `-0` source that Unity reads as `+0.0` becomes `-0.0`
-/// after the flip — which is what Unity serializes — whereas serde_json's
-/// `-0.0` negates to `+0.0` and breaks byte parity.
-///
-/// We re-read the raw JSON tokens for each `nodes[*].rotation` array (the only
-/// place this interacts with a sign-flipping basis change) and rewrite any
-/// integer-form negative-zero component in the parsed tree to `+0`, so the
-/// downstream rotation code reproduces Unity exactly. Decimal `-0.0` tokens are
-/// left untouched. Failure to re-parse is non-fatal (leaves the tree as-is).
 fn fold_integer_neg_zero_node_rotations(gltf: &mut J, json_raw: &[u8]) {
     use serde_json::value::RawValue;
 
@@ -580,7 +571,7 @@ pub fn load_gltf_inputs(
     Ok((gltf, buffers))
 }
 
-pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
+pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve, magenta_missing: bool) -> Result<Scene> {
     let (gltf, buffers) = load_gltf_inputs(glb_bytes, ext, resolve)?;
 
     let empty_vec: Vec<J> = Vec::new();
@@ -635,6 +626,26 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
             }
             decode_image_rgba8_unity(r)
         });
+        // --magenta-missing: a texture that didn't resolve/decode becomes a
+        // magenta placeholder naming the missing file, instead of being dropped.
+        // We PNG-encode it into `raw` too (a) so detect_container() reports PNG —
+        // unity_load_image_would_succeed() gates on a PNG/JPEG container — and
+        // (b) so it embeds as a normal Texture2D. We also clear external_uri so
+        // a missing *external* texture (DCL scenes reference textures as sibling
+        // bundles) is embedded here rather than left as a dangling cross-bundle
+        // ref. For the common path (texture present) this whole block is skipped.
+        let (pil, raw, external_uri) = if pil.is_none() && magenta_missing {
+            let nm = external_uri.as_deref().unwrap_or("embedded texture");
+            let mag = crate::placeholder::missing_texture("MISSING:", nm, 256);
+            let mut buf = std::io::Cursor::new(Vec::new());
+            let png = match mag.write_to(&mut buf, image::ImageFormat::Png) {
+                Ok(()) => Some(buf.into_inner()),
+                Err(_) => raw,
+            };
+            (Some(mag), png, None)
+        } else {
+            (pil, raw, external_uri)
+        };
         images.push(pil);
         image_embedded.push(embedded);
         image_bytes.push(raw);
@@ -699,10 +710,32 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
         let g_sca = jarr(ktt, "scale")
             .map(|a| [a[0].as_f64().unwrap_or(1.0), a[1].as_f64().unwrap_or(1.0)])
             .unwrap_or([1.0, 1.0]);
-        let m_off_y = (1.0_f32 - g_off[1] as f32 - g_sca[1] as f32) as f64;
-        let xform = TexTransform {
-            scale: [g_sca[0], g_sca[1]],
-            offset: [g_off[0], m_off_y],
+        let g_rot = ktt
+            .get("rotation")
+            .and_then(|r| r.as_f64())
+            .unwrap_or(0.0);
+        let xform = if g_rot != 0.0 {
+
+            let rot = g_rot as f32;
+            let cos = rot.cos();
+            let sin = rot.sin();
+            let sx0 = g_sca[0] as f32;
+            let sy0 = g_sca[1] as f32;
+            let new_rot_y = sy0 * (-sin);
+            let sx = sx0 * cos;
+            let sy = sy0 * cos;
+            let off_x = (g_off[0] as f32) - new_rot_y;
+            let off_y = ((1.0 - g_off[1]) as f32) - sy;
+            TexTransform {
+                scale: [sx as f64, sy as f64],
+                offset: [off_x as f64, off_y as f64],
+            }
+        } else {
+            let m_off_y = (1.0_f32 - g_off[1] as f32 - g_sca[1] as f32) as f64;
+            TexTransform {
+                scale: [g_sca[0], g_sca[1]],
+                offset: [g_off[0], m_off_y],
+            }
         };
 
         if xform.is_identity() {
@@ -850,7 +883,7 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
         let has_uv_channel = |info: Option<&J>| -> bool {
             info.and_then(|j| j.get("texCoord"))
                 .and_then(|v| v.as_i64())
-                .map(|n| n != 0)
+                .map(|n| n != 0 && n < 2)
                 .unwrap_or(false)
         };
         let uses_uv_channel_select = has_uv_channel(base_color_tex_info)
@@ -1189,6 +1222,9 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
 
         let tx = if flip_translation_x { -t[0] } else { t[0] };
 
+        let name_is_collider = name.to_lowercase().contains("_collider");
+
+        let has_mesh = !prims.is_empty();
         nodes.push(Node {
             name: name.clone(),
             translation: [tx, t[1], t[2]],
@@ -1196,7 +1232,14 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
             scale: s,
             primitives: prims,
             children,
-            is_collider: name.to_lowercase().contains("_collider") || mesh_name_is_collider,
+            is_collider: has_mesh
+                && (if name.is_empty() {
+                    mesh_name_is_collider
+                } else {
+                    name_is_collider
+                }),
+            name_is_collider,
+            extra_colliders: 0,
         });
     }
 
@@ -1209,6 +1252,40 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
                     nodes[c].is_collider = true;
                     stack.push(c);
                 }
+            }
+        }
+    }
+
+    {
+        let name_collider: Vec<bool> = nodes
+            .iter()
+            .map(|n| !n.primitives.is_empty() && n.name.to_lowercase().contains("_collider"))
+            .collect();
+        let mut has_parent = vec![false; nodes.len()];
+        for n in nodes.iter() {
+            for &c in &n.children {
+                if c < has_parent.len() {
+                    has_parent[c] = true;
+                }
+            }
+        }
+
+        let mut stack: Vec<(usize, usize)> = (0..nodes.len())
+            .rev()
+            .filter(|&i| !has_parent[i])
+            .map(|i| (i, 0usize))
+            .collect();
+        while let Some((idx, anc)) = stack.pop() {
+            if idx >= nodes.len() {
+                continue;
+            }
+            if !nodes[idx].primitives.is_empty() && nodes[idx].is_collider {
+                let visits = anc + usize::from(name_collider[idx]);
+                nodes[idx].extra_colliders = visits.saturating_sub(1);
+            }
+            let child_anc = anc + usize::from(name_collider[idx]);
+            for &c in nodes[idx].children.clone().iter() {
+                stack.push((c, child_anc));
             }
         }
     }
@@ -1308,6 +1385,11 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
         normal_uses.difference(&other_uses).copied().collect();
 
     let has_animation = jarr(&gltf, "animations").is_some_and(|a| !a.is_empty());
+
+    let name_key_present: Vec<bool> = json_nodes
+        .iter()
+        .map(|n| n.get("name").and_then(|v| v.as_str()).is_some())
+        .collect();
     let unique_node_names: Vec<String> = {
         let base_name = |i: usize| -> String {
             if has_animation {
@@ -1322,12 +1404,17 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
                 format!("Node-{i}")
             } else {
                 if !nodes[i].name.is_empty() {
-                    nodes[i].name.clone()
-                } else if let Some(p) = nodes[i].primitives.first() {
-                    p.name.clone()
-                } else {
-                    format!("Node-{i}")
+                    return nodes[i].name.clone();
                 }
+                if let Some(p) = nodes[i].primitives.first() {
+                    if !p.name.is_empty() {
+                        return p.name.clone();
+                    }
+                }
+                if name_key_present.get(i).copied().unwrap_or(false) {
+                    return String::new();
+                }
+                format!("Node-{i}")
             }
         };
         let mut names: Vec<String> = vec![String::new(); nodes.len()];
@@ -1338,7 +1425,7 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
             for &ci in order {
                 let name = base_name(ci);
 
-                if !has_animation || nodes[ci].is_collider || name.is_empty() {
+                if !has_animation || nodes[ci].name_is_collider || name.is_empty() {
                     names[ci] = name;
                     continue;
                 }
@@ -1414,7 +1501,7 @@ pub fn parse(glb_bytes: &[u8], ext: &str, resolve: Resolve) -> Result<Scene> {
 
     for node in scene.nodes.iter_mut() {
         for prim in node.primitives.iter_mut() {
-            if prim.tangents.is_some() {
+            if prim.tangents.is_some() && !prim.from_draco {
                 continue;
             }
             let mi = match prim.material_index {

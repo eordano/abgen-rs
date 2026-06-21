@@ -31,6 +31,8 @@ pub const LINUX_MAX_TEXTURE_SIZE: u32 = 512;
 
 pub const TEXTURE_IMPORTER_DEFAULT_MAX: u32 = 2048;
 
+pub const LOAD_IMAGE_MAX_DIMENSION: u32 = 8192;
+
 pub fn max_texture_size_for(target: &str) -> u32 {
     match (if target.is_empty() { "linux" } else { target })
         .to_lowercase()
@@ -46,8 +48,9 @@ pub fn max_texture_size_for(target: &str) -> u32 {
 
 pub fn unity_load_image_would_succeed(src: &SourceImage) -> bool {
     let container_ok = matches!(src.container.as_str(), "PNG" | "JPEG");
-    let pixels = (src.width as u64) * (src.height as u64);
-    container_ok && pixels <= 32 * 1024 * 1024
+    let within_dim =
+        src.width <= LOAD_IMAGE_MAX_DIMENSION && src.height <= LOAD_IMAGE_MAX_DIMENSION;
+    container_ok && within_dim
 }
 
 #[derive(Clone, Debug)]

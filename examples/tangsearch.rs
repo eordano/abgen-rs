@@ -305,6 +305,9 @@ fn tangents(c: &MeshCase, v: V) -> Vec<[u32; 4]> {
         } else {
             (0.0, 0.0, 1.0, 0.0, 1.0, 0.0)
         };
+        // NaN or magnitude <= gate both count as degenerate; the negated
+        // compare is deliberate (`mag <= v.gate` would let NaN slip through).
+        #[allow(clippy::neg_cmp_op_on_partial_ord)]
         let degenerate = !(mag > v.gate);
         let (tgx, tgy, tgz);
         if !degenerate {

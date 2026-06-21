@@ -248,7 +248,7 @@ API.
 ```bash
 # Build the binary (the feature scripts don't actually call it, but other
 # scripts in dev/ do):
-/home/dcl/linux-rigging/dcl-shell -c \
+<fhs-shell> -c \
  "cargo build --release --manifest-path abgen-rs/Cargo.toml --bin ab-build-local"
 
 # Extract features

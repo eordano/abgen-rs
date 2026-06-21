@@ -220,9 +220,9 @@ All scripts read `ABGEN_AB_BIN` and default to the worktree
 ## Reproduce
 
 ```bash
-cd /home/dcl/umbrella/.claude/worktrees/<wt>/ab-generator/abgen-rs
-/home/dcl/linux-rigging/dcl-shell -c "cargo build --release --bin ab-build-local"
-cd /home/dcl/umbrella/ab-generator
+cd <repo>
+<fhs-shell> -c "cargo build --release --bin ab-build-local"
+cd <repo-root>
 ABGEN_AB_BIN=<wt>/.../target/release/ab-build-local \
  nix-shell --run "python <wt>/.../dev/measure_bits_texture2d_windows.py"
 ABGEN_AB_BIN=… nix-shell --run "python <wt>/.../dev/measure_bits_texture2d_mac.py"

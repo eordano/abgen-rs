@@ -8,7 +8,7 @@ different `m_Channels` layout and different color bytes. This is structural
 (raw-length-different), not value-noise.
 
 **How it was found:** the blindspot reference corpus
-(`unity-reference-ab/blindspot-windows`) was built specifically to exercise rare
+(`abc-abgenrs-799967c3-2026-06-20/blindspot-windows`) was built specifically to exercise rare
 glTF paths the production corpus (val300) under-samples — including draco. The
 draco wearable `bafkreigyis3hocfsqpmela7cwhdgm6vtxc7drfgyfgm6piqsig72lt72cm`
 (bundle `bafybeig7xux7ukcnrtqkr4dhtny3fmbohyyx5msvymqbej5lxshqp3af6a_windows`,

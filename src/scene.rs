@@ -64,6 +64,10 @@ pub struct Node {
     pub primitives: Vec<Primitive>,
     pub children: Vec<usize>,
     pub is_collider: bool,
+
+    pub name_is_collider: bool,
+
+    pub extra_colliders: usize,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]

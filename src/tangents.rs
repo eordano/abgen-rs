@@ -145,6 +145,9 @@ pub fn calculate_tangents(
         };
         let (tgx, tgy, tgz);
 
+        // NaN or magnitude <= 1e-6 both count as degenerate; the negated
+        // compare is deliberate (`mag <= 1e-6` would let NaN slip through).
+        #[allow(clippy::neg_cmp_op_on_partial_ord)]
         let degenerate = !(mag > 1e-6);
         if !degenerate {
             tgx = f32round(ox / mag);

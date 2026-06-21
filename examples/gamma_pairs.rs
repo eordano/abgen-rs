@@ -98,8 +98,7 @@ fn main() {
         }
     }
     println!("# in  count  median  mean  min  max");
-    for inv in 0..256 {
-        let b = &mut buckets[inv];
+    for (inv, b) in buckets.iter_mut().enumerate() {
         if b.is_empty() {
             continue;
         }

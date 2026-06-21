@@ -56,6 +56,6 @@ on the corpus).
 
 Plain `cargo build` works on Linux/macOS via `cc-build`. No CMake
 dependency. pthreads are linked for `crn_threading_pthreads.cpp`.
-Tested on NixOS via `dcl-shell`. The build is single-translation-unit-
+Tested on NixOS via an FHS shell. The build is single-translation-unit-
 per-cpp (no precompiled headers) and currently takes ~30s cold from
 `target/`.

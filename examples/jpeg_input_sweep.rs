@@ -1,6 +1,8 @@
 use abgen::unity::bundle_file::{Bundle, FileContent};
 use abgen::value::Value;
 
+type Decoded = Option<(Vec<u8>, u32, u32)>;
+
 fn gi(v: &Value, k: &str) -> i64 {
     v.get(k).and_then(|x| x.as_i64()).unwrap_or(0)
 }
@@ -56,7 +58,7 @@ fn main() {
     let (tw, th, mips, cs, rpay) = ref_tex(&ref_path).expect("ref texture");
     let mip0_blocks = (tw.div_ceil(4) * th.div_ceil(4)) as usize;
 
-    let inputs: Vec<(&str, Option<(Vec<u8>, u32, u32)>)> = vec![
+    let inputs: Vec<(&str, Decoded)> = vec![
         ("9c-box   ", libjpeg9c::decode_rgba(&raw, false)),
         ("9c-fancy ", libjpeg9c::decode_rgba(&raw, true)),
         ("turbo-fcy", abgen::ffi::decode_jpeg_rgba(&raw).ok()),

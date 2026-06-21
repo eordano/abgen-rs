@@ -202,6 +202,9 @@ fn finalize(nn0: [f64; 3], t: [f64; 3], tb: [f64; 3], f: F) -> [u32; 4] {
     let magsq = o!(o!(o!(ox, *, ox), +, o!(oy, *, oy)), +, o!(oz, *, oz));
     let mag = sq(magsq);
     let gate = 10f64.powi(-f.gate_pow);
+    // NaN or magnitude <= gate both count as degenerate; the negated
+    // compare is deliberate (`<= gate` would let NaN slip through).
+    #[allow(clippy::neg_cmp_op_on_partial_ord)]
     let degenerate = if f.gate_sq {
         !(magsq > gate)
     } else {

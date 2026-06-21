@@ -48,13 +48,6 @@ impl LocalContentStore {
         self.path_for(cid).exists()
     }
 
-    /// Persist content bytes under the sharded `<root>/<shard>/<cid>` layout.
-    ///
-    /// Used by the live-translate proxy to cache content fetched from a remote
-    /// catalyst so that `scan_entity`/`build_bundle` (which read through a
-    /// `LocalContentStore`) see it on disk. Content is immutable by CID, so a
-    /// write that races another writer for the same CID is harmless; the
-    /// write-to-temp-then-rename keeps readers from ever seeing a partial file.
     pub fn write(&self, cid: &str, bytes: &[u8]) -> Result<()> {
         let path = self.path_for(cid);
         if let Some(dir) = path.parent() {

@@ -9,7 +9,8 @@ pub enum ExternalsPosition {
 impl ExternalsPosition {
     pub fn for_target(target: &str) -> Self {
         match target {
-            "windows" | "mac" => ExternalsPosition::First,
+            // Linux64 is a standalone desktop platform: mirror windows/mac.
+            "windows" | "mac" | "linux" => ExternalsPosition::First,
             _ => ExternalsPosition::Last,
         }
     }

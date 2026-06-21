@@ -262,7 +262,7 @@ fn main() {
                             .map(|n| {
                                 let h = f(n.as_bytes());
                                 let v = if top {
-                                    (h & 0xffff_ffff) * m >> 32
+                                    ((h & 0xffff_ffff) * m) >> 32
                                 } else {
                                     h % m
                                 };

@@ -1,20 +1,3 @@
-//! make_template — assemble an abgen typetree-template bundle from real bundles.
-//!
-//! abgen serializes against `<ABGEN_ROOT>/template/all-types.windows.bundle`
-//! (and optional `animated-/emote-/skinned-types.windows.bundle`), which supply,
-//! per Unity type, the typetree definition + a base object value to clone. Those
-//! reference bundles aren't redistributable, but every type abgen needs already
-//! exists in real Decentraland bundles (e.g. the explorer's on-disk AB cache).
-//!
-//! This tool harvests one object per requested type across a set of source
-//! bundles and writes them into a single typetree-enabled bundle abgen can load.
-//! Typetree node layouts are platform-independent, so mac-sourced objects are
-//! fine for a `.windows` template (abgen overrides the per-platform object data
-//! when it builds).
-//!
-//!   make_template <out.bundle> <Type1,Type2,...> <src-bundle>...
-//!
-//! Exits non-zero if any requested type was not found in any source.
 
 use abgen::unity::bundle_file::{Bundle, FileContent};
 use abgen::unity::serialized_file::{Object, SerializedType};
@@ -76,8 +59,6 @@ fn main() {
         eprintln!("MISSING (not found in any source): {missing:?}");
     }
 
-    // Reuse the first source as a structural scaffold (valid UnityFS container),
-    // then swap in the harvested type/object tables.
     let mut scaffold = Bundle::load(Path::new(&srcs[0])).expect("load scaffold");
     {
         let sf = scaffold
@@ -87,8 +68,7 @@ fn main() {
         sf.objects = objects;
         sf.script_types = Vec::new();
     }
-    // Base values are read from the typetree only, never from a resource stream,
-    // so drop any .resS node — its stale stream offsets are harmless.
+
     scaffold
         .files
         .retain(|f| matches!(f.content, FileContent::Serialized(_)));

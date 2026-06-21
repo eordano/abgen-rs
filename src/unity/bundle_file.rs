@@ -264,8 +264,6 @@ impl Bundle {
             w.align_stream(16);
         }
 
-        // data_flag is fixed at 0x243: bit 0x80 is clear (block info precedes the data)
-        // and bit 0x200 is set (16-byte alignment before the compressed file data).
         w.write_bytes(&block_data);
         w.align_stream(16);
         w.write_bytes(&compressed_file_data);
@@ -299,6 +297,18 @@ fn lz4_decompress(src: &[u8], dst_size: usize) -> Result<Vec<u8>> {
     crate::lz4::decompress(src, dst_size).map_err(|e| anyhow!("LZ4 decompress failed: {e}"))
 }
 
+fn lz4_cache_dir() -> Option<&'static std::path::Path> {
+    use std::sync::OnceLock;
+    static DIR: OnceLock<Option<std::path::PathBuf>> = OnceLock::new();
+    DIR.get_or_init(|| {
+        let d = std::env::var("ABGEN_BC7_CACHE").ok().filter(|s| !s.is_empty())?;
+        let p = std::path::PathBuf::from(d);
+        std::fs::create_dir_all(&p).ok()?;
+        Some(p)
+    })
+    .as_deref()
+}
+
 fn lz4hc_compress(src: &[u8]) -> Vec<u8> {
     if src.is_empty() {
         return Vec::new();
@@ -309,7 +319,45 @@ fn lz4hc_compress(src: &[u8]) -> Vec<u8> {
         let n = N.fetch_add(1, Ordering::Relaxed);
         let _ = std::fs::write(format!("{dir}/block-{n:04}.bin"), src);
     }
-    crate::lz4::compress_hc(src)
+    lz4hc_compress_cached(src)
+}
+
+fn lz4hc_compress_cached(src: &[u8]) -> Vec<u8> {
+    use sha1::{Digest, Sha1};
+    use std::sync::{Arc, Mutex, OnceLock};
+
+    let disk = match lz4_cache_dir() {
+        Some(d) => d,
+        None => return crate::lz4::compress_hc(src),
+    };
+
+    let mut hsh = Sha1::new();
+    hsh.update(b"lz4hc-v1");
+    hsh.update((src.len() as u64).to_le_bytes());
+    hsh.update(src);
+    let key: [u8; 20] = hsh.finalize().into();
+
+    static MEM: OnceLock<Mutex<std::collections::HashMap<[u8; 20], Arc<Vec<u8>>>>> =
+        OnceLock::new();
+    let mem = MEM.get_or_init(|| Mutex::new(std::collections::HashMap::new()));
+    if let Some(v) = mem.lock().unwrap().get(&key).cloned() {
+        return (*v).clone();
+    }
+
+    let hexkey: String = key.iter().map(|b| format!("{b:02x}")).collect();
+    if let Ok(bytes) = std::fs::read(disk.join(&hexkey)) {
+        let val = Arc::new(bytes);
+        mem.lock().unwrap().insert(key, val.clone());
+        return (*val).clone();
+    }
+
+    let out = crate::lz4::compress_hc(src);
+    let tmp = disk.join(format!("{hexkey}.tmp"));
+    if std::fs::write(&tmp, &out).is_ok() {
+        let _ = std::fs::rename(&tmp, disk.join(&hexkey));
+    }
+    mem.lock().unwrap().insert(key, Arc::new(out.clone()));
+    out
 }
 
 fn chunk_based_compress(data: &[u8], block_info_flag: u16) -> (Vec<u8>, Vec<BlockInfo>) {

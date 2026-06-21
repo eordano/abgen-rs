@@ -83,6 +83,9 @@ fn finalize(nn: [f64; 3], t: [f64; 3], tb: [f64; 3]) -> [u32; 4] {
     let oz = t[2] - nn[2] * d;
     let mag = (ox * ox + oy * oy + oz * oz).sqrt();
     let (fb, b2) = fb_axes(nn);
+    // NaN or magnitude <= 1e-6 both count as degenerate; the negated
+    // compare is deliberate (`mag <= 1e-6` would let NaN slip through).
+    #[allow(clippy::neg_cmp_op_on_partial_ord)]
     let degenerate = !(mag > 1e-6);
     let (tgx, tgy, tgz);
     if !degenerate {
@@ -259,6 +262,8 @@ fn main() {
                 _ => {
                     let mut map: HashMap<Vec<u32>, usize> = HashMap::new();
                     let mut rm = vec![0usize; n];
+                    // `i` is passed by value to key_* and indexes rm; range loop is clearest.
+                    #[allow(clippy::needless_range_loop)]
                     for i in 0..n {
                         let k = match mi {
                             1 => key_pos(&c, i),

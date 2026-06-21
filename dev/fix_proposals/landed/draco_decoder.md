@@ -23,9 +23,9 @@ No pure-Rust draco mesh decoder exists today.
 1. **Build-environment regression.** `Cargo.toml` today is 11 pure-Rust
  deps + zero native build deps. `README.md:98` is the single line
  "cargo build --release". Adding `draco_decoder` introduces `cmake` +
- `g++` requirements. `umbrella/shell.nix` does not include cmake
+ `g++` requirements. the dev `shell.nix` does not include cmake
  (verified: `which cmake` fails inside `nix-shell shell.nix`). The
- FHS `dcl-shell` has cmake, but abgen-rs has never required FHS. The
+ The FHS shell has cmake, but abgen-rs has never required FHS. The
  only existing C-touching path in the crate is the optional
  libjpeg-turbo runtime probe (`dlopen`, not a build dep).
 2. **API impedance mismatch.** Google's draco gives each compressed

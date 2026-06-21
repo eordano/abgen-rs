@@ -152,7 +152,7 @@ a header field-length bug, and is out of scope for this texture-delta question.
 cargo build --release --example tex_probe   # examples/tex_probe.rs
 target/release/examples/tex_probe \
   /tmp/abgen-val300-integrated \
-  /home/dcl/umbrella/ab-generator/unity-reference-ab/ad0564d-val300-windows \
+  /path/to/abc-abgenrs-799967c3-2026-06-20/val300-windows \
   /tmp/abgen-val300-integrated-report.json \
   standalone-texture            # or standalone-texture-legacy
 ```
